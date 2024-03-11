@@ -1,5 +1,7 @@
+const { Schema, model, Types } = require('mongoose');
+
 const commentSchema = new mongoose.Schema({
-  text: {
+  comment: {
     type: String,
     required: true
   },
@@ -10,30 +12,39 @@ const commentSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
   },
 });
 
 const conversationSchema = new Schema({
     conversationText: {
       type: String,
-      required: 'You need to leave a thought!',
+      required: true,
       minlength: 1,
       maxlength: 500,
       trim: true,
+    },
+    expertise: {
+      type: String,
+      required: true
     },
     author: {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
+    listener: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    comments: [commentSchema],
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
     },
-    comments: [commentSchema],
     is_closed: {
       type: Boolean
     },
-    expertise
   });
+
+const Conversation = model('Conversation', conversationSchema);
+
+module.exports = Conversation;
