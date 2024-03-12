@@ -1,3 +1,5 @@
+const {Schema, model, Types} = require('mongoose')
+
 const userSchema = new Schema({
     username: {
       type: String, 
@@ -5,12 +7,12 @@ const userSchema = new Schema({
       unique: true,
       trim: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [/.+@.+\..+/, 'Must match an email address!'],
-    },
+    // email: {
+    //   type: String,
+    //   required: true,
+    //   unique: true,
+    //   match: [/.+@.+\..+/, 'Must match an email address!'],
+    // },
     password: {
       type: String,
       required: true,
@@ -23,21 +25,22 @@ const userSchema = new Schema({
     availability: {
         type: Boolean
     },
+    // We'll assign "listener" or "speaker"
     role: {
-        type: String, // We'll assign "listener" or "speaker"
+        type: String, 
+        trim: true,
     },
     expertise: {
-        type: String
+        type: String,
+        trim: true,
     },
-    personality: {
-        type: Schema.Types.ObjectId,
-        ref: 'Personality'
-    },
-    Conversation: [
+    conversation:
       {
         type: Schema.Types.ObjectId,
         ref: 'Conversation',
       },
-    ],
+});
 
-  });
+const User = model('User',  userSchema);
+
+module.exports = User;
