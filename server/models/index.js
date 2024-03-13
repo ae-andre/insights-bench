@@ -1,4 +1,4 @@
 const User = require('./User');
-const Conversation = require('./Conversation')
+const Conversation = requrie('./Conversation')
 
 module.exports = { User, Conversation };
