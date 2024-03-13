@@ -1,23 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
 
-const Footer = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+export default function Footer() {
   return (
-    <footer className="w-100 mt-auto text-dark p-4">
-      <div className="container text-center mb-5">
-        {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
-            onClick={() => navigate(-1)}
-          >
-            &larr; Go Back
-          </button>
-        )}
-        <h4>&copy; {new Date().getFullYear()} - Tech Friends</h4>
-      </div>
+    <footer className="bg-white">
+        <p className="mt-10 text-center text-xs leading-5 text-gray-500">
+          Copyright &copy; 2024 Soul Bench. All right reserved.
+        </p>
     </footer>
-  );
-};
-
-export default Footer;
+  )
+}
