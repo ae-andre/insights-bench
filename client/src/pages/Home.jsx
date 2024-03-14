@@ -1,14 +1,14 @@
 import { useQuery } from '@apollo/client';
 
-import ProfileList from '../components/ProfileList';
-import ProfileForm from '../components/ProfileForm';
+// import ProfileList from '../components/ProfileList';
+// import ProfileForm from '../components/ProfileForm';
 
 import { QUERY_PROFILES } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
+  // const { loading, data } = useQuery(QUERY_PROFILES);
 
-  const profiles = data?.profiles || [];
+  // const profiles = data?.profiles || [];
 
   return (
     <main>
