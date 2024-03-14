@@ -19,7 +19,7 @@ export default function Example() {
               alt="Your Company"
             /> */}
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Become a Listener Today
+              Become a Sharer Today
             </h2>
           </div>
   
@@ -56,74 +56,12 @@ export default function Example() {
                   />
                 </div>
               </div>
-  
-            <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-base font-medium leading-6 text-gray-900">
-                    I want to help others with: 
-                  </label>
-                </div>
-            </div>
 
-            <fieldset>
-                <legend className="sr-only">Notifications</legend>
-                <div className="space-y-5">
-                    <div className="relative flex items-start">
-                        <div className="flex h-6 items-center">
-                            <input
-                                id="comments"
-                                aria-describedby="comments-description"
-                                name="comments"
-                                type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                            />
-                        </div>
-                        <div className="ml-3 text-sm leading-6">
-                            <label htmlFor="comments" className="font-medium text-gray-900">
-                                Financial Problems
-                            </label>{' '}
-                        </div>
-                    </div>
-                    <div className="relative flex items-start">
-                        <div className="flex h-6 items-center">
-                            <input
-                                id="comments"
-                                aria-describedby="comments-description"
-                                name="comments"
-                                type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                            />
-                        </div>
-                        <div className="ml-3 text-sm leading-6">
-                            <label htmlFor="comments" className="font-medium text-gray-900">
-                                Personal/Relationship Problems
-                            </label>{' '}
-                        </div>
-                    </div>
-                    <div className="relative flex items-start">
-                        <div className="flex h-6 items-center">
-                            <input
-                                id="comments"
-                                aria-describedby="comments-description"
-                                name="comments"
-                                type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                            />
-                        </div>
-                        <div className="ml-3 text-sm leading-6">
-                            <label htmlFor="comments" className="font-medium text-gray-900">
-                                Work/School Problems
-                            </label>{' '}
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
             <div>
                 <h1 className="font-bold text-sm py-2">Disclaimer:</h1>
-                <p className="text-xs">As a listener on this platform, it's important to understand that while we're here to offer support and lend an empathetic ear,
-                    we are not trained therapists or counselors. Our intention is to provide a safe space for others to express themselves and 
-                    share your thoughts and feelings. However, we may not have the expertise to offer professional advice or solutions 
-                    to complex issues.
+                <p className="text-xs">Before you proceed to share your thoughts and experiences, 
+                please note that this platform does not provide professional therapy or counseling services. 
+                While listeners are here to listen and offer support, they are not trained therapists.
                 </p>
             </div>
         
@@ -132,15 +70,15 @@ export default function Example() {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                    Start Changing the World Today!
+                    Start Sharing Today!
                 </button>
               </div>
             </form>
   
             <p className="mt-10 text-center text-sm text-gray-500">
-              Want to be a sharer? {' '}
+              Want to be a listener? {' '}
               <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                Become a sharer instead
+                Become a listener instead
               </a>
             </p>
           </div>

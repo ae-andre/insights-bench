@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Nav from './components/Navbar';
 // import Header from './components/Header';
 // import Footer from './components/Footer';
+import SharerSignup from './components/SharerSignup'
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -13,7 +14,11 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <Nav />
+    <div>
+        <Nav />
+        <SharerSignup />
+    </div>
+
     // <ApolloProvider client={client}>
     //   <div className="flex-column justify-flex-start min-100-vh">
     //     <Header />
