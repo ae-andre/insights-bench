@@ -3,9 +3,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { Outlet } from 'react-router-dom';
 
 import Nav from './components/Navbar';
-// import ListenerSignup from './components/ListenerSignup'
+import ConversationsForm from './components/ConversationsForm';
 // import Header from './components/Header';
 // import Footer from './components/Footer';
+import ChatForm from './components/ConversationsForm';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -14,7 +15,11 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <Nav />
+    <div>
+        <Nav />
+        <ChatForm />
+    </div>
+
     // <ApolloProvider client={client}>
     //   <div className="flex-column justify-flex-start min-100-vh">
     //     <Header />
