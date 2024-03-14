@@ -64,95 +64,77 @@ export default function Example() {
                 </div>
               </div>
   
-              <div>
+            <div>
                 <div className="flex items-center justify-between">
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     I want to help others with: 
                   </label>
                 </div>
+            </div>
 
-                <div className="mt-2">
-                <Menu as="div" className="relative text-left">
-                    <div>
-                        <Menu.Button className="inline-flex w-full justify-start gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                        Choose here
-                        <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
-                        </Menu.Button>
-                    </div>
-
-                    <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                    >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <div className="py-1">
-                            <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                href="#"
-                                className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                    'block px-4 py-2 text-sm'
-                                )}
-                                >
-                                Account settings
-                                </a>
-                            )}
-                            </Menu.Item>
-                            <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                href="#"
-                                className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                    'block px-4 py-2 text-sm'
-                                )}
-                                >
-                                Support
-                                </a>
-                            )}
-                            </Menu.Item>
-                            <Menu.Item>
-                            {({ active }) => (
-                                <a
-                                href="#"
-                                className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                    'block px-4 py-2 text-sm'
-                                )}
-                                >
-                                License
-                                </a>
-                            )}
-                            </Menu.Item>
-                            <form method="POST" action="#">
-                            <Menu.Item>
-                                {({ active }) => (
-                                <button
-                                    type="submit"
-                                    className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                    'block w-full px-4 py-2 text-left text-sm'
-                                    )}
-                                >
-                                    Sign out
-                                </button>
-                                )}
-                            </Menu.Item>
-                            </form>
+            <fieldset>
+                <legend className="sr-only">Notifications</legend>
+                <div className="space-y-5">
+                    <div className="relative flex items-start">
+                        <div className="flex h-6 items-center">
+                            <input
+                                id="comments"
+                                aria-describedby="comments-description"
+                                name="comments"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
                         </div>
-                        </Menu.Items>
-                    </Transition>
-                </Menu>
+                        <div className="ml-3 text-sm leading-6">
+                            <label htmlFor="comments" className="font-medium text-gray-900">
+                                Financial Problems
+                            </label>{' '}
+                        </div>
+                    </div>
+                    <div className="relative flex items-start">
+                        <div className="flex h-6 items-center">
+                            <input
+                                id="comments"
+                                aria-describedby="comments-description"
+                                name="comments"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                        </div>
+                        <div className="ml-3 text-sm leading-6">
+                            <label htmlFor="comments" className="font-medium text-gray-900">
+                                Personal/Relationship Problems
+                            </label>{' '}
+                        </div>
+                    </div>
+                    <div className="relative flex items-start">
+                        <div className="flex h-6 items-center">
+                            <input
+                                id="comments"
+                                aria-describedby="comments-description"
+                                name="comments"
+                                type="checkbox"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            />
+                        </div>
+                        <div className="ml-3 text-sm leading-6">
+                            <label htmlFor="comments" className="font-medium text-gray-900">
+                                Work/School Problems
+                            </label>{' '}
+                        </div>
+                    </div>
                 </div>
-              </div>
+            </fieldset>
+            <div>
+                <h1 className="font-bold py-2">Disclaimer:</h1>
+                <p>As a listener on this platform, it's important to understand that while we're here to offer support and lend an empathetic ear,
+                    we are not trained therapists or counselors. Our intention is to provide a safe space for others to express themselves and 
+                    share your thoughts and feelings. However, we may not have the expertise to offer professional advice or solutions 
+                    to complex issues.
+                </p>
+            </div>
         
-              <div>
+            <div>
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
