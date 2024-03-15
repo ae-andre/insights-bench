@@ -10,8 +10,8 @@ const commentSchema = new Schema({
     required: true
   },
   username: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
+    type: String,
+    required: true,
   },
   createdAt: {
     type: Date,
@@ -37,8 +37,8 @@ const conversationSchema = new Schema({
     required: true,
   },
   username: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
+    required: true,
   },
   listener: {
     type: Schema.Types.ObjectId,

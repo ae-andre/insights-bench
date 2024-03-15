@@ -11,10 +11,11 @@ const typeDefs = `
   }
 
   type Conversation {
+    _id: ID!
     conversationTitle: String
     conversationText: String
     expertise: String
-    author: ID
+    username: String
     listener: ID
     comments: [Comment]!
     createdAt: String
@@ -24,7 +25,7 @@ const typeDefs = `
   type Response {
     commentId: ID
     comment: String
-    author: String
+    username: String
     createdAt: String
   }
 
@@ -41,9 +42,9 @@ const typeDefs = `
 
   type Mutation {
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
-    login(email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
-    addComment(conversationId: ID!, comment: String!, author: ID!): Conversation
+    addComment(conversationId: ID!, comment: String!, username: String!): Conversation
   }
 `;
 
