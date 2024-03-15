@@ -24,7 +24,6 @@ const conversationSchema = new Schema({
     type: String,
     maxlength: 50,
     required: true,
-    maxlength: 50
   },
   conversationText: {
     type: String,
@@ -37,9 +36,9 @@ const conversationSchema = new Schema({
     type: String,
     required: true,
   },
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+  username: {
+    type: String,
+    required:true, 
   },
   listener: {
     type: Schema.Types.ObjectId,

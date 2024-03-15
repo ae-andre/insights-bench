@@ -15,11 +15,7 @@ const typeDefs = `
     conversationTitle: String
     conversationText: String
     expertise: String
-<<<<<<< HEAD
     username: String
-=======
-    username: ID
->>>>>>> 756e198d3a3b63967a4e1cd186a857c49ba14e30
     listener: ID
     comments: [Comment]!
     createdAt: String
@@ -47,13 +43,8 @@ const typeDefs = `
   type Mutation {
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
     login(username: String!, password: String!): Auth
-<<<<<<< HEAD
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
     addComment(conversationId: ID!, comment: String!, username: String!): Conversation
-=======
-    addConversation(conversationTitle: String!, conversationText: String!, expertise: String!, username: ID! ): Conversation
-    addComment(conversationId: ID!, comment: String!, username: ID!): Conversation
->>>>>>> 756e198d3a3b63967a4e1cd186a857c49ba14e30
   }
 `;
 
