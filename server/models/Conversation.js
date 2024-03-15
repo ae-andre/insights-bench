@@ -22,6 +22,7 @@ const commentSchema = new Schema({
 const conversationSchema = new Schema({
   conversationTitle: {
     type: String,
+    maxlength: 50,
     required: true,
     maxlength: 50
   },
@@ -36,9 +37,9 @@ const conversationSchema = new Schema({
     type: String,
     required: true,
   },
-  username: {
-    type: String,
-    required: true,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
   listener: {
     type: Schema.Types.ObjectId,
