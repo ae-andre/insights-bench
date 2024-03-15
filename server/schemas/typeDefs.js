@@ -14,17 +14,17 @@ const typeDefs = `
     conversationTitle: String
     conversationText: String
     expertise: String
-    author: ID
+    username: ID
     listener: ID
     comments: [Comment]!
     createdAt: String
     is_closed: Boolean
   }
 
-  type Response {
+  type Comment {
     commentId: ID
     comment: String
-    author: String
+    username: String
     createdAt: String
   }
 
