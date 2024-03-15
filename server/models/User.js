@@ -16,14 +16,17 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    // Added a default to this, will be switched to true when a user enters a conversation 
     availability: {
-        type: Boolean
+        type: Boolean,
+        default: true
     },
-    // We'll assign "listener" or "speaker"
+    // We'll assign "listener" or "sharer"
     role: {
         type: String, 
         trim: true,
     },
+    // Right now listeners only have a single expertise.  We could change this to an array. Sharers have an empty string.
     expertise: {
         type: String,
         trim: true,

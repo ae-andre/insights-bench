@@ -1,0 +1,182 @@
+[
+    {
+        "username": "confident_owl",
+        "password": "password123",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "majestic_owl",
+        "password": "password456",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "kindly_owl",
+        "password": "password789",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "handsome_owl",
+        "password": "password1011",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "eccentric_owl",
+        "password": "password1213",
+        "role": "listener",
+        "expertise": "financial"
+    },
+    {
+        "username": "gifted_owl",
+        "password": "password1415",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "bashful_owl",
+        "password": "password1617",
+        "role": "listener",
+        "expertise": "career"
+    },
+    {
+        "username": "unpredictable_owl",
+        "password": "password1819",
+        "role": "listener",
+        "expertise": "financial"
+    },
+    {
+        "username": "spontaneous_owl",
+        "password": "password2021",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "steadfast_owl",
+        "password": "password2223",
+        "role": "listener",
+        "expertise": "career"
+    },
+    {
+        "username": "diurnal_owl",
+        "password": "password2425",
+        "role": "listener",
+        "expertise": "personal"
+    },
+    {
+        "username": "lucky_owl",
+        "password": "password2627",
+        "role": "listener",
+        "expertise": "career"
+    },
+    {
+        "username": "adipose_lion",
+        "password": "password2829",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "jubilant_giraffe",
+        "password": "password3031",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "agnostic_elephant",
+        "password": "password3233",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "pious_zebra",
+        "password": "password3435",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "energetic_tiger",
+        "password": "password3637",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "equivocal_bear",
+        "password": "password3839",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "decisive_dolphin",
+        "password": "password4041",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "charming_penguin",
+        "password": "password4243",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "organized_eagle",
+        "password": "password4445",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "discombobulated_koala",
+        "password": "password4547",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "copacetic_kangaroo",
+        "password": "password4849",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "mindful_gorilla",
+        "password": "password5051",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "compassionate_panda",
+        "password": "password5253",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "quirky_monkey",
+        "password": "password5455",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "tactile_turtle",
+        "password": "password5657",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "estranged_octopus",
+        "password": "password5859",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "apposite_armadillo",
+        "password": "password6061",
+        "role": "sharer",
+        "expertise": ""
+    },
+    {
+        "username": "wandering_hedgehog",
+        "password": "password6263",
+        "role": "sharer",
+        "expertise": ""
+    }
+  ]
