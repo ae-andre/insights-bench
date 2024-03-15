@@ -41,9 +41,9 @@ const typeDefs = `
 
   type Mutation {
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
-    login(email: String!, password: String!): Auth
-    addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
-    addComment(conversationId: ID!, comment: String!, author: ID!): Conversation
+    login(username: String!, password: String!): Auth
+    addConversation(conversationTitle: String!, conversationText: String!, expertise: String!, username: ID! ): Conversation
+    addComment(conversationId: ID!, comment: String!, username: ID!): Conversation
   }
 `;
 
