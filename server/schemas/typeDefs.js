@@ -7,10 +7,11 @@ const typeDefs = `
     availability: Boolean
     role: String
     expertise: String
-    conversations: [Conversation]!
+    conversation: Conversation!
   }
 
   type Conversation {
+    _id: ID
     conversationTitle: String
     conversationText: String
     expertise: String

@@ -6,7 +6,7 @@ const resolvers = {
       return await User.find();
     },
     user: async (parent, { username }) => {
-      return await User.findOne({ _id: username });
+      return await User.findOne({ _id: username }).populate('conversation');
     },
 
     // conversation: async (parent, { conversationId }) => {
@@ -18,22 +18,22 @@ const resolvers = {
     addUser: async (parent, { username, password, role, expertise }) => {
       return await User.create({ username, password, role, expertise });
     },
-    // addConversation: async (parent, { conversationTitle, conversationText, expertise, userId }) => {
-    //   const convo = await Conversation.create({ conversationTitle, conversationText, expertise, userId })
+    addConversation: async (parent, { conversationTitle, conversationText, expertise, username }) => {
+      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, username })
 
-    //   const  user = await User.findOneAndUpdate(
-    //     { _id: userId },
-    //     {
-    //       $set: { conversation: convo._id },
-    //     },
-    //     {
-    //       new: true,
-    //       runValidators: true,
-    //     }
-    //   );
+      const  user = await User.findOneAndUpdate(
+        { _id: username },
+        {
+          $set: { conversation: convo._id },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
       
-    //   return convo; 
-    // },
+      return convo; 
+    },
     // addComment: async (parent, { conversationId, comment, userId }) => {
     //   const com = await Comment.create({ conversationId, comment, userId})
 
