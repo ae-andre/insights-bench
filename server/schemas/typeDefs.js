@@ -15,8 +15,8 @@ const typeDefs = `
     conversationTitle: String
     conversationText: String
     expertise: String
-    username: ID
-    listener: ID
+    username: User!
+    listener: String
     comments: [Comment]!
     createdAt: String
     is_closed: Boolean

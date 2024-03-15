@@ -8,9 +8,8 @@ const resolvers = {
     user: async (parent, { userId }) => {
       return await User.findOne({ _id: userId }).populate('conversation');
     },
-
     conversation: async (parent, { conversationId }) => {
-      return await Conversation.findOne({ _id: conversationId })
+      return await Conversation.findOne({ _id: conversationId }).populate('username')
     }
   },
 
@@ -34,22 +33,19 @@ const resolvers = {
       
       return convo; 
     },
-    // addComment: async (parent, { conversationId, comment, userId }) => {
-    //   const com = await Comment.create({ conversationId, comment, userId})
+    addComment: async (parent, { conversationId, comment, userId }) => {
+      const convo = await Conversation.findOne(
+        { _id: conversationId} );
 
-    //   const convo = await findOneAndUpdate(
-    //     { _id: conversationId },
-    //     {
-    //       $addToSet: { comments: com },
-    //     },
-    //     {
-    //       new: true,
-    //       runValidators: true,
-    //     }
-    //     );
+      convo.comments.push({
+        comment: comment,
+        username: userId
+      })
 
-    //     return comment
-    // },
+      const updatedConvo = await convo.save();
+
+      return updatedConvo
+    },
     // removeUser: async (parent, { userId }) => {
     //   return User.findOneAndDelete({ _id: userId });
     // },
