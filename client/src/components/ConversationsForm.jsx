@@ -28,11 +28,11 @@ export default function ConversationsForm() {
                   <option value="" disabled selected>
                     Select an area you would like to discuss
                   </option>
-                  <option value="Financial Problems">Financial</option>
-                  <option value="Personal/Relationship Problems">
+                  <option value="financial">Financial Problems</option>
+                  <option value="personal">
                     Personal/Relationship Problems
                   </option>
-                  <option value="Work/School Problems">
+                  <option value="career">
                     Work/School Problems
                   </option>
                 </select>
