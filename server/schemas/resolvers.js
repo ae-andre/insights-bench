@@ -5,24 +5,24 @@ const resolvers = {
     users: async () => {
       return await User.find();
     },
-    user: async (parent, { username }) => {
-      return await User.findOne({ _id: username }).populate('conversation');
+    user: async (parent, { userId }) => {
+      return await User.findOne({ _id: userId }).populate('conversation');
     },
 
-    // conversation: async (parent, { conversationId }) => {
-    //   return Conversation.findOne({ _id: conversationId })
-    // }
+    conversation: async (parent, { conversationId }) => {
+      return await Conversation.findOne({ _id: conversationId })
+    }
   },
 
   Mutation: {
     addUser: async (parent, { username, password, role, expertise }) => {
       return await User.create({ username, password, role, expertise });
     },
-    addConversation: async (parent, { conversationTitle, conversationText, expertise, username }) => {
-      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, username })
+    addConversation: async (parent, { conversationTitle, conversationText, expertise, userId }) => {
+      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, userId })
 
       const  user = await User.findOneAndUpdate(
-        { _id: username },
+        { _id: userId },
         {
           $set: { conversation: convo._id },
         },
