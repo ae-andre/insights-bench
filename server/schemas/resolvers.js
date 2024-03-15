@@ -5,10 +5,9 @@ const resolvers = {
     users: async () => {
       return await User.find();
     },
-
-    // user: async (parent, { userId }) => {
-    //   return await User.findOne({ _id: userId });
-    // },
+    user: async (parent, { username }) => {
+      return await User.findOne({ _id: username });
+    },
 
     // conversation: async (parent, { conversationId }) => {
     //   return Conversation.findOne({ _id: conversationId })
