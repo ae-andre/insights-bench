@@ -9,7 +9,7 @@ const commentSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
+  username: {
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
@@ -23,6 +23,7 @@ const conversationSchema = new Schema({
   conversationTitle: {
     type: String,
     required: true,
+    maxlength: 50
   },
   conversationText: {
     type: String,
@@ -35,7 +36,7 @@ const conversationSchema = new Schema({
     type: String,
     required: true,
   },
-  author: {
+  username: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
