@@ -1,24 +1,33 @@
-const typeDefs = `
+const { gql } = require('graphql-tag');
+
+const typeDefs = gql`
+  input ConversationFilterInput {
+    isPrivate: Boolean
+  }
+
   type User {
     _id: ID
     username: String
     password: String
-    buddy: ID
+    buddy: User
     availability: Boolean
     role: String
     expertise: String
-    conversations: [Conversation]!
+    conversation: Conversation!
   }
 
   type Conversation {
+    _id: ID
     conversationTitle: String
     conversationText: String
     expertise: String
-    username: ID
-    listener: ID
+    username: String
+    listener: User
     comments: [Comment]!
     createdAt: String
     is_closed: Boolean
+    isPrivate: Boolean
+    commentCount: Int
   }
 
   type Comment {
@@ -35,15 +44,16 @@ const typeDefs = `
 
   type Query {
     users: [User]
-    user(id: ID!): User
-    conversation(id: ID!): Conversation
+    user(userId: ID!): User
+    conversation(conversationId: ID!): Conversation
+    conversations(filter: ConversationFilterInput): [Conversation]
   }
 
   type Mutation {
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
     login(username: String!, password: String!): Auth
-    addConversation(conversationTitle: String!, conversationText: String!, expertise: String!, username: ID! ): Conversation
-    addComment(conversationId: ID!, comment: String!, username: ID!): Conversation
+    addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
+    addComment(conversationId: ID!, comment: String!): Comment
   }
 `;
 
