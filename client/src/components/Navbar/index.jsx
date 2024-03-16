@@ -30,8 +30,9 @@ export default function Example() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="Your Company"
+                    src="https://res.cloudinary.com/dqtpaispt/image/upload/v1710538491/One_Bench_One_Tree_Logo-08_TRANSPARENT_gfwchp.png"
+                    alt="Soul Bench logo -- simple line drawing of a tree with upright habit beside a bench"
+                    style={{ width: '102px', height: '98%' }}
                   />
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">

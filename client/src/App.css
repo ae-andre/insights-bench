@@ -1,3 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Vollkorn:wght@400;600&family=Didact+Gothic:wght@400;600&family=Alegreya+Sans:wght@400;600&family=Frank+Ruhl+Libre:wght@400;600&family=Tinos:wght@400;600&family=Protest+Riot&display=swap&family=Architects+Daughter&family=Marienda:wght@400;600&family=Handlee&family=Bad+Script&family=Sriracha&family=Junge:wght@400;600&family=Liu+Jian+Mao+Cao&family=Educational+NC:wght@400;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+    max-width: 1280px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --light: #c9e4ca;
+    --med-light: #87bba2;
+    --medium: #55828b;
+    --med-dark: #3b6064;
+    --dark: #364958;
+
+    background-color: var(--med-light);
+    color: var(--dark);
+    
+    --font-crimson-pro: 'Crimson Pro', serif;
+    --font-vollkorn: 'Vollkorn', serif;
+    --font-didact-gothic: 'Didact Gothic', sans-serif;
+    --font-alegreya-sans: 'Alegreya Sans', sans-serif;
+    --font-frank-ruhl-libre: 'Frank Ruhl Libre', serif;
+    --font-tinos: 'Tinos', serif;
+    --font-protest-riot: 'Protest Riot', sans-serif;
+    --font-architects-daughter: 'Architects Daughter', cursive;
+    --font-marienda: 'Marienda', serif;
+    --font-handlee: 'Handlee', cursive;
+    --font-bad-script: 'Bad Script', cursive;
+    --font-sriracha: 'Sriracha', cursive;
+    --font-junge: 'Junge', serif;
+    --font-liu-jian-mao-cao: 'Liu Jian Mao Cao', cursive;
+    --font-educational-nc: 'Educational NC', sans-serif;
+
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+body {
+    font-family: var(--font-alegreya-sans);
+    background-color: var(--med-light);
+    color: var(--medium);
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    display: flex;
+    place-items: center;
+}
+
+.header-container {
+    width: 100vw;
+}
+
+.footer-container {
+    width: 100vw;
+}
+    
+.main-content {
+  margin: auto;
+  padding: 2%;
+}
+
+h1, h2 {
+    font-family: var(--font-alegreya-sans);
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+    
+h3, p {
+    font-family: var(--font-handlee);
+}
+    
+a {
+    font-family: var(--font-alegreya-sans);
+    font-weight: 500;
+    color: var(--med-light);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--light);
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #3b6064;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover {
+    border-color: #87bba2;
+  }
+  button:focus,
+  button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root {
+      color: #3b6064;
+      background-color: #87bba2;
+    }
+    a:hover {
+      color: #c9e4ca;
+    }
+    button {
+      background-color: #55828b;
+    }
+  }

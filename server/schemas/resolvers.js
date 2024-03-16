@@ -1,42 +1,87 @@
-const { Profile } = require('../models');
+const { User, Conversation } = require('../models');
+const mongoose = require('mongoose');
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
+    users: async () => {
+      return await User.find().populate('buddy conversation');
     },
-
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+    user: async (parent, { userId }) => {
+      return await User.findById(userId).populate('buddy conversation');
+    },
+    conversations: async (parent, { filter }) => {
+      // Use the filter argument to conditionally build the query
+      const filterQuery = filter ? { isPrivate: filter.isPrivate } : {};
+      
+      // Fetch conversations and populate the necessary fields
+      const conversations = await Conversation.find(filterQuery).populate('expertise comments.username');
+    
+      // Map over the conversations and handle potential null values
+      const formattedConversations = conversations.map((conversation) => {
+        return {
+          _id: conversation._id,  
+          conversationTitle: conversation.conversationTitle,
+          username: conversation.username,
+          createdAt: conversation.createdAt,
+          expertise: conversation.expertise || null,
+          is_closed: conversation.is_closed || false,
+          commentCount: conversation.comments.length,  
+        };
+      });
+    
+      return formattedConversations;
+    },
+    conversation: async (parent, { conversationId }) => {
+      // Fetch conversation by ID and populate the listener field
+      const conversation = await Conversation.findById(conversationId).populate('listener');
+    
+      // Handle potential null values
+      if (!conversation) {
+        // Conversation not found
+        return null;
+      }
+    
+      // Convert Mongoose document to plain JavaScript object and return
+      return conversation.toObject();
     },
   },
 
   Mutation: {
-    addProfile: async (parent, { name }) => {
-      return Profile.create({ name });
+    addUser: async (parent, { username, password, role, expertise }) => {
+      return await User.create({ username, password, role, expertise });
     },
-    addSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
+    addConversation: async (parent, { conversationTitle, conversationText, expertise, userId }) => {
+      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, userId })
+
+      const  user = await User.findOneAndUpdate(
+        { _id: userId },
         {
-          $addToSet: { skills: skill },
+          $set: { conversation: convo._id },
         },
         {
           new: true,
           runValidators: true,
         }
       );
+      
+      return convo; 
     },
-    removeProfile: async (parent, { profileId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
+    addComment: async (parent, { conversationId, comment, userId }) => {
+      const convo = await Conversation.findOne(
+        { _id: conversationId} );
+
+      convo.comments.push({
+        comment: comment,
+        username: userId
+      })
+
+      const updatedConvo = await convo.save();
+
+      return updatedConvo
     },
-    removeSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        { $pull: { skills: skill } },
-        { new: true }
-      );
-    },
+    // removeUser: async (parent, { userId }) => {
+    //   return User.findOneAndDelete({ _id: userId });
+    // },
   },
 };
 
