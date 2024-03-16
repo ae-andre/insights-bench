@@ -1,17 +1,26 @@
 const db = require('../config/connection');
 const { User } = require('../models');
 const userSeeds = require('./userSeeds.json');
+const conversationSeeds = require('./conversationSeeds.json');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
   try {
     await cleanDB('User', 'users');
+
+    await cleanDB('Category', 'categories');
+
+    await cleanDB('Conversation', 'conversations');
     
     await User.create(userSeeds);
 
-    console.log('all done!');
-    process.exit(0);
+    await Conversation.create(conversationSeeds);
+
   } catch (err) {
-    throw err;
+    console.error(err);
+    process.exit(1);
   }
+
+  console.log('Seeding complete! 🌱');
+  process.exit(0);
 });
