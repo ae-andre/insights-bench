@@ -1,6 +1,6 @@
-const { gqp } = require('graphql-tag');
+const { gql } = require('graphql-tag');
 
-const typeDefs = gpl`
+const typeDefs = gql`
   input ConversationFilterInput {
     isPrivate: Boolean
   }
@@ -9,7 +9,7 @@ const typeDefs = gpl`
     _id: ID
     username: String
     password: String
-    buddy: User!
+    buddy: User
     availability: Boolean
     role: String
     expertise: String
@@ -22,7 +22,7 @@ const typeDefs = gpl`
     conversationText: String
     expertise: String
     username: String
-    listener: User!
+    listener: User
     comments: [Comment]!
     createdAt: String
     is_closed: Boolean

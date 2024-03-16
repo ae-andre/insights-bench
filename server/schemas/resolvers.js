@@ -1,16 +1,49 @@
 const { User, Conversation } = require('../models');
+const mongoose = require('mongoose');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find();
+      return await User.find().populate('buddy conversation');
     },
     user: async (parent, { userId }) => {
-      return await User.findOne({ _id: userId }).populate('conversation');
+      return await User.findById({ userId });
+    },
+    conversations: async (parent, { filter }) => {
+      //User the filter argument to conditionally build the query
+      const filterQuery = filter ? { isPrivate: filter.isPrivate } : {};
+
+      // Fetch conversations and populate the necessary fields
+      const conversations = await Conversation.find(filterQuery).populate('expertise comments.username')
+
+      // Map over the conversation and handle potential null values
+      const formattedConversations = conversations.map((conversation) => {
+        return {
+          _id: conversation._id,  
+          conversationTitle: conversation.conversationTitle,
+          username: conversation.username,
+          createdAt: conversation.createdAt,
+          expertise: conversation.expertise || null,
+          is_closed: conversation.is_closed || false,
+          commentCount: conversation.comments.length,  
+        };
+      });
+
+      return formattedConversations
     },
     conversation: async (parent, { conversationId }) => {
-      return await Conversation.findOne({ _id: conversationId }).populate('username')
-    }
+      // Fetch conversation by ID and populate the listener field
+      const conversation = await Conversation.findById(conversationId).populate('listener');
+
+      // Handle potential null values
+      if (!conversation) {
+        // Conversation not found
+        return null;
+      }
+
+      // Convert Mongoose document to plain Javascript object and return 
+      return conversation.toObject();
+    },
   },
 
   Mutation: {
