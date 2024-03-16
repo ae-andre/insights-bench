@@ -7,7 +7,7 @@ const resolvers = {
       return await User.find().populate('buddy conversation');
     },
     user: async (parent, { userId }) => {
-      return await User.findById({ userId });
+      return await User.findById(userId).populate('buddy conversation');
     },
     conversations: async (parent, { filter }) => {
       //User the filter argument to conditionally build the query
