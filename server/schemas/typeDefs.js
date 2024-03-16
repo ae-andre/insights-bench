@@ -11,7 +11,7 @@ const typeDefs = `
   }
 
   type Conversation {
-    _id: ID!
+    _id: ID
     conversationTitle: String
     conversationText: String
     expertise: String
@@ -44,7 +44,7 @@ const typeDefs = `
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
     login(username: String!, password: String!): Auth
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
-    addComment(conversationId: ID!, comment: String!): Conversation
+    addComment(conversationId: ID!, comment: String!): Comment
   }
 `;
 
