@@ -16,7 +16,7 @@ const typeDefs = `
     conversationText: String
     expertise: String
     username: String
-    listener: ID
+    listener: User
     comments: [Comment]!
     createdAt: String
     is_closed: Boolean
@@ -44,7 +44,7 @@ const typeDefs = `
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
     login(username: String!, password: String!): Auth
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
-    addComment(conversationId: ID!, comment: String!, username: String!): Conversation
+    addComment(conversationId: ID!, comment: String!): Conversation
   }
 `;
 

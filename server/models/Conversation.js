@@ -38,7 +38,7 @@ const conversationSchema = new Schema({
   },
   username: {
     type: String,
-    required:true, 
+    required: true, 
   },
   listener: {
     type: Schema.Types.ObjectId,
