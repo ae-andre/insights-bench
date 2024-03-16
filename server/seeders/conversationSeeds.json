@@ -476,7 +476,7 @@
         "username": "adipose_lion",
         "is_closed": false,
         "expertise": "career",
-        "responses": [
+        "comments": [
             {
                 "comment": "Can you say describe your work situation and say a bit more about the problem?",
                 "username": "bashful_owl" 
@@ -545,7 +545,7 @@
         "username": "decisive_dolphin",
         "is_closed": false,
         "expertise": "personal",
-        "responses": [
+        "comments": [
             {
                 "comment": "Can you give us a bit more background?",
                 "username": "gifted_owl"
