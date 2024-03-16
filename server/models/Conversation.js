@@ -42,6 +42,7 @@ const conversationSchema = new Schema({
     type: String,
     required: true,
   },
+  // Should this be string too
   listener: {
     type: Schema.Types.ObjectId,
     ref: "User",

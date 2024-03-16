@@ -21,10 +21,15 @@ const resolvers = {
         return {
           _id: conversation._id,  
           conversationTitle: conversation.conversationTitle,
+          // ADDED conversationText to formatted Convos for testing purposes
+          conversationText: conversation.conversationText,
           username: conversation.username,
           createdAt: conversation.createdAt,
           expertise: conversation.expertise || null,
           is_closed: conversation.is_closed || false,
+          // ADDED isPRIVATE, comments to formatted Convos for testing purposes
+          isPrivate: conversation.isPrivate || null,
+          comments: conversation.comments || null,
           commentCount: conversation.comments.length,  
         };
       });

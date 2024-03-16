@@ -3,6 +3,7 @@
     "conversationText": "My Mum lost her battle with cancer last year on my birthday. I am at university and am struggling with the effects of grief and loss. Does it ever get better?",
     "username": "discombobulated_koala",
     "is_closed": false,
+    "isPrivate": true,
     "expertise": "personal",
     "comments": [
         {
