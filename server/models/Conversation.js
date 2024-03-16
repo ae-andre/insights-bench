@@ -40,7 +40,7 @@ const conversationSchema = new Schema({
   },
   username: {
     type: String,
-    required:true, 
+    required: true,
   },
   listener: {
     type: Schema.Types.ObjectId,
@@ -50,7 +50,7 @@ const conversationSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm a')
+    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm:a')
   },
   is_closed: {
     type: Boolean,
@@ -60,6 +60,10 @@ const conversationSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isPrivate: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // Virtual property to calculate the comment count

@@ -10,6 +10,7 @@ const typeDefs = gql`
     username: String
     password: String
     buddy: User
+    buddy: User
     availability: Boolean
     role: String
     expertise: String
@@ -26,6 +27,8 @@ const typeDefs = gql`
     comments: [Comment]
     createdAt: String
     is_closed: Boolean
+    isPrivate: Boolean
+    commentCount: Int
     isPrivate: Boolean
     commentCount: Int
   }
@@ -52,6 +55,8 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
     login(username: String!, password: String!): Auth
+    addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
+    addComment(conversationId: ID!, comment: String!): Comment
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
     addComment(conversationId: ID!, comment: String!): Comment
   }
