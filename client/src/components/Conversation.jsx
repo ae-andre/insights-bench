@@ -32,8 +32,8 @@ const Conversation = ({ //conversationId,
 
     return (
       <div className="conversation-container">
-        <div className="conversation-title">{fetchedConversation.title}</div>
-        <div className="conversation-text">{fetchedConversation.conversationHeadText}</div>
+        <div className="conversation-title">{fetchedConversation.conversationTitle}</div>
+        <div className="conversation-text">{fetchedConversation.conversationText}</div>
         <div className="comment-container">
           <div className="comment-list">
             {fetchedConversation.comments.map((comment, index) => (
