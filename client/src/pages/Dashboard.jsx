@@ -1,4 +1,4 @@
-// import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Link } from "react-router-dom";
 
 import { Fragment } from "react";
@@ -10,6 +10,8 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 
+import { GET_USER_BY_ID } from '../utils/queries';
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -19,7 +21,10 @@ const items = [
   // More items...
 ];
 
-export default function Example() {
+const Dashboard = () => {
+  
+  // const { loading, data } = useQuery(GET_USER_BY_ID);
+
   return (
     <ul role="list" className="flex-col w-96 m-auto mt-10 place-content-center space-y-3">
       <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
@@ -44,7 +49,7 @@ export default function Example() {
                   />
                 </div>
                 <div className="min-w-0 flex-1 ">
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-semibold text-gray-900"> 
                     Bereavement Advice
                   </p>
 
@@ -145,3 +150,5 @@ export default function Example() {
     </ul>
   );
 }
+
+export default Dashboard;
