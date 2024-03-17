@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Role from './pages/Role'
+import Dashboard from './pages/Dashboard'
 // import Error from './pages/Error'
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/Role',
         element: <Role />,
+      },
+      {
+        path: '/myBench',
+        element: <Dashboard />,
       },
     ],
   },

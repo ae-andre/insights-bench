@@ -1,5 +1,5 @@
-// import { useQuery } from '@apollo/client';
-import { Link } from "react-router-dom";
+import { useQuery } from '@apollo/client';
+import { Link, useParams } from "react-router-dom";
 
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
@@ -10,6 +10,10 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 
+import Auth from '../utils/auth';
+import { GET_USER_BY_ID } from '../utils/queries';
+
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -19,12 +23,31 @@ const items = [
   // More items...
 ];
 
-export default function Example() {
+const Bench = () => {
+  // const { _id: userParam } = useParams()
+
+  const testUser = "65f74c6bbd55f71cec17e9c5"
+
+  const { loading, data } = useQuery(GET_USER_BY_ID, {
+    variables: { userId: testUser }
+  })
+
+  const user = data?.user || {};
+
+  console.log(user)
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <ul role="list" className="flex-col w-96 m-auto mt-10 place-content-center space-y-3">
       <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-        <h3 className="text-base font-semibold leading-6 text-gray-900">
-          Your Benches
+        <h3 className="text-2xl font-semibold leading-6 text-gray-900">
+          Welcome {`${user.username}`}!
+        </h3>
+        <h3 className="text-base my-2 font-semibold leading-6 text-gray-900">
+          Here is your bench
         </h3>
       </div>
       {items.map((item) => (
@@ -46,10 +69,12 @@ export default function Example() {
                 <div className="min-w-0 flex-1 ">
                   <p className="text-sm font-semibold text-gray-900">
                     Bereavement Advice
+                    {/* {`${user.conversation.conversationTitle}`} */}
                   </p>
 
                   <p className="text-sm text-gray-500">
                     Conversation with agnostic elephant
+                    {/* Conversation with {`$user.buddy`} */}
                   </p>
                 </div>
                 <div className="flex flex-shrink-0 self-center">
@@ -145,3 +170,5 @@ export default function Example() {
     </ul>
   );
 }
+
+export default Bench;

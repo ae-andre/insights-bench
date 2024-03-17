@@ -53,7 +53,7 @@ const Login = (props) => {
             { data ? (
                 <p>
                 Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/myBench">back to your bench.</Link>
               </p>
             ) : (
             <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
