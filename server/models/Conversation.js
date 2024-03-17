@@ -13,8 +13,6 @@ const commentSchema = new Schema({
   username: {
     type: String,
     required: true,
-    type: String,
-    required: true,
   },
   createdAt: {
     type: Date,
