@@ -3,16 +3,71 @@ p {
     margin-bottom: 20px;
 }
 
-.public-conversations-section {
-    background-color: var(--med-dark);
-    padding: 5px 20px 30px 20px;
-    border-radius: 1%;
-    margin-top: 25px; 
-}
-
 h3 {
     color: var(--light);
     padding-top: 10px;
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
+
+.public-conversations-section {
+    background-color: var(--med-dark);
+    padding: 5px 20px 20px 20px;
+    border-radius: 1%;
+    margin-top: 25px; 
+}
+
+.public-conversations-header-section {
+    display: flex;
+    padding: 25px;    
+}
+
+.public-conversations-header-section .row {
+    display: flex;
+    align-items: center; 
+  }
+
+  img .pavilion-image {
+    width: 90%;
+    height: 90%; 
+}
+
+#welcome-to-pavilion-title {
+    font-size: 1.5rem;
+}
+
+#welcome-to-pavilion-blurb {
+  color: var(--light);
+
+}
+
+.title-and-blurb-column-middle {
+    text-align: center;
+}
+
+.button-column-right {
+    text-align: center;
+}
+
+#start-public-conversation-btn {
+    align-self: center;
+    color: var(--light);
+    border-color: var(--light);
+}
+
+#start-public-conversation-btn:hover {
+    color: var(--med-light);
+    background-color: var(--dark);
+}
+
+#start-public-conversation-btn:active {
+    color: var(--light);
+    background-color: var(--medium);
+    border-color: var(--dark);
+}
+
+
+
+
+
+

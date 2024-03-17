@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         path: '/conversation/:id', // The route for an individual conversation, using the Conversation component for display
         element: <Home />,
       },
+      {
+        path: '/start-conversation', // The route for starting a conversation
+        element: <StartConversation />, // You need to create StartConversation component
+      },
     ],
   },
 ]);

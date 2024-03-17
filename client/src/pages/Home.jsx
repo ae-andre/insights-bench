@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import ConversationsList from '../components/ConversationsList';
 import Conversation from '../components/Conversation';
 import { GET_ALL_PUBLIC_CONVERSATIONS } from '../utils/queries';
+import { startPublicConversation } from '../utils/startConversations';
 import './Home.css'
 
 const Home = () => {
@@ -43,7 +44,12 @@ const Home = () => {
     localStorage.setItem('selectedConversationId', conversationId);
     setSelectedConversationId(conversationId);
     console.log('Selected conversation ID after update:', selectedConversationId);
-  };  
+  };
+  
+  //Function to handle starting a new public conversation
+  const handleStarPublicConversation = () => {
+    startPublicConversation(); // Call the function
+  };
 
   return (
     <div className="main-content container">
@@ -67,30 +73,48 @@ const Home = () => {
             )}
         </div>
         <div className="row public-conversations-section">
-            <div className="col">
+          <div className="public-conversations-header-section">
+            <div className="row">
+              <div className="col image-column-left">
+                <img className="pavilion-image" src="https://res.cloudinary.com/dqtpaispt/image/upload/v1710690242/eliptical_pavilion_gym6bm.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
+              </div>
+              <div className="col title-and-blurb-column-middle">
+                <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
+                <p id="welcome-to-pavilion-blurb">There are always ongoing conversations here in the pavilion. Click to view. Login to participate. Logged in users can start a new public conversation here or a private conversation on their own bench at login. </p>
+              </div>
+              <div className="col button-column-right">
+                <button id="start-public-conversation-btn">+ New Public Conversation</button>
+              </div>
+            </div>
+          </div>
+          <div className="public-conversations-list-section">
+            <div className="row">
+              <div className="col">
                 <h3 className="conversations-list-header">Financial</h3>
                 <ConversationsList
-                    conversations={conversationsByCategory.get('financial') || []}
-                    expertise="Financial"
-                    onConversationClick={handleConversationClick}
+                  conversations={conversationsByCategory.get('financial') || []}
+                  expertise="Financial"
+                  onConversationClick={handleConversationClick}
                 />
-            </div>
-            <div className="col">
+              </div>
+              <div className="col">
                 <h3 className="conversations-list-header">Personal</h3>
                 <ConversationsList
-                    conversations={conversationsByCategory.get('personal') || []}
-                    expertise="Personal"
-                    onConversationClick={handleConversationClick}
+                  conversations={conversationsByCategory.get('personal') || []}
+                  expertise="Personal"
+                  onConversationClick={handleConversationClick}
                 />
-            </div>
-            <div className="col">
+              </div>
+              <div className="col">
                 <h3 className="conversations-list-header">Career</h3>
                 <ConversationsList
-                    conversations={conversationsByCategory.get('career') || []}
-                    expertise="Career"
-                    onConversationClick={handleConversationClick}
+                  conversations={conversationsByCategory.get('career') || []}
+                  expertise="Career"
+                  onConversationClick={handleConversationClick}
                 />
+              </div>
             </div>
+          </div>
         </div>
         <Outlet />
     </div>
