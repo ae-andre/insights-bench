@@ -56,8 +56,7 @@ function App() {
       <div>
         <Nav />
         <div>
-          {/* <Outlet /> */}
-          <Login />
+          <Outlet />
         </div>
         <Footer />
       </div>
