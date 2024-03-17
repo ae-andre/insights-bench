@@ -17,12 +17,12 @@ const typeDefs = gql`
   }
 
   type Conversation {
-    _id: ID!
+    _id: ID
     conversationTitle: String
     conversationText: String
     expertise: String
     username: String
-    listener: ID
+    listener: User
     comments: [Comment]!
     createdAt: String
     is_closed: Boolean
