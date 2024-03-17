@@ -25,7 +25,7 @@ const Conversation = ({ //conversationId,
     if  (error) return <p>Error...</p>;
 
     const { conversation: fetchedConversation } = data;
-
+    console.log ('Fetched conversation value:', fetchedConversation);
     if (!fetchedConversation) {
       return <p>Loading...</p>;
     }
@@ -33,21 +33,25 @@ const Conversation = ({ //conversationId,
     return (
       <div className="conversation-container">
         <div className="conversation-title">{fetchedConversation.conversationTitle}</div>
+        <div className="conversation-text-and-attribution">
         <div className="conversation-text">{fetchedConversation.conversationText}</div>
+        <p className="conversation-attribution">
+          Conversation opened by <span>{fetchedConversation.username}</span> <br></br> <span>{fetchedConversation.createdAt}</span>
+        </p>
+        </div>
         <div className="comment-container">
           <div className="comment-list">
             {fetchedConversation.comments.map((comment, index) => (
               <div key={index} className="comment">
-                <p>{comment.comment}</p>
-                <p>{comment.createdAt}</p>
-                <p>{comment.username}</p>
+                <p className="comment-text">{comment.comment}</p>
+                <p className="comment-attribution"><span>{comment.username}</span> <span>{comment.createdAt}</span></p>
               </div>
             ))}
           </div>
         </div>
         <div className="input-container">
-          <textarea className="form-control" rows="3" placeholder="Type your message..."></textarea>
-          <button type="button" className="btn btn-primary">Submit</button>
+          <textarea className="form-control" rows="3" placeholder="Type your comment..."></textarea>
+          <button type="button" className="btn btn-primary comment-submit-btn">Add Comment</button>
         </div>
       </div>
     );

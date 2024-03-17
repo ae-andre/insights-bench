@@ -1,14 +1,18 @@
 p {
     font-weight: bolder;
+    margin-bottom: 20px;
 }
 
 .public-conversations-section {
     background-color: var(--med-dark);
     padding: 5px 20px 30px 20px;
     border-radius: 1%;
+    margin-top: 25px; 
 }
 
 h3 {
     color: var(--light);
     padding-top: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
 }

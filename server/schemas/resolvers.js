@@ -1,5 +1,6 @@
 const { User, Conversation } = require('../models');
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const resolvers = {
   Query: {
@@ -34,15 +35,22 @@ const resolvers = {
     conversation: async (parent, { conversationId }) => {
       // Fetch conversation by ID and populate the listener field
       const conversation = await Conversation.findById(conversationId).populate('listener');
-    
+  
       // Handle potential null values
       if (!conversation) {
-        // Conversation not found
-        return null;
+          // Conversation not found
+          return null;
       }
-    
-      // Convert Mongoose document to plain JavaScript object and return
-      return conversation.toObject();
+  
+      // Manually format createdAt for conversation
+      conversation.createdAt = moment(conversation.createdAt).format('MMM D, YYYY [at] h:mm a');
+  
+      // Manually format createdAt for each comment
+      conversation.comments.forEach(comment => {
+          comment.createdAt = moment(comment.createdAt).format('MMM D, YYYY [at] h:mm a');
+      });
+  
+      return conversation;
     },
   },
 
@@ -55,13 +63,7 @@ const resolvers = {
 
       const  user = await User.findOneAndUpdate(
         { _id: userId },
-    addConversation: async (parent, { conversationTitle, conversationText, expertise, userId }) => {
-      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, userId })
-
-      const  user = await User.findOneAndUpdate(
-        { _id: userId },
         {
-          $set: { conversation: convo._id },
           $set: { conversation: convo._id },
         },
         {
@@ -71,21 +73,7 @@ const resolvers = {
       );
       
       return convo; 
-      
-      return convo; 
     },
-    addComment: async (parent, { conversationId, comment, userId }) => {
-      const convo = await Conversation.findOne(
-        { _id: conversationId} );
-
-      convo.comments.push({
-        comment: comment,
-        username: userId
-      })
-
-      const updatedConvo = await convo.save();
-
-      return updatedConvo
     addComment: async (parent, { conversationId, comment, userId }) => {
       const convo = await Conversation.findOne(
         { _id: conversationId} );

@@ -9,6 +9,8 @@
 
 span.badge.rounded-pill {
     background-color: var(--med-dark) !important;
+    width: 35px !important;
+    margin: 7px;
 }
 
 a {
