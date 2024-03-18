@@ -3,6 +3,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const cors = require('cors');
 const path = require('path');
+const { authMiddleware } = require('./utils/auth')
 require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -49,6 +50,11 @@ const startApolloServer = async () => {
     });
   }
   
+  // Important for MERN Setup: Any client-side requests that begin with '/graphql' will be handled by our Apollo Server
+  app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
