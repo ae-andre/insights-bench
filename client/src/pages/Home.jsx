@@ -1,18 +1,22 @@
 // This file contains code that will render the Home page/landing page
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import ConversationsList from '../components/ConversationsList';
 import Conversation from '../components/Conversation';
+import ConversationsForm from '../components/ConversationsForm';
 import { GET_ALL_PUBLIC_CONVERSATIONS } from '../utils/queries';
-import { startPublicConversation } from '../utils/startConversations';
+import AuthService from '../utils/auth';
 import './Home.css'
 
 const Home = () => {
     // Use state to manage the display of conversations and the conditional rendering of the welcome blurb, start a conversation dialogue or detailed conversation view
     const [conversationsByCategory, setConversationsByCategory] = useState(new Map());
     const [selectedConversationId, setSelectedConversationId] = useState(null);
-    console.log("What the homepage (parent component) is passing to Conversation component as selectedConversationId:", selectedConversationId); 
+    console.log("What the homepage (parent component) is passing to Conversation component as selectedConversationId:", selectedConversationId);
+    const [isStartingPublicConversation, setIsStartingPublicConversation] = useState(false);
+    const location = useLocation(); // Use the useLocation hook to get the current location
+    const isStartConversationPage = location.pathname ==='/start-conversation'; 
 
     // Expect that conversations will be an array of fetched conversation objects
     const { loading, error, data } = useQuery(GET_ALL_PUBLIC_CONVERSATIONS);
@@ -45,21 +49,31 @@ const Home = () => {
     setSelectedConversationId(conversationId);
     console.log('Selected conversation ID after update:', selectedConversationId);
   };
+
+  const navigate = useNavigate();
   
-  //Function to handle starting a new public conversation
-  const handleStarPublicConversation = () => {
-    startPublicConversation(); // Call the function
+  //Function to handle starting a new public conversation, when click is triggers on the +New Public Conversation btn
+  const handleStartPublicConversation = () => {
+    if (AuthService.loggedIn()) {
+      // User is authenticated, set the state to indicate starting a public conversation which will trigger conditional rendering of the ConversationForm component in the Homepage's jsx return
+      setIsStartingPublicConversation(true);
+    } else {
+      console.log('User not logged in. Redirecting to login page...');
+      navigate('/login'); // Use navigate to redirect user to login page
+    }
   };
 
   return (
     <div className="main-content container">
         <div className="row">
-            {selectedConversationId ? (
-                <Conversation
-                    conversationId={selectedConversationId}  
-                    onClose={() => setSelectedConversationId(null)}
-                />
-            ) : (
+          {isStartConversationPage ? (
+            <ConversationsForm />
+          ) : selectedConversationId ? (
+            <Conversation
+              conversationId={selectedConversationId}  
+              onClose={() => setSelectedConversationId(null)}
+            />
+          ) : (
                 <>
                     <div className="col">
                         <div className="welcome-blurb-public-conversation-forum">
@@ -83,7 +97,7 @@ const Home = () => {
                 <p id="welcome-to-pavilion-blurb">There are always ongoing conversations here in the pavilion. Click to view. Login to participate. Logged in users can start a new public conversation here or a private conversation on their own bench at login. </p>
               </div>
               <div className="col button-column-right">
-                <button id="start-public-conversation-btn">+ New Public Conversation</button>
+                <button id="start-public-conversation-btn" onClick={handleStartPublicConversation}>+ New Public Conversation</button>  
               </div>
             </div>
           </div>
