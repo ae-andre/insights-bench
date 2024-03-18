@@ -11,3 +11,15 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_COMMENT = gql`
+mutation addComment($conversationId: ID!, $comment: String!) {
+  addComment(conversationId: $conversationId, comment: $comment) {
+    commentId
+    comment
+    username
+    createdAt
+  }
+}
+`;
+
