@@ -7,16 +7,16 @@ const resolvers = {
       return await User.find().populate('buddy conversation');
     },
     user: async (parent, { userId }) => {
-      return await User.findById({ userId });
+      return await User.findById(userId).populate('buddy conversation');
     },
     conversations: async (parent, { filter }) => {
-      //User the filter argument to conditionally build the query
+      // Use the filter argument to conditionally build the query
       const filterQuery = filter ? { isPrivate: filter.isPrivate } : {};
-
+      
       // Fetch conversations and populate the necessary fields
-      const conversations = await Conversation.find(filterQuery).populate('expertise comments.username')
-
-      // Map over the conversation and handle potential null values
+      const conversations = await Conversation.find(filterQuery).populate('expertise comments.username');
+    
+      // Map over the conversations and handle potential null values
       const formattedConversations = conversations.map((conversation) => {
         return {
           _id: conversation._id,  
@@ -28,8 +28,8 @@ const resolvers = {
           commentCount: conversation.comments.length,  
         };
       });
-
-      return formattedConversations
+    
+      return formattedConversations;
     },
     conversation: async (parent, { conversationId }) => {
       // Fetch conversation by ID and populate the listener field
@@ -40,8 +40,8 @@ const resolvers = {
         // Conversation not found
         return null;
       }
-
-      // Convert Mongoose document to plain Javascript object and return 
+    
+      // Convert Mongoose document to plain JavaScript object and return
       return conversation.toObject();
     },
   },
