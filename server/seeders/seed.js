@@ -1,3 +1,4 @@
+
 const db = require('../config/connection');
 const { User, Conversation } = require('../models');
 const userSeeds = require('./userSeeds.json');
@@ -9,24 +10,32 @@ db.once('open', async () => {
     await cleanDB('Conversation', 'conversations');
 
     await cleanDB('User', 'users');
-    
+
+    await cleanDB('Category', 'categories');
+
+    await cleanDB('Conversation', 'conversations');
+
     await User.create(userSeeds);
 
-    for (let i = 0; i < conversationSeeds.length; i++) {
-      const { _id, username } = await Conversation.create(conversationSeeds[i])
-      const user = await User.findOneAndUpdate(
-        { username: username },
-        {
-          $set: {
-            conversation: _id,
-          }
-        }
-      )
-    }
+//     for (let i = 0; i < conversationSeeds.length; i++) {
+//       const { _id, username } = await Conversation.create(conversationSeeds[i])
+//       const user = await User.findOneAndUpdate(
+//         { username: username },
+//         {
+//           $set: {
+//             conversation: _id,
+//           }
+//         }
+//       )
+//     }
 
-    console.log('All seeded 🌱');
-    process.exit(0);
+    await Conversation.create(conversationSeeds);
+
   } catch (err) {
-    throw err;
+    console.error(err);
+    process.exit(1);
   }
+
+  console.log('Seeding complete! 🌱');
+  process.exit(0);
 });
