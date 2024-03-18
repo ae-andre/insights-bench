@@ -34,7 +34,7 @@ const resolvers = {
     conversation: async (parent, { conversationId }) => {
       // Fetch conversation by ID and populate the listener field
       const conversation = await Conversation.findById(conversationId).populate('listener');
-    
+
       // Handle potential null values
       if (!conversation) {
         // Conversation not found

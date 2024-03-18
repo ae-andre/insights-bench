@@ -8,6 +8,8 @@ db.once('open', async () => {
   try {
     await cleanDB('User', 'users');
 
+    await cleanDB('Category', 'categories');
+
     await cleanDB('Conversation', 'conversations');
 
     await User.create(userSeeds);
