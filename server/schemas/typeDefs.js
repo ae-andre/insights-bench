@@ -13,7 +13,7 @@ const typeDefs = gql`
     availability: Boolean
     role: String
     expertise: String
-    conversation: Conversation!
+    conversation: Conversation
   }
 
   type Conversation {
@@ -23,7 +23,7 @@ const typeDefs = gql`
     expertise: String
     username: String
     listener: User
-    comments: [Comment]!
+    comments: [Comment]
     createdAt: String
     is_closed: Boolean
     isPrivate: Boolean

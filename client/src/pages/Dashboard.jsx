@@ -26,7 +26,7 @@ const items = [
 const Bench = () => {
   // const { _id: userParam } = useParams()
 
-  const testUser = "65f74c6bbd55f71cec17e9c5"
+  const testUser = "65f7c7286342369c28dfe964"
 
   const { loading, data } = useQuery(GET_USER_BY_ID, {
     variables: { userId: testUser }
@@ -68,8 +68,8 @@ const Bench = () => {
                 </div>
                 <div className="min-w-0 flex-1 ">
                   <p className="text-sm font-semibold text-gray-900">
-                    Bereavement Advice
-                    {/* {`${user.conversation.conversationTitle}`} */}
+                    {/* Bereavement Advice */}
+                    {user.conversation ? user.conversation.conversationTitle : "No Conversation Title"}
                   </p>
 
                   <p className="text-sm text-gray-500">

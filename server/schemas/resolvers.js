@@ -8,7 +8,7 @@ const resolvers = {
       return await User.find().populate('buddy conversation');
     },
     user: async (parent, { userId }) => {
-      return await User.findById( userId );
+      return await User.findById( userId ).populate('buddy conversation');
     },
     conversations: async (parent, { filter }) => {
       //User the filter argument to conditionally build the query
@@ -22,6 +22,11 @@ const resolvers = {
         return {
           _id: conversation._id,  
           conversationTitle: conversation.conversationTitle,
+          // Added these:
+          conversationText: conversation.conversationText,
+          isPrivate: conversation.isPrivate || null,
+          comments: conversation.comments || null,
+          //
           username: conversation.username,
           createdAt: conversation.createdAt,
           expertise: conversation.expertise || null,
@@ -76,21 +81,24 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    addConversation: async (parent, { conversationTitle, conversationText, expertise, userId }) => {
-      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, userId })
+    addConversation: async (parent, { conversationTitle, conversationText, expertise }, context) => {
+      if (context.user) {
+        const convo = await Conversation.create({ 
+          conversationTitle, 
+          conversationText, 
+          expertise, 
+          username: context.user.username
+        })
 
-      const  user = await User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $set: { conversation: convo._id },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-      
-      return convo; 
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $set: { conversation: convo._id } }
+        )
+
+        return convo; 
+      }
+      throw AuthenticationError;
+      ('You need to be logged')
     },
     addComment: async (parent, { conversationId, comment, userId }) => {
       const convo = await Conversation.findOne(

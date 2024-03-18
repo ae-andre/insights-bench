@@ -1,0 +1,30 @@
+[{
+    "conversationTitle": "Spendthrift Spouse",
+    "conversationText": "My wife spends too much money! She buys $6 Starbucks coffees every day while I am trying to pay off student debt. How can we get on the same page about finances?",
+    "username": "charming_penguin",
+    "is_closed": false,
+    "isPrivate": true,
+    "expertise": "financial",
+    "comments": [
+        {
+            "comment": "This is both a financial problem, and a personal problem. Can I ask, are you newlyweds, or is this a long-established pattern",
+            "username": "majestic_owl"
+        },
+        {
+            "comment": "We were married 18 months ago.",
+            "username": "charming_penguin"
+        },
+        {
+            "comment": "To get to the root of spending habits you should explore together family context and attitudes to what the meaning and purpose of money is.",
+            "username": "majestic_owl"
+        },
+        {
+            "comment": "Many people just don't know how much money gets away from them by buying coffee at Starbucks daily. Figure out some way to track it. I think she'd take your concerns more seriously if she saw the total.",
+            "username": "majestic_owl"
+        },
+        {
+            "comment": "It will be important to raise this with her in a positive context. What are some goals you can set together as a couple that will only be possible if you control impulse spending in the short-term?",
+            "username": "majestic_owl"
+        }
+    ]
+}]
