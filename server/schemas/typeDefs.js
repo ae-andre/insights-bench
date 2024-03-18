@@ -6,7 +6,7 @@ const typeDefs = gql`
   }
 
   type User {
-    _id: ID
+    _id: ID!
     username: String
     password: String
     buddy: User
@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 
   type Conversation {
-    _id: ID
+    _id: ID!
     conversationTitle: String
     conversationText: String
     expertise: String
@@ -31,7 +31,7 @@ const typeDefs = gql`
   }
 
   type Comment {
-    commentId: ID
+    commentId: ID!
     comment: String
     username: String
     createdAt: String
