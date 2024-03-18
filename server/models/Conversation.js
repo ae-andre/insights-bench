@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
-const moment = require('moment');
+const moment = require('moment'); // using moment to format dates
 
 const commentSchema = new Schema({
   commentId: {
@@ -17,7 +17,7 @@ const commentSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm:a')
+    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm a')
   },
 });
 
@@ -50,7 +50,7 @@ const conversationSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm:a')
+    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm a')
   },
   is_closed: {
     type: Boolean,
@@ -65,10 +65,10 @@ const conversationSchema = new Schema({
 // Virtual property to calculate the comment count
 conversationSchema.virtual('commentCount').get(function () {
   return this.comments.length;
-})
+});
 
 // toJSON settings to include getters, virtuals and exclude _id
-conversationSchema.set('toJSON', { getters: true, virtuals: true, id: false })
+conversationSchema.set('toJSON', { getters: true, virtuals: true, id: false });
 
 const Conversation = model('Conversation', conversationSchema);
 

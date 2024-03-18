@@ -4,26 +4,25 @@ const typeDefs = gql`
   input ConversationFilterInput {
     isPrivate: Boolean
   }
-
   type User {
-    _id: ID
+    _id: ID!
     username: String
     password: String
     buddy: User
     availability: Boolean
     role: String
     expertise: String
-    conversation: Conversation!
+    conversation: Conversation
   }
 
   type Conversation {
-    _id: ID
+    _id: ID!
     conversationTitle: String
     conversationText: String
     expertise: String
     username: String
     listener: User
-    comments: [Comment]!
+    comments: [Comment]
     createdAt: String
     is_closed: Boolean
     isPrivate: Boolean
@@ -31,7 +30,7 @@ const typeDefs = gql`
   }
 
   type Comment {
-    commentId: ID
+    commentId: ID!
     comment: String
     username: String
     createdAt: String
@@ -44,7 +43,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(userId: ID!): User
+    user(id: ID!): User
     conversation(conversationId: ID!): Conversation
     conversations(filter: ConversationFilterInput): [Conversation]
   }
