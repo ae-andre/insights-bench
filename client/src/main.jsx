@@ -5,15 +5,19 @@ import App from './App.jsx'
 import './App.css';
 import Home from './pages/Home'
 import Login from './pages/Login.jsx'
-//import Conversation from './components/Conversation.jsx'
-// import Profile from './pages/Profile'
-// import Error from './pages/Error'
+import MyBench from './pages/MyBench.jsx'
+import Role from './components/Role/index.jsx' 
+import SharerSignup from './components/SharerSignup/index.jsx' 
+import ListenerSignup from './components/ListenerSignup/index.jsx' 
+//import Conversation from './components/Conversation.jsx
+import Error from './pages/Error'
+
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    // errorElement: <Error />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -30,7 +34,23 @@ const router = createBrowserRouter([
       {
         path: '/login', // The route to the Login page
         element: <Login />,
-      }
+      },
+      {
+        path: '/role', // Route for the Role component
+        element: <Role />,
+      },
+      {
+        path: '/sharer-signup', // Route for the SharerSignup component
+        element: <SharerSignup />,
+      },
+      {
+        path: '/listener-signup', // Route for the ListenerSignup component
+        element: <ListenerSignup />,
+      },
+      {
+        path: '/my-bench', // Route for the ListenerSignup component
+        element: <MyBench />,
+      },
     ],
   },
 ]);

@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { Routes, Route, Outlet } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import Nav from './components/Navbar';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/MyBench';
 import Login from './pages/Login';
 import React, { useState } from 'react';
 import Header from './components/Header/index';
@@ -42,7 +42,7 @@ function App() {
       <div className="flex-column justify-flex-start min-100-vh">
           <Header />
         <div className="container">
-          <Outlet />
+          <Outlet />  
         </div>
         <Footer />
       </div>
@@ -51,6 +51,11 @@ function App() {
 }
 
 export default App;
+
+// Adding these lines in place of <Outlet /> where we have it now was supposed to be crucial in wrapping the app in Global State/React Context. However the container section doesn't display at all if we do that.
+//<Routes> {/* Render the Routes component */}
+//<Route element={<Outlet />} /> {/* Render the Outlet for nested routes */}
+//</Routes>
 
 
 

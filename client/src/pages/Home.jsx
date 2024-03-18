@@ -57,6 +57,7 @@ const Home = () => {
     if (AuthService.loggedIn()) {
       // User is authenticated, set the state to indicate starting a public conversation which will trigger conditional rendering of the ConversationForm component in the Homepage's jsx return
       setIsStartingPublicConversation(true);
+      navigate('/start-conversation');
     } else {
       console.log('User not logged in. Redirecting to login page...');
       navigate('/login'); // Use navigate to redirect user to login page
@@ -66,7 +67,7 @@ const Home = () => {
   return (
     <div className="main-content container">
         <div className="row">
-          {isStartConversationPage ? (
+          {isStartConversationPage || isStartingPublicConversation ? (
             <ConversationsForm />
           ) : selectedConversationId ? (
             <Conversation

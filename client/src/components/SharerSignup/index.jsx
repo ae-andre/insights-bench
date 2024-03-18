@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Example() {
     return (
@@ -77,9 +78,9 @@ export default function Example() {
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Want to be a listener? {' '}
-              <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <Link to="/listener-signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Become a listener instead
-              </a>
+              </Link>
             </p>
           </div>
         </div>
