@@ -2,18 +2,19 @@ import './App.css';
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
+import Nav from './components/Navbar';
+import Dashboard from './pages/MyBench';
+import Login from './pages/Login';
 import React, { useState } from 'react';
 import Header from './components/Header/index';
-import Nav from './components/Navbar';
 import Footer from './components/Footer/index';
 import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
+// import ListenerSignup from './components/ListenerSignup'
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 const authLink = setContext((_, { headers }) => {
@@ -29,9 +30,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  // uri: '/graphql',
-  // cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -41,7 +40,7 @@ function App() {
       <div className="flex-column justify-flex-start min-100-vh">
           <Header />
         <div className="container">
-          <Outlet />
+          <Outlet />  
         </div>
         <Footer />
       </div>
@@ -50,5 +49,10 @@ function App() {
 }
 
 export default App;
+
+// Adding these lines in place of <Outlet /> where we have it now was supposed to be crucial in wrapping the app in Global State/React Context. However the container section doesn't display at all if we do that.
+//<Routes> {/* Render the Routes component */}
+//<Route element={<Outlet />} /> {/* Render the Outlet for nested routes */}
+//</Routes>
 
 

@@ -1,57 +1,130 @@
-.conversation-container {
+  .conversation-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     background-color: var(--light);
-    border-radius: 1%;
+    border-radius: .5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
   }
   
-  .conversation-title {
-    width: 50%;
+  .conversation-title {  
     margin: 20px;
     font-size: 1.8rem;
     font-family: var(--font-alegreya-sans);
     word-spacing: 7px;
-    
+    text-align: left; 
+  }
+
+  .conversation-text-and-attribution {
+    background-color: var(--med-light);
+    width: 80%;
+    margin: 0, auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    border-radius: 5%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8); 
   }
   
   .conversation-text {
     width: 95%;
+    padding: 15px; 
+  }
+
+  .conversation-attribution {
+    font-family: var(--font-alegreya-sans);
     margin-bottom: 10px;
-    text-align: center;
+    text-align: center;  
   }
   
   .comment-container {
-    height: 50%;
+    height: 300px;
     overflow-y: auto;
-  }
-  
-  .response-list {
+    width: 90%;
     display: flex;
     flex-direction: column;
+    align-self: center;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+    border-radius: 1%;  
   }
   
-  .response {
+  .comment-list {
+    display: flex;
+    flex-direction: column;
+    margin: 10px, 10px, 0px,;
+  }
+  
+  .comment {
     max-height: 100px; 
     overflow-y: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3), 0px -2px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
   }
   
-  .input-container {
+  .comment p {
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .comment-attribution {
     display: flex;
+    justify-content: space-between;
+  }
+
+  .comment-attribution span:first-child {
+    margin-right: 25px; 
+}
+
+  .input-container {
+    display: block;
     align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 20px;
+    text-align: center;
   }
   
   textarea {
-    height: 25%;
+    height: 80px;
     width: 100%;
     resize: vertical;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 2%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    border: none !important;
+    border: 1px solid transparent !important;
   }
+
+  /* Can't seem to override this bootstrap styling whatever I do
+  textarea.form-control:focus {
+    border-color: var(--med-light) !important; 
+    outline: none; 
+}*/
+
+  .comment-submit-btn {
+    background-color: var(--med-light) !important; /* Important to override Bootstrap */
+    color: var(--dark) !important; 
+    border: 1px solid var(--dark) !important; 
+    margin-bottom: 20px;
+
+}
+
+.comment-submit-btn:hover {
+    background-color: var(--med-dark) !important; 
+    color: var(--med-light) !important; 
+    border: 1px solid var(--med-light) !important; 
+} 
+
+.comment-submit-btn:active {
+  background-color: var(--medium) !important; 
+  color: var(--light) !important; 
+  border: 1px solid var(--dark) !important; 
+}
   
-  /* Adjust as needed for responsiveness */
-  @media (max-width: 768px) {
-    .conversation-head-text {
-      width: 100%;
-    }
-  }

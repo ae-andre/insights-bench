@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link  } from "react-router-dom"; 
-import { LOGIN_USER } from '../utils/mutations'
-
+import { Link } from "react-router-dom"; 
+import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import Role from './Role.jsx'
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ username: '', password: ''});
@@ -45,7 +43,7 @@ const Login = (props) => {
         <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Welcome Back!
+              Welcome!
             </h2>
           </div>
   
@@ -111,7 +109,7 @@ const Login = (props) => {
         )}
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?
-                <Link to="/Role" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500" > Sign Up</Link>
+                <Link to="/role" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500" > Sign Up</Link>
             </p>
           </div>
         </main>

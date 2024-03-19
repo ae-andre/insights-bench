@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link  } from "react-router-dom"; 
 
-export default function Role() {
+export default function roleSelection() {
     return (
         <div>
             <div className="fixed inset-0 z-10 w-screen overflow-y-auto">

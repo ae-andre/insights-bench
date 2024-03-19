@@ -2,6 +2,9 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PlusIcon } from '@heroicons/react/20/solid'
+import { Link } from 'react-router-dom';
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -28,27 +31,26 @@ export default function Example() {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-shrink-0 items-center">
-                  <img
+                  <Link to="/" className="h-8 w-auto" style={{ width: '102px', height: '98%', cursor: 'pointer' }}>
+                    <img
                     className="h-8 w-auto"
                     src="https://res.cloudinary.com/dqtpaispt/image/upload/v1710538491/One_Bench_One_Tree_Logo-08_TRANSPARENT_gfwchp.png"
                     alt="Soul Bench logo -- simple line drawing of a tree with upright habit beside a bench"
-                    style={{ width: '102px', height: '98%' }}
-                  />
+                    style={{ width: '102px', height: '98%', cursor: 'pointer' }}
+                    />
+                  </Link>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
-                    href="#"
+                  <Link to="/my-bench"
                     className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
                   >
                     My Bench
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  </Link>
+                  <Link to="/login" className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
                     Login/Logout
-                  </a>
+                  </Link>
                 </div>
               </div>
               </div>

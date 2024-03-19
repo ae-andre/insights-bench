@@ -3,7 +3,7 @@ const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const cors = require('cors');
 const path = require('path');
-const { authMiddleware } = require('./utils/auth')
+const { authMiddleware } = require('./utils/auth');
 require('dotenv').config();
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -37,7 +37,9 @@ const startApolloServer = async () => {
   });
 
    // Important for MERN Setup: Any client-side requests that begin with '/graphql' will be handled by our Apollo Server
-   app.use('/graphql', expressMiddleware(server));
+   app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
   
   // Important for MERN Setup: When our application runs from production, it functions slightly differently than in development
   // In development, we run two servers concurrently that work together

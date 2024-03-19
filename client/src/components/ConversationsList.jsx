@@ -7,7 +7,7 @@ const ConversationsList = ({ conversations, expertise, onConversationClick }) =>
   console.log('Conversations:', conversations);
   
   return (
-    <div className='conversations-list-container'>
+    <div className='conversations-list-container'> 
       <ul className="list-group list-group-numbered">
         {conversations.map((conversation) => {
           console.log('Mapping Conversation:', conversation);
