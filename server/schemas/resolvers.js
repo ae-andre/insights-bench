@@ -1,7 +1,6 @@
 const { User, Conversation } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const mongoose = require('mongoose');
-const { signToken, AuthenticationError } = require('../utils/auth');
 const moment = require('moment');
 
 const resolvers = {

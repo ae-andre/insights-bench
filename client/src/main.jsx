@@ -6,7 +6,7 @@ import './App.css';
 import Home from './pages/Home'
 import Login from './pages/Login.jsx'
 import MyBench from './pages/MyBench.jsx'
-import Role from './components/Role/index.jsx' 
+import Role from './pages/Role.jsx' 
 import SharerSignup from './components/SharerSignup/index.jsx' 
 import ListenerSignup from './components/ListenerSignup/index.jsx' 
 //import Conversation from './components/Conversation.jsx
