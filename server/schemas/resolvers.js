@@ -1,4 +1,5 @@
 const { User, Conversation } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
 const mongoose = require('mongoose');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const moment = require('moment');
@@ -36,7 +37,7 @@ const resolvers = {
     conversation: async (parent, { conversationId }) => {
       // Fetch conversation by ID and populate the listener field
       const conversation = await Conversation.findById(conversationId).populate('listener');
-  
+
       // Handle potential null values
       if (!conversation) {
           // Conversation not found

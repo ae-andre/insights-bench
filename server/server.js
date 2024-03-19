@@ -52,6 +52,11 @@ const startApolloServer = async () => {
     });
   }
   
+  // Important for MERN Setup: Any client-side requests that begin with '/graphql' will be handled by our Apollo Server
+  app.use('/graphql', expressMiddleware(server, {
+    context: authMiddleware
+  }));
+
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);

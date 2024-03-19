@@ -24,5 +24,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5"
+    "graphql-tag": "^2.12.6",
+    "moment": "^2.30.1"
   }
 }

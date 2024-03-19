@@ -2,11 +2,10 @@ const { gql } = require('graphql-tag');
 
 const typeDefs = gql`
   input ConversationFilterInput {
-  isPrivate: Boolean
+    isPrivate: Boolean
   }
-  
   type User {
-    _id: ID
+    _id: ID!
     username: String
     password: String
     buddy: User
@@ -31,7 +30,7 @@ const typeDefs = gql`
   }
 
   type Comment {
-    commentId: ID
+    commentId: ID!
     comment: String
     username: String
     createdAt: String

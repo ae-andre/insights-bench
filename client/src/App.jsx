@@ -30,9 +30,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  // uri: '/graphql',
-  // cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
@@ -57,30 +55,4 @@ export default App;
 //<Route element={<Outlet />} /> {/* Render the Outlet for nested routes */}
 //</Routes>
 
-
-
-
-
-
-// function App() {
-//   return (
-//     <div>
-//     <Nav />
-
-//     <Dashboard />
-//     </div>
-
-
-
-    // <ApolloProvider client={client}>
-    //   <div className="flex-column justify-flex-start min-100-vh">
-    //     <Header />
-    //     <div className="container">
-    //       <Outlet />
-    //     </div>
-    //     <Footer />
-    //   </div>
-    // </ApolloProvider>
-//   );
-// }
 

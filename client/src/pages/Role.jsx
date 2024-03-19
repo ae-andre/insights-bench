@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default function roleSelection() {
     return (
@@ -17,15 +16,13 @@ export default function roleSelection() {
                             By sharing, individuals have the opportunity to be heard, validated, and understood by others in the community. Sharing can be a 
                             powerful tool for self-expression and personal growth, but it's crucial to prioritize mental health and seek professional help when needed.
                         </p>
-                        <Link to="/sharer-signup"> {/* Use Link to create a link to the SharerSignup endpoint */}
-                          <button
+                        <button
                             type="button"
                             className="inline-flex mx-6 my-7 items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                             value="sharer"
-                          >
+                            >
                             Sharer
-                          </button>
-                        </Link>
+                        </button>
                     </div>
                     <div className="p-4 text-sm mt-2 max-w-xs">
                         <p className="listener-description my-9">
@@ -33,15 +30,13 @@ export default function roleSelection() {
                             and experiences. Listeners offer their time and attention to actively engage with the sharer, demonstrating care and understanding. By actively 
                             listening and offering support, listeners play a vital role in fostering a sense of community and connection within the platform.
                         </p>
-                        <Link to="/listener-signup"> {/* Use Link to create a link to the ListenerSignup endpoint */}
-                          <button
+                        <button
                             type="button"
                             className="inline-flex mx-6 my-7 items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                             value="listener"
-                          >
+                            >
                             Listener
-                          </button>
-                        </Link>
+                        </button>
                     </div>
                     </div>
                 </div>
