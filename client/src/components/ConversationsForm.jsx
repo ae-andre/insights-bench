@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
-export default function ConversationsForm() {
+const ConversationsForm = () => {
+  const [formState, setFormState] = useState()
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -14,16 +19,16 @@ export default function ConversationsForm() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST">
             <div>
-              <form class="max-w-sm mx-auto w-full whitespace-normal">
+              <form className="max-w-sm mx-auto w-full whitespace-normal">
                 <label
-                  for="problem"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="problem"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   What's on your mind:
                 </label>
                 <select
                   id="problem-area"
-                  class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option value="" disabled selected>
                     Select an area you would like to discuss
@@ -91,3 +96,6 @@ export default function ConversationsForm() {
     </>
   );
 }
+
+
+export default ConversationsForm;

@@ -53,6 +53,12 @@ const resolvers = {
   
       return conversation;
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('buddy conversation');
+      }
+      throw AuthenticationError;
+    },
   },
 
   Mutation: {
@@ -101,43 +107,64 @@ const resolvers = {
       return convo; 
     },
     addComment: async (parent, { conversationId, comment }, context) => {
-      console.log('Context:', context);
+      console.log('Context:', context.user);
       try {
-        // Extract the user from the context
-        const { user } = context;
-        console.log('User:', user);
-    
-        // Check if the user is authenticated
-        if (!user) {
-          throw new AuthenticationError('User not authenticated');
+        if (context.user) {
+          return Conversation.findOneAndUpdate(
+            { _id: conversationId },
+            {
+              $push: {
+                comments: { comment, username: context.user.username }
+              },
+            },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
         }
-    
-        // Find the conversation by its ID
-        const convo = await Conversation.findById(conversationId);
-        console.log('Conversation:', convo);
-    
-        // Check if the conversation exists
-        if (!convo) {
-          throw new Error('Conversation not found');
-        }
-    
-        // Add the new comment to the conversation
-        convo.comments.push({
-          comment,
-          username: user.username // Associate the comment with the authenticated user's username
-        });
-    
-        // Save the updated conversation
-        const updatedConvo = await convo.save();
-        console.log('Updated Conversation:', updatedConvo);
-    
-        // Return the updated conversation
-        return updatedConvo;
+        throw AuthenticationError;
       } catch (error) {
         console.error('Error adding comment:', error);
         throw new Error('Error adding comment');
       }
     },
+      // try {
+      //   // Extract the user from the context
+      //   const { user } = context;
+      //   console.log('User:', user);
+    
+      //   // Check if the user is authenticated
+      //   if (!user) {
+      //     throw new AuthenticationError('User not authenticated');
+      //   }
+    
+      //   // Find the conversation by its ID
+      //   const convo = await Conversation.findById(conversationId);
+      //   console.log('Conversation:', convo);
+    
+      //   // Check if the conversation exists
+      //   if (!convo) {
+      //     throw new Error('Conversation not found');
+      //   }
+    
+      //   // Add the new comment to the conversation
+      //   convo.comments.push({
+      //     comment,
+      //     username: user.username // Associate the comment with the authenticated user's username
+      //   });
+    
+      //   // Save the updated conversation
+      //   const updatedConvo = await convo.save();
+      //   console.log('Updated Conversation:', updatedConvo);
+    
+      //   // Return the updated conversation
+      //   return updatedConvo;
+      // } catch (error) {
+      //   console.error('Error adding comment:', error);
+      //   throw new Error('Error adding comment');
+      // }
+    // },
     // removeUser: async (parent, { userId }) => {
     //   return User.findOneAndDelete({ _id: userId });
     // },

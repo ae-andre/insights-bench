@@ -46,6 +46,7 @@ const typeDefs = gql`
     user(id: ID!): User
     conversation(conversationId: ID!): Conversation
     conversations(filter: ConversationFilterInput): [Conversation]
+    me: User
   }
 
   type Mutation {
