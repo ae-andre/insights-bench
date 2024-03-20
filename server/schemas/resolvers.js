@@ -69,6 +69,35 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    buddy: async (parent, {expertise} ) => {
+      const buddyList =  await User.find({
+        role: 'listener',
+        availability: true,
+        expertise: expertise
+      });
+
+      let selectedBuddy;
+
+      if (buddyList.length) {
+        selectedBuddy = buddyList[0];
+      } else {
+        const generalBuddies = await User.find({
+          role: 'listener',
+          availability: true,
+        });
+        selectedBuddy = generalBuddies[0];
+      }
+
+      if (selectedBuddy) {
+        return await User.findOneAndUpdate(
+          {_id: selectedBuddy._id},
+          { $set: {availability: false}},
+          { new: true }
+          );
+      } else {
+        return null;
+      }
+    },
     login: async (parent, { username, password }) => {
       // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
       const user = await User.findOne({ username });
@@ -92,7 +121,7 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    addConversation: async (parent, { conversationTitle, conversationText, expertise, isPrivate }, context) => {
+    addConversation: async (parent, { conversationTitle, conversationText, expertise, isPrivate, buddy }, context) => {
       try {
         if (context.user) {
           const convo = await Conversation.create({ 
@@ -100,7 +129,8 @@ const resolvers = {
             conversationText, 
             expertise,  
             username: context.user.username,
-            isPrivate
+            isPrivate,
+            buddy
           });
 
          await User.findOneAndUpdate (
