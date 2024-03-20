@@ -1,7 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import { ADD_CONVERSATION } from '../utils/mutations';
+import Auth from '../utils/auth';
 
-export default function ConversationsForm() {
+const ConversationsForm = (props) => {
+  const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
+  
+  const [addConversation, { error }] = useMutation(ADD_CONVERSATION)
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setConvoForm({
+      ...convoForm,
+      [name]: value,
+    })
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await addConversation({
+        variables: {
+            conversationTitle: convoForm.conversationTitle,
+            conversationText: convoForm.conversationText,
+            expertise: convoForm.expertise,
+            username: Auth.getProfile().data.username,
+            isPrivate: true,
+            // Match buddy
+          }
+      });
+
+      console.log(data)
+      setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
+    } catch (err) {
+      console.error(err)
+    }
+  };
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -12,20 +50,22 @@ export default function ConversationsForm() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" action="#" method="POST">
+          <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
             <div>
-              <form class="max-w-sm mx-auto w-full whitespace-normal">
                 <label
-                  for="problem"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  htmlFor="expertise"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
                   What's on your mind:
                 </label>
                 <select
-                  id="problem-area"
-                  class="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="expertise"
+                  name="expertise"
+                  className="bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={convoForm.expertise}
+                  onChange={handleChange}
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Select an area you would like to discuss
                   </option>
                   <option value="financial">Financial Problems</option>
@@ -36,22 +76,23 @@ export default function ConversationsForm() {
                     Work/School Problems
                   </option>
                 </select>
-              </form>
             </div>
 
             <div>
               <label
-                htmlFor="conversation-title"
+                htmlFor="conversationTitle"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 I would like to talk about:
               </label>
               <div className="mt-2">
                 <input
-                  id="conversation-title"
-                  name="conversation-title"
+                  id="conversationTitle"
+                  name="conversationTitle"
                   type="text"
                   required
+                  value={convoForm.conversationTitle}
+                  onChange={handleChange}
                   placeholder="  Topic of the discussion"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -60,7 +101,7 @@ export default function ConversationsForm() {
 
             <div>
               <label
-                htmlFor="conversation-text"
+                htmlFor="conversationText"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
                 And some more details...
@@ -68,11 +109,12 @@ export default function ConversationsForm() {
               <div className="mt-2">
                 <textarea
                   rows={4}
-                  name="conversation-text"
-                  id="conversation-text"
+                  name="conversationText"
+                  id="conversationText"
                   placeholder="  Your story goes here.."
+                  value={convoForm.conversationText}
+                  onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  defaultValue={""}
                 />
               </div>
             </div>
@@ -91,3 +133,6 @@ export default function ConversationsForm() {
     </>
   );
 }
+
+
+export default ConversationsForm;

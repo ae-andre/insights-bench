@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { ADD_COMMENT } from '../utils/mutations.js'; 
+import { ADD_COMMENT } from '../utils/mutations'; 
 import { useQuery } from '@apollo/client';
 import { GET_CONVERSATION_BY_ID } from '../utils/queries';
 import './Conversation.css';
@@ -177,13 +177,19 @@ import './Conversation.css';
 const Conversation = ({ onClose }) => {
   const [commentText, setCommentText] = useState('');
   const conversationId = localStorage.getItem('selectedConversationId');
-  const conversationIdString = conversationId.toString();
+  console.log(typeof(conversationId))
 
   const { loading, error, data, refetch } = useQuery(GET_CONVERSATION_BY_ID, {
-    variables: { conversationId: conversationIdString },
+    variables: { conversationId: conversationId },
   });
 
-  const [addCommentMutation] = useMutation(ADD_COMMENT);
+  const [addComment, { commentError }] = useMutation(ADD_COMMENT);
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+
+    setCommentText(value);
+  };
 
   useEffect(() => {
     if (conversationId) {
@@ -199,18 +205,23 @@ const Conversation = ({ onClose }) => {
     return <p>Loading...</p>;
   }
   
-  const handleCommentSubmit = async () => {
+  const handleCommentSubmit = async (event) => {
+    event.preventDefault();
+    console.log("Im reaching here")
     try {
-      await addCommentMutation({
+      console.log("Im reaching here")
+      const { newComment } = await addComment({
         variables: {
-          conversationId: conversationIdString,
+          conversationId: conversationId,
           comment: commentText,
+          username: Auth.getProfile().data.username
         },
       });
+
       setCommentText(''); // Clear the comment text after submitting
       refetch(); // Refetch conversation data to update comments
-    } catch (error) {
-      console.error('Error adding comment:', error);
+    } catch (commentError) {
+      console.error('Error adding comment:', commentError);
     }
   };
   
@@ -240,7 +251,7 @@ const Conversation = ({ onClose }) => {
           rows="3" 
           placeholder="Type your comment..."
           value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
+          onChange={handleChange}
         ></textarea>
         <button 
           type="button" 
