@@ -23,8 +23,10 @@ const resolvers = {
         return {
           _id: conversation._id,  
           conversationTitle: conversation.conversationTitle,
+          conversationText: conversation.conversationText,
           username: conversation.username,
           createdAt: conversation.createdAt,
+          isPrivate: conversation.isPrivate || null,
           expertise: conversation.expertise || null,
           is_closed: conversation.is_closed || false,
           commentCount: conversation.comments.length,  
@@ -90,21 +92,29 @@ const resolvers = {
       // Return an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
-    addConversation: async (parent, { conversationTitle, conversationText, expertise, userId }) => {
-      const convo = await Conversation.create({ conversationTitle, conversationText, expertise, userId })
+    addConversation: async (parent, { conversationTitle, conversationText, expertise, isPrivate }, context) => {
+      try {
+        if (context.user) {
+          const convo = await Conversation.create({ 
+            conversationTitle,
+            conversationText, 
+            expertise,  
+            username: context.user.username,
+            isPrivate
+          });
 
-      const  user = await User.findOneAndUpdate(
-        { _id: userId },
-        {
-          $set: { conversation: convo._id },
-        },
-        {
-          new: true,
-          runValidators: true,
+         await User.findOneAndUpdate (
+          { _id: context.user._id },
+          { $set: { conversation: convo._id } }
+         );
+
+          return convo;
         }
-      );
-      
-      return convo; 
+        throw AuthenticationError;
+      } catch (error) {
+        console.error('Error adding comment:', error);
+        throw new Error('Error adding comment');
+      }
     },
     addComment: async (parent, { conversationId, comment }, context) => {
       console.log('Context:', context.user);
