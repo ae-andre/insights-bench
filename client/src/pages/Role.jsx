@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import SharerSignUp from '../components/SharerSignup/index';
 import ListenerSignUp from '../components/ListenerSignup/index';
 
+
 // import { ADD_ } from '../utils/mutations';
 // import Auth from '../utils/auth';
 
@@ -24,27 +25,16 @@ import ListenerSignUp from '../components/ListenerSignup/index';
 
 
 
-const RoleSelection = () => {
+const RoleSelection = (prop) => {
     const [selectedRole, setSelectedRole] = useState('');
 
-    const isListener = true;
-
-
-    const handleRender = () => {
-        setSelectedRole({
-            listener: true,
-            sharer: false,
-        })
-        if (isListener) {
-            return <ListenerSignUp />
-        } else {
-            return <SharerSignUp />
-        }
+    const handleRender = (role) => {
+        setSelectedRole(role);
     };
 
     return (
         <div>
-            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            {/* <div className="fixed inset-0 z-10 w-screen overflow-y-auto"> */}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 items-center">
             <div className="bg-white shadow sm:rounded-lg">
                 <div className="px-4 py-5 sm:p-6 text-center">
@@ -62,7 +52,7 @@ const RoleSelection = () => {
                             value={selectedRole.sharer}
                             name="sharer"
                             className="inline-flex mx-6 my-7 items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                            onClick={() => handleRender()}
+                            onClick={() => handleRender('sharer')}
                             >
                             Sharer
                         </button>
@@ -78,7 +68,7 @@ const RoleSelection = () => {
                             value={selectedRole.listener}
                             name="listener"
                             className="inline-flex mx-6 my-7 items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                            onClick={() => handleRender()}
+                            onClick={() => handleRender('listener')}
                             >
                             Listener
                         </button>
@@ -87,7 +77,9 @@ const RoleSelection = () => {
                 </div>
                 </div>
             </div>
-            </div>
+            {/* </div> */}
+            {selectedRole === 'sharer' && <SharerSignUp />}
+            {selectedRole === 'listener' && <ListenerSignUp />}
         </div>
     )
   }

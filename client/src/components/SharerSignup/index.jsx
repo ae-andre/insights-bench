@@ -6,7 +6,7 @@ import { ADD_SHARER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 
-const signUpSharer = () => {
+const signUpSharer = (props) => {
   const [formState, setFormState] = useState({
     username: '',
     password: '',
@@ -28,8 +28,7 @@ const signUpSharer = () => {
 
     try {
       const { data } = await addSharer({
-        variables: { ...formState },
-        role: "sharer"
+        variables: { ...formState, role: "sharer" },
       });
 
       Auth.login(data.addSharer.token);
