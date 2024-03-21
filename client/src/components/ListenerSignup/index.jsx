@@ -1,17 +1,46 @@
-import React from 'react';
+import { useState, React } from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { ADD_LISTENER } from '../../utils/mutations';
 
-export default function Example() {
+import Auth from '../../utils/auth';
+
+const signUpSharer = () => {
+  const [formState, setFormState] = useState({
+    username: '',
+    password: '',
+    financial: false,
+    personal: false,
+    career: false,
+  });
+  const [addListener, { error, data }] = useMutation(ADD_LISTENER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addListener({
+        variables: { ...formState },
+        role: "listener"
+      });
+
+      Auth.login(data.addListener.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
     return (
       <>
-        {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-white">
-          <body class="h-full">
-          ```
-        */}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             {/* <img
@@ -25,7 +54,7 @@ export default function Example() {
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
               <div>
                 <label htmlFor="username" className="block text-base font-medium leading-6 text-gray-900">
                   Username
@@ -35,6 +64,7 @@ export default function Example() {
                     id="username"
                     name="username"
                     type="text"
+                    onChange={handleChange}
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -52,6 +82,7 @@ export default function Example() {
                     id="password"
                     name="password"
                     type="password"
+                    onChange={handleChange}
                     required
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -66,7 +97,7 @@ export default function Example() {
                 </div>
             </div>
 
-            <fieldset>
+            <fieldset >
                 <legend className="sr-only">Notifications</legend>
                 <div className="space-y-5">
                     <div className="relative flex items-start">
@@ -74,8 +105,9 @@ export default function Example() {
                             <input
                                 id="comments"
                                 aria-describedby="comments-description"
-                                name="comments"
+                                name="financial"
                                 type="checkbox"
+                                onChange={handleChange}
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                             />
                         </div>
@@ -90,8 +122,9 @@ export default function Example() {
                             <input
                                 id="comments"
                                 aria-describedby="comments-description"
-                                name="comments"
+                                name="personal"
                                 type="checkbox"
+                                onChange={handleChange}
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                             />
                         </div>
@@ -106,8 +139,9 @@ export default function Example() {
                             <input
                                 id="comments"
                                 aria-describedby="comments-description"
-                                name="comments"
+                                name="career"
                                 type="checkbox"
+                                onChange={handleChange}
                                 className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                             />
                         </div>
@@ -149,3 +183,5 @@ export default function Example() {
       </>
     )
   }
+
+export default signUpSharer;
