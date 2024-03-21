@@ -34,3 +34,17 @@ mutation addConversation($conversationTitle: String!, $conversationText: String!
   }
 }
 `
+
+export const FIND_BUDDY = gql`
+mutation findBuddy($expertise: String!) {
+  findBuddy(expertise: $expertise) {
+    username
+    availability
+    role
+    expertise
+    conversation {
+      _id
+      conversationTitle
+    }
+  }
+}`

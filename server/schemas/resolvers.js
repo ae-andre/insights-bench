@@ -69,7 +69,11 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    buddy: async (parent, {expertise} ) => {
+    findBuddy: async (parent, {expertise}, context) => {
+
+      const user = await User.findById(context.user._id);
+      const convo = await Conversation.findById(user.conversation._id);
+
       const buddyList =  await User.find({
         role: 'listener',
         availability: true,
@@ -91,7 +95,7 @@ const resolvers = {
       if (selectedBuddy) {
         return await User.findOneAndUpdate(
           {_id: selectedBuddy._id},
-          { $set: {availability: false}},
+          { $set: {availability: false, conversation: convo._id}},
           { new: true }
           );
       } else {
@@ -130,7 +134,6 @@ const resolvers = {
             expertise,  
             username: context.user.username,
             isPrivate,
-            buddy
           });
 
          await User.findOneAndUpdate (

@@ -43,7 +43,7 @@ const typeDefs = gql`
 
   type Query {
     users: [User]
-    user(id: ID!): User
+    user(userId: ID!): User
     conversation(conversationId: ID!): Conversation
     conversations(filter: ConversationFilterInput): [Conversation]
     me: User
@@ -51,7 +51,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, password: String!, role: String!, expertise: String): Auth
-    buddy(expertise: String!): [User]
+    findBuddy(expertise: String!): User
     login(username: String!, password: String!): Auth
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!, isPrivate: Boolean!): Conversation
     addComment(conversationId: ID!, comment: String!): Conversation

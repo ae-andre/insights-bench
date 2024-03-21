@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
-import { ADD_CONVERSATION } from '../utils/mutations';
+import { ADD_CONVERSATION, FIND_BUDDY } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const ConversationsForm = (props) => {
   const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
   
   const [addConversation, { error }] = useMutation(ADD_CONVERSATION)
+  const [findBuddy] = useMutation(FIND_BUDDY)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,11 +30,15 @@ const ConversationsForm = (props) => {
             expertise: convoForm.expertise,
             username: Auth.getProfile().data.username,
             isPrivate: true,
-            // Match buddy
           }
       });
 
+      const { buddy } = await findBuddy({
+        variables: {expertise: convoForm.expertise}
+      });
+
       console.log(data)
+      console.log(buddy)
       setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
     } catch (err) {
       console.error(err)
