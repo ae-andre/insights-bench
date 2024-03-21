@@ -23,3 +23,26 @@ mutation addComment($conversationId: ID!, $comment: String!) {
 }
 `;
 
+export const ADD_SHARER = gql`
+mutation addListener($username: String!, $password: String!, $role: String!) {
+  addUser(username: $username, password: $password, role: $role) {
+    token
+    user {
+      _id
+      username
+    }
+  }
+}
+`;
+
+export const ADD_LISTENER = gql`
+mutation addListener($username: String!, $password: String!, $role: String!, $expertise: String!) {
+  addUser(username: $username, password: $password, role: $role, expertise: $expertise) {
+    token
+    user {
+      _id
+      username
+    }
+  }
+}
+`;
