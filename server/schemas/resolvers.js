@@ -138,6 +138,16 @@ const resolvers = {
         throw new Error('Error adding comment');
       }
     },
+    addSharer: async (parent, { username, password, role }) => {
+      const user = await User.create({ username, password, role });
+      const token = signToken(user);
+      return { token, user };
+    },
+    addListener: async (parent, { username, password, expertise, role }) => {
+      const user = await User.create({ username, password, expertise, role });
+      const token = signToken(user);
+      return { token, user };
+    },
     // removeUser: async (parent, { userId }) => {
     //   return User.findOneAndDelete({ _id: userId });
     // },
