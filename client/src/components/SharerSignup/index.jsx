@@ -31,6 +31,8 @@ const signUpSharer = (props) => {
         variables: { ...formState, role: "sharer" },
       });
 
+      console.log(data)
+
       Auth.login(data.addSharer.token);
     } catch (e) {
       console.error(e);

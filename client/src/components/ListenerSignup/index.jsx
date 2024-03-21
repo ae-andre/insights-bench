@@ -5,13 +5,13 @@ import { ADD_LISTENER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const signUpSharer = () => {
+const signUpListener = () => {
   const [formState, setFormState] = useState({
     username: '',
     password: '',
-    financial: false,
-    personal: false,
-    career: false,
+    // financial: false,
+    // personal: false,
+    // career: false,
   });
   const [addListener, { error, data }] = useMutation(ADD_LISTENER);
 
@@ -29,9 +29,13 @@ const signUpSharer = () => {
     console.log(formState);
 
     try {
+      const checkedValue = document.querySelector('.expertiseCheckbox:checked').value;
+      console.log(checkedValue)
       const { data } = await addListener({
-        variables: { ...formState },
-        role: "listener"
+        variables: { 
+          ...formState, 
+          expertise: checkedValue ,
+          role: "listener"}
       });
 
       Auth.login(data.addListener.token);
@@ -107,8 +111,9 @@ const signUpSharer = () => {
                                 aria-describedby="comments-description"
                                 name="financial"
                                 type="checkbox"
+                                value="financial"
                                 onChange={handleChange}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 expertiseCheckbox"
                             />
                         </div>
                         <div className="ml-3 text-sm leading-6">
@@ -124,8 +129,9 @@ const signUpSharer = () => {
                                 aria-describedby="comments-description"
                                 name="personal"
                                 type="checkbox"
+                                value="personal"
                                 onChange={handleChange}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 expertiseCheckbox"
                             />
                         </div>
                         <div className="ml-3 text-sm leading-6">
@@ -141,8 +147,9 @@ const signUpSharer = () => {
                                 aria-describedby="comments-description"
                                 name="career"
                                 type="checkbox"
+                                value="career"
                                 onChange={handleChange}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 expertiseCheckbox"
                             />
                         </div>
                         <div className="ml-3 text-sm leading-6">
@@ -184,4 +191,4 @@ const signUpSharer = () => {
     )
   }
 
-export default signUpSharer;
+export default signUpListener;
