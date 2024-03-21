@@ -33,4 +33,28 @@ mutation addConversation($conversationTitle: String!, $conversationText: String!
     expertise
   }
 }
-`
+`;
+
+export const ADD_SHARER = gql`
+mutation addSharer($username: String!, $password: String!, $role: String!) {
+  addSharer(username: $username, password: $password, role: $role) {
+    token
+    user {
+      _id
+      username
+    }
+  }
+}
+`;
+
+export const ADD_LISTENER = gql`
+mutation addListener($username: String!, $password: String!, $role: String!, $expertise: String!) {
+  addListener(username: $username, password: $password, role: $role, expertise: $expertise) {
+    token
+    user {
+      _id
+      username
+    }
+  }
+}
+`;

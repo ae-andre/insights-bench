@@ -64,11 +64,11 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, password, role, expertise }) => {
-      const user = await User.create({ username, password, role, expertise });
-      const token = signToken(user);
-      return { token, user };
-    },
+    // addUser: async (parent, { username, password, role, expertise }) => {
+    //   const user = await User.create({ username, password, role, expertise });
+    //   const token = signToken(user);
+    //   return { token, user };
+    // },
     login: async (parent, { username, password }) => {
       // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
       const user = await User.findOne({ username });
@@ -115,6 +115,16 @@ const resolvers = {
         console.error('Error adding comment:', error);
         throw new Error('Error adding comment');
       }
+    },
+    addSharer: async (parent, { username, password, role }) => {
+      const user = await User.create({ username, password, role });
+      const token = signToken(user);
+      return { token, user };
+    },
+    addListener: async (parent, { username, password, expertise, role }) => {
+      const user = await User.create({ username, password, expertise, role });
+      const token = signToken(user);
+      return { token, user };
     },
     addComment: async (parent, { conversationId, comment }, context) => {
       console.log('Context:', context.user);
