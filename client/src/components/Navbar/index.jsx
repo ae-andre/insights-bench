@@ -3,14 +3,21 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { PlusIcon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom';
-
-
+import AuthService from '../../utils/auth';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+function Nav() {
+  // Check if the user is logged in
+  const isLoggedIn = AuthService.loggedIn();
+
+  // Handle logout
+  const handleLogout = () => {
+    AuthService.logout();
+  };
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -43,13 +50,27 @@ export default function Example() {
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <Link to="/my-bench"
-                    className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900"
+                    className="nav-links inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900"
                   >
                     My Bench
                   </Link>
-                  <Link to="/login" className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  {isLoggedIn ? (
+                    <button onClick={handleLogout} style={{borderRadius: '8px', border: '1px solid transparent', padding: '0.6em 1.2em', fontWeight: '500', fontFamily: 'inherit', backgroundColor: 'transparent', cursor: 'pointer', transition: 'border-color 0.25s' }} id="logout-button" className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                      Logout
+                    </button>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="nav-links inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    >
+                      Login
+                    </Link>
+                  )}
+                  <Link
+                    to="/resources"
+                    className="nav-links inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
                   >
-                    Login/Logout
+                    Resources
                   </Link>
                 </div>
               </div>
@@ -64,19 +85,19 @@ export default function Example() {
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700 sm:pl-5 sm:pr-6"
+                className="nav-links block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700 sm:pl-5 sm:pr-6"
               >
                 My Bench
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
-                className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
+                className="nav-links block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 sm:pl-5 sm:pr-6"
               >
                 Login/Logout
               </Disclosure.Button>
             </div>
-            <div className="border-t border-gray-200 pb-3 pt-4">
+            <div className="nav-links border-t border-gray-200 pb-3 pt-4">
               {/* <div className="flex items-center px-4 sm:px-6">
                 <div className="flex-shrink-0">
                   <img
@@ -128,3 +149,10 @@ export default function Example() {
     </Disclosure>
   )
 }
+
+
+
+
+//export default function Example() {
+
+export default Nav;

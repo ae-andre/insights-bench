@@ -50,11 +50,12 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, password: String!, role: String!, expertise: String): Auth
     findBuddy(expertise: String!): User
     login(username: String!, password: String!): Auth
     addConversation(conversationTitle: String!, conversationText: String!, expertise: String!, isPrivate: Boolean!): Conversation
     addComment(conversationId: ID!, comment: String!): Conversation
+    addSharer(username: String!, role: String!, password: String!): Auth
+    addListener(username: String!, password: String!, role: String!, expertise: String): Auth
   }
 `;
 

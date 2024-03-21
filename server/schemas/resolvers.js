@@ -64,11 +64,6 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, password, role, expertise }) => {
-      const user = await User.create({ username, password, role, expertise });
-      const token = signToken(user);
-      return { token, user };
-    },
     findBuddy: async (parent, {expertise}, context) => {
 
       const user = await User.findById(context.user._id);
@@ -149,6 +144,16 @@ const resolvers = {
         throw new Error('Error adding comment');
       }
     },
+    addSharer: async (parent, { username, password, role }) => {
+      const user = await User.create({ username, password, role });
+      const token = signToken(user);
+      return { token, user };
+    },
+    addListener: async (parent, { username, password, expertise, role }) => {
+      const user = await User.create({ username, password, expertise, role });
+      const token = signToken(user);
+      return { token, user };
+    },
     addComment: async (parent, { conversationId, comment }, context) => {
       console.log('Context:', context.user);
       try {
@@ -172,68 +177,8 @@ const resolvers = {
         throw new Error('Error adding comment');
       }
     },
-      // try {
-      //   // Extract the user from the context
-      //   const { user } = context;
-      //   console.log('User:', user);
-    
-      //   // Check if the user is authenticated
-      //   if (!user) {
-      //     throw new AuthenticationError('User not authenticated');
-      //   }
-    
-      //   // Find the conversation by its ID
-      //   const convo = await Conversation.findById(conversationId);
-      //   console.log('Conversation:', convo);
-    
-      //   // Check if the conversation exists
-      //   if (!convo) {
-      //     throw new Error('Conversation not found');
-      //   }
-    
-      //   // Add the new comment to the conversation
-      //   convo.comments.push({
-      //     comment,
-      //     username: user.username // Associate the comment with the authenticated user's username
-      //   });
-    
-      //   // Save the updated conversation
-      //   const updatedConvo = await convo.save();
-      //   console.log('Updated Conversation:', updatedConvo);
-    
-      //   // Return the updated conversation
-      //   return updatedConvo;
-      // } catch (error) {
-      //   console.error('Error adding comment:', error);
-      //   throw new Error('Error adding comment');
-      // }
-    // },
-    // removeUser: async (parent, { userId }) => {
-    //   return User.findOneAndDelete({ _id: userId });
-    // },
   },
 };
 
 
 module.exports = resolvers;
-
-// The resolver as Tiffany had it
-
-// addComment: async (parent, { conversationId, comment, userId }) => {
-//   const convo = await Conversation.findOne(
-//     { _id: conversationId} );
-
-//   convo.comments.push({
-//     comment: comment,
-//     username: userId
-//   })
-
-//   const updatedConvo = await convo.save();
-
-//   return updatedConvo
-// },
-// // removeUser: async (parent, { userId }) => {
-// //   return User.findOneAndDelete({ _id: userId });
-// // },
-// },
-// };
