@@ -16,6 +16,14 @@ p {
     padding-top: 20px;
 }
 
+.carousel-prev-button-assessment-row {
+    display: none;
+}
+
+.carousel-next-button-assessment-row {
+    display: none;
+}
+
 .feature-row {
     margin-top: 20px;
 }

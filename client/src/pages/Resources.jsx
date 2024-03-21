@@ -213,18 +213,16 @@ function Resources() {
                 </div>
                 */}
                 </div>
-                
-                <div className="carousel-item">
-                  <img src="https://via.placeholder.com/800x600" className="d-block w-100" alt="Slide 2" />
-                </div>
+
+                {/*This is where you would add in additional carousel items in the future*/}
                 
               </div>
               
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselThree" data-bs-slide="prev">
+              <button className="carousel-prev-button-assessment-row carousel-control-prev" type="button" data-bs-target="#carouselThree" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
               </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselThree" data-bs-slide="next">
+              <button className="carousel-next-button-assessment-row carousel-control-next" type="button" data-bs-target="#carouselThree" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
               </button>
@@ -256,11 +254,11 @@ function Resources() {
                   <img src="https://via.placeholder.com/800x600" className="d-block w-100" alt="Slide 2" />
                 </div>
               </div>
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselFour" data-bs-slide="prev">
+              <button className="carousel-prev-button-assessment-row carousel-control-prev" type="button" data-bs-target="#carouselFour" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
               </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselFour" data-bs-slide="next">
+              <button className="carousel-next-button-assessment-row carousel-control-next" type="button" data-bs-target="#carouselFour" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
               </button>
@@ -288,11 +286,11 @@ function Resources() {
                 </div>
                 */}
               </div>
-              <button className="carousel-control-prev" type="button" data-bs-target="#carouselFive" data-bs-slide="prev">
+              <button className="carousel-prev-button-assessment-row carousel-control-prev" type="button" data-bs-target="#carouselFive" data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
               </button>
-              <button className="carousel-control-next" type="button" data-bs-target="#carouselFive" data-bs-slide="next">
+              <button className="carousel-next-button-assessment-row carousel-control-next" type="button" data-bs-target="#carouselFive" data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
               </button>
