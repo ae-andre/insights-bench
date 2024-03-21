@@ -15,10 +15,22 @@ export const LOGIN_USER = gql`
 export const ADD_COMMENT = gql`
 mutation addComment($conversationId: ID!, $comment: String!) {
   addComment(conversationId: $conversationId, comment: $comment) {
-    commentId
-    comment
-    username
-    createdAt
+    _id
+    comments {
+      comment
+      username
+      createdAt
+    }
+  }
+}
+`;
+
+export const ADD_CONVERSATION = gql`
+mutation addConversation($conversationTitle: String!, $conversationText: String!, $expertise: String!, $isPrivate: Boolean!) {
+  addConversation(conversationTitle: $conversationTitle, conversationText: $conversationText, expertise: $expertise, isPrivate: $isPrivate) {
+    conversationTitle
+    conversationText
+    expertise
   }
 }
 `;

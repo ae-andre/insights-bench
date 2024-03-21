@@ -12,10 +12,10 @@ const db = require('./config/connection');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-app.use('/graphql', cors({
-  origin: 'http://localhost:3001',
-  credentials: true
-}));
+// app.use('/graphql', cors({
+//   origin: 'http://localhost:3001',
+//   credentials: true
+// }));
 
 const server = new ApolloServer({
   typeDefs,
@@ -53,9 +53,6 @@ const startApolloServer = async () => {
   }
   
   // Important for MERN Setup: Any client-side requests that begin with '/graphql' will be handled by our Apollo Server
-  app.use('/graphql', expressMiddleware(server, {
-    context: authMiddleware
-  }));
 
   db.once('open', () => {
     app.listen(PORT, () => {

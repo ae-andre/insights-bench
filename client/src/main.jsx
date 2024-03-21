@@ -8,7 +8,8 @@ import Login from './pages/Login.jsx'
 import MyBench from './pages/MyBench.jsx'
 import Role from './pages/Role.jsx' 
 import SharerSignup from './components/SharerSignup/index.jsx' 
-import ListenerSignup from './components/ListenerSignup/index.jsx' 
+import ListenerSignup from './components/ListenerSignup/index.jsx'
+import Resources from './pages/Resources.jsx' 
 //import Conversation from './components/Conversation.jsx
 import Error from './pages/Error'
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: '/my-bench', // Route for the ListenerSignup component
         element: <MyBench />,
+      },
+      {
+        path: '/resources', // Route for the ListenerSignup component
+        element: <Resources />,
       },
     ],
   },
