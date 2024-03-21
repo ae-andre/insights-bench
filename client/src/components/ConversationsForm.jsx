@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
-import { ADD_CONVERSATION } from '../utils/mutations';
+import { ADD_CONVERSATION, FIND_BUDDY } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 const ConversationsForm = (props) => {
+
+  function refreshPage(){ 
+    window.location.reload(); 
+  }
+
   const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
   
   const [addConversation, { error }] = useMutation(ADD_CONVERSATION)
+  const [findBuddy] = useMutation(FIND_BUDDY)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,11 +35,15 @@ const ConversationsForm = (props) => {
             expertise: convoForm.expertise,
             username: Auth.getProfile().data.username,
             isPrivate: true,
-            // Match buddy
           }
       });
 
+      const { buddy } = await findBuddy({
+        variables: {expertise: convoForm.expertise}
+      });
+
       console.log(data)
+      console.log(buddy)
       setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
     } catch (err) {
       console.error(err)
@@ -123,6 +133,7 @@ const ConversationsForm = (props) => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={ refreshPage }
               >
                 Find a Bench!
               </button>
