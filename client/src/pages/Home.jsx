@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import ConversationsList from '../components/ConversationsList';
 import Conversation from '../components/Conversation';
-import ConversationsForm from '../components/ConversationsForm';
+import ConversationsForm from '../components/ConversationsFormPublic';
 import { GET_ALL_PUBLIC_CONVERSATIONS } from '../utils/queries';
 import AuthService from '../utils/auth';
 import './Home.css'
