@@ -144,6 +144,24 @@ const resolvers = {
         throw new Error('Error adding comment');
       }
     },
+    addPublicConversation: async (parent, { conversationTitle, conversationText, expertise }, context) => {
+      try {
+        if (context.user) {
+          const convo = await Conversation.create({ 
+            conversationTitle,
+            conversationText, 
+            expertise,  
+            username: context.user.username,
+          });
+
+          return convo;
+        }
+        throw AuthenticationError;
+      } catch (error) {
+        console.error('Error adding comment:', error);
+        throw new Error('Error adding comment');
+      }
+    },
     addSharer: async (parent, { username, password, role }) => {
       const user = await User.create({ username, password, role });
       const token = signToken(user);
