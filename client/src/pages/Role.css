@@ -1,0 +1,66 @@
+.overall-card {
+    position: relative;
+    align-items: center;
+}
+
+.title {
+    color: var(--med-dark);
+    margin-bottom: -40px;
+}
+
+.sharer-card-body {
+    color: var(--med-dark);
+    margin-bottom: 20px;
+
+}
+
+.listener-card-body {
+    color: var(--med-dark);
+    margin-bottom: 30px;
+}
+
+#sharer-submit-button,
+#listener-submit-button {
+    position: absolute;
+    bottom: 10px; 
+    background-color: var(--medium);
+    border: 1px solid var(--light) !important;
+    font-family: var(--font-alegreya-sans);
+    font-size: 1.1rem;
+       
+}
+
+#sharer-submit-button {
+    left: 17%;
+    color: var(--light);
+    background-color: var(--medium);
+    border: var(--med-dark) 1px, solid;
+}
+
+#listener-submit-button {
+    left: 65%;
+    color: var(--light);
+    background-color: var(--medium);
+    border: var(--med-dark) 1px, solid;
+}
+
+#listener-submit-button:hover {
+    background-color: var(--med-light);
+    color: var(--light);
+}
+
+#sharer-submit-button:hover {
+    background-color: var(--med-light);
+    color: var(--light);
+}
+
+#listener-submit-button:active {
+    background-color: var(--med-dark);
+    color: var(--light);
+}
+
+#sharer-submit-button:active {
+    background-color: var(--med-dark);
+    color: var(--light);
+}
+
