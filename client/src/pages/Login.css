@@ -1,0 +1,29 @@
+.submit-button {
+    background-color: var(--med-dark);
+
+}
+
+.submit-button:hover {
+    background-color: var(--medium);
+}
+
+.submit-button:active {
+    background-color: var(--light);
+}
+
+.link-to-signup {
+    color: var(--med-dark);
+}
+
+.link-to-signup:hover {
+    color: var(--light);
+}
+
+.link-to-signup:active {
+    color: var(--dark);
+}
+
+.not-a-member {
+    font-size: 1.1rem;
+    color: var(--med-dark);
+}
