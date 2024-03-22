@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_CONVERSATION, FIND_BUDDY } from '../utils/mutations';
 import Auth from '../utils/auth';
+import Conversation from './Conversation';
 
 const ConversationsForm = (props) => {
 
-  // function refreshPage(){ 
-  //   window.location.reload(); 
-  // }
-
   const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
+  const [haveBuddy, setHaveBuddy] = useState(false)
+  const [conversationStarted, setConversationStarted] = useState(false); 
   
   const [addConversation, { error }] = useMutation(ADD_CONVERSATION)
   const [findBuddy] = useMutation(FIND_BUDDY)
@@ -38,16 +37,24 @@ const ConversationsForm = (props) => {
           }
       });
 
-      const { buddy } = await findBuddy({
-        variables: {expertise: convoForm.expertise}
+      console.log(data)
+
+      const bud = await findBuddy({
+        variables: {expertise: convoForm.expertise},
       });
 
-      if (buddy === null) {
-        // DELETE CONVO
+      console.log(bud)
+      // console.log(bud.data.findBuddy.buddy.username)
+
+
+      if (bud.data.findBuddy.buddy.username !== null) {
+        localStorage.setItem('selectedConversationId', data.addConversation._id);
+        setHaveBuddy(true);
+        setConversationStarted(true)
+      } else {
+        setHaveBuddy(false);
       }
 
-      console.log(data)
-      console.log(buddy)
       setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
     } catch (err) {
       console.error(err)
@@ -56,6 +63,7 @@ const ConversationsForm = (props) => {
 
   return (
     <>
+      {!conversationStarted ? (
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -137,14 +145,16 @@ const ConversationsForm = (props) => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                // onClick={ refreshPage }
-              >
+             >
                 Find a Bench!
               </button>
             </div>
           </form>
         </div>
       </div>
+      ) : (
+        <Conversation />
+      )}
     </>
   );
 }

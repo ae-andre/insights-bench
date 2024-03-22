@@ -66,7 +66,8 @@ const resolvers = {
   Mutation: {
     findBuddy: async (parent, {expertise}, context) => {
 
-      const user = await User.findById(context.user._id);
+      const user = await User.findById(context.user._id).populate('buddy conversation');
+      console.log(user)
       const convo = await Conversation.findById(user.conversation._id);
 
       const buddyList =  await User.find({
@@ -100,11 +101,15 @@ const resolvers = {
           { new: true }
         )
 
-        return await User.findOneAndUpdate(
+        await User.findOneAndUpdate(
           {_id: user._id},
           { $set: {buddy: selectedBuddy._id}},
           { new: true }
-        );
+        ).populate(`buddy`);
+
+        console.log(selectedBuddy)
+        return await User.findById(context.user._id).populate('buddy conversation');
+
       } else {
         return null;
       }
