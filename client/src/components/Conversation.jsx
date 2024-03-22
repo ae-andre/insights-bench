@@ -229,20 +229,20 @@ const Conversation = ({ onClose }) => {
     }
   };
   
-  // const handleEndConvo = async (event) => {
-  //   event.preventDefault();
-  //   console.log("Im reaching here - end convo")
-  //   try {
-  //     await deleteConversation({
-  //       variables: {
-  //         conversationId: conversationId,
-  //         username: Auth.getProfile().data.username
-  //       },
-  //     });
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
+  const handleEndConvo = async (event) => {
+    event.preventDefault();
+    console.log("Im reaching here - end convo")
+    try {
+      await deleteConversation({
+        variables: {
+          conversationId: conversationId,
+          username: Auth.getProfile().data.username
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="conversation-container">
@@ -282,7 +282,7 @@ const Conversation = ({ onClose }) => {
             <button 
             type="button" 
             className="btn btn-primary end-convo-btn"
-            // onClick={handleEndConvo}
+            onClick={handleEndConvo}
           >
             End Conversation
   
