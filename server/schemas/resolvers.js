@@ -89,10 +89,16 @@ const resolvers = {
 
       if (selectedBuddy) {
         await User.findOneAndUpdate(
-          {_id: selectedBuddy._id},
+          { _id: selectedBuddy._id },
           { $set: {availability: false, conversation: convo._id, buddy: user._id}},
           { new: true }
           );
+        
+        await Conversation.findByIdAndUpdate(
+          { _id: convo._id},
+          { $set: {listener: selectedBuddy._id} },
+          { new: true }
+        )
 
         return await User.findOneAndUpdate(
           {_id: user._id},
@@ -152,20 +158,28 @@ const resolvers = {
     },
     deleteConversation: async (parent, {conversationId}, context) => {
       if (context.user) {
+        // Delete the conversation
         const conversation = await Conversation.findOneAndDelete({
           _id: conversationId,
           username: context.user.username
         });
-
+        
+        // Remove conversation from sharer and remove buddy
         const user = await User.findOneAndUpdate(
-          { _id: context.user_id },
-          { $pull: { conversation: conversationId }}
+          { _id: context.user._id },
+          { 
+            $unset: { buddy: "", conversation: "" },
+          }
           );
 
-        // await User.findByIdAndUpdate(
-        //   { _id: user.buddy._id },
-        //   { $pull: { conversation: conversation._id }}
-        // )
+        // Remove conversation from listener and remove buddy
+        await User.findByIdAndUpdate(
+          { _id: conversation.listener._id },
+          { 
+            $unset: { buddy: "", conversation: ""},
+            $set: { availability: true}
+          }
+        )
 
         return conversation;
       }

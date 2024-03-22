@@ -212,7 +212,7 @@ const Conversation = ({ onClose }) => {
     console.log("Im reaching here")
     try {
       console.log("Im reaching here")
-      const { newComment } = await deleteConv({
+      const { newComment } = await addComment({
         variables: {
           conversationId: conversationId,
           comment: commentText,
@@ -227,20 +227,20 @@ const Conversation = ({ onClose }) => {
     }
   };
   
-  const handleEndConvo = async (event) => {
-    event.preventDefault();
-    console.log("Im reaching here - end convo")
-    try {
-      await deleteConversation({
-        variables: {
-          conversationId: conversationId,
-          username: Auth.getProfile().data.username
-        },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  // const handleEndConvo = async (event) => {
+  //   event.preventDefault();
+  //   console.log("Im reaching here - end convo")
+  //   try {
+  //     await deleteConversation({
+  //       variables: {
+  //         conversationId: conversationId,
+  //         username: Auth.getProfile().data.username
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <div className="conversation-container">
@@ -276,14 +276,14 @@ const Conversation = ({ onClose }) => {
         >
           Add Comment
         </button>
-        <button 
+        {/* <button 
           type="button" 
           className="btn btn-primary end-convo-btn"
           onClick={handleEndConvo}
         >
           End Conversation
 
-        </button>
+        </button> */}
       </div>
     </div>
   );
