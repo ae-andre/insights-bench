@@ -207,6 +207,11 @@ const Conversation = ({ onClose }) => {
   
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
+    if (!commentText) {
+      alert(`Oops! It seems like your message is empty. Please take a moment to share your thoughts.
+      `);
+      return;
+    } 
     console.log("Im reaching here")
     try {
       console.log("Im reaching here")
