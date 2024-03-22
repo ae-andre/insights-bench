@@ -1,4 +1,3 @@
-// import { useQuery } from '@apollo/client';
 import { Link } from "react-router-dom";
 
 import { Fragment } from "react";
@@ -10,6 +9,8 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 
+import UserConversation from "../components/UserConversation";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -19,32 +20,37 @@ const items = [
   // More items...
 ];
 
-export default function Example() {
+export default function MyBench() {
   return (
-    <ul role="list" className="flex-col w-96 m-auto mt-10 place-content-center space-y-3">
+
+    <ul role="list" className="flex-col w-auto m-auto mt-10 place-content-center space-y-3">
       <div className="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-        <h3 className="text-base font-semibold leading-6 text-gray-900">
+        <h3 className="text-lg font-semibold leading-6 text-gray-900">
           Your Benches
         </h3>
       </div>
       {items.map((item) => (
+        
         <li
           key={item.id}
           className="overflow-hidden rounded-md bg-white px-6 py-4 shadow"
         >
           {/* Your content */}
+          <UserConversation></UserConversation>
+          </li>
+      ))}
+    </ul>
+  );
+}
+
+{/*           
           <Link to="/Conversation">
             <div className="bg-white px-4 py-5 sm:px-6 rounded">
               <div className="flex space-x-3 ">
                 <div className="flex-shrink-0">
-                  <img
-                    className="h-10 w-10 rounded-full"
-                    src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
                 </div>
                 <div className="min-w-0 flex-1 ">
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-md font-semibold text-gray-900">
                     Bereavement Advice
                   </p>
 
@@ -140,8 +146,4 @@ export default function Example() {
               </div>
             </div>
           </Link>{" "}
-        </li>
-      ))}
-    </ul>
-  );
-}
+        </li> */}
