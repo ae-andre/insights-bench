@@ -10,8 +10,9 @@ import './Conversation.css';
 const UserConversation = ({ onClose }) => {
   const [commentText, setCommentText] = useState("");
   const userProfile = Auth.getProfile(); 
-  const userId = userProfile._id; 
-
+  const userId = userProfile.data._id; 
+  console.log(userId)
+  
   // Fetch the user's conversation ID
   const {
     loading: userLoading,
@@ -23,10 +24,11 @@ const UserConversation = ({ onClose }) => {
   });
 
   const conversationId = userData?.user?.conversation?._id;
-  console.log(conversationId)
+  console.log(userData)
+
 
   const { loading, error, data, refetch } = useQuery(GET_CONVERSATION_BY_ID, {
-    skip: !conversationId, // Skip this query until conversationId is obtained
+    skip: !conversationId,
     variables: { conversationId },
   });
 
@@ -67,21 +69,17 @@ const UserConversation = ({ onClose }) => {
 
   const fetchedConversation = data?.conversation;
   if (!fetchedConversation) {
-    return <p>No conversation available.</p>;
+    return <p className="font-light">We're finding a listener for you to share a bench with. Your thoughts are worth sharing. In the meanwhile, you can head over to the pavilion to check out some of the public conversations.</p>;
+    
   }
 
   return (
     <div className="conversation-container">
-      <div className="conversation-title">
-        {fetchedConversation.conversationTitle}
-      </div>
+      <div className="conversation-title">{fetchedConversation.conversationTitle}</div>
       <div className="conversation-text-and-attribution">
-        <div className="conversation-text">
-          {fetchedConversation.conversationText}
-        </div>
+        <div className="conversation-text">{fetchedConversation.conversationText}</div>
         <p className="conversation-attribution">
-          Conversation opened by <span>{fetchedConversation.username}</span>{" "}
-          <br /> <span>{fetchedConversation.createdAt}</span>
+          Conversation opened by <span>{fetchedConversation.username}</span> <br /> <span>{fetchedConversation.createdAt}</span>
         </p>
       </div>
       <div className="comment-container">
@@ -89,23 +87,21 @@ const UserConversation = ({ onClose }) => {
           {fetchedConversation.comments.map((comment, index) => (
             <div key={index} className="comment">
               <p className="comment-text">{comment.comment}</p>
-              <p className="comment-attribution">
-                <span>{comment.username}</span> <span>{comment.createdAt}</span>
-              </p>
+              <p className="comment-attribution"><span>{comment.username}</span> <span>{comment.createdAt}</span></p>
             </div>
           ))}
         </div>
       </div>
       <div className="input-container">
-        <textarea
-          className="form-control"
-          rows="3"
+        <textarea 
+          className="form-control" 
+          rows="3" 
           placeholder="Type your comment..."
           value={commentText}
           onChange={handleChange}
         ></textarea>
-        <button
-          type="button"
+        <button 
+          type="button" 
           className="btn btn-primary comment-submit-btn"
           onClick={handleCommentSubmit}
         >

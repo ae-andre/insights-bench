@@ -16,6 +16,7 @@ function Nav() {
   // Handle logout
   const handleLogout = () => {
     AuthService.logout();
+
   };
 
   return (
@@ -55,9 +56,11 @@ function Nav() {
                     My Bench
                   </Link>
                   {isLoggedIn ? (
+                    <Link to="/">
                     <button onClick={handleLogout} style={{borderRadius: '8px', border: '1px solid transparent', padding: '0.6em 1.2em', fontWeight: '500', fontFamily: 'inherit', backgroundColor: 'transparent', cursor: 'pointer', transition: 'border-color 0.25s' }} id="logout-button" className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
                       Logout
                     </button>
+                    </Link>
                   ) : (
                     <Link
                       to="/login"
