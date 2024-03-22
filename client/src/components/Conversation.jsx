@@ -207,6 +207,8 @@ const Conversation = ({ onClose }) => {
     return <p>Loading...</p>;
   }
   
+  console.log("fetched Convo:", fetchedConversation)
+  
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
     console.log("Im reaching here")
@@ -276,14 +278,18 @@ const Conversation = ({ onClose }) => {
         >
           Add Comment
         </button>
-        {/* <button 
-          type="button" 
-          className="btn btn-primary end-convo-btn"
-          onClick={handleEndConvo}
-        >
-          End Conversation
-
-        </button> */}
+        {fetchedConversation.isPrivate ? (
+            <button 
+            type="button" 
+            className="btn btn-primary end-convo-btn"
+            // onClick={handleEndConvo}
+          >
+            End Conversation
+  
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

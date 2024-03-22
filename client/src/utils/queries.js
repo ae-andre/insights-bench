@@ -50,6 +50,7 @@ export const GET_CONVERSATION_BY_ID = gql`
       conversationText
       createdAt
       username
+      isPrivate
       comments {
         commentId
         comment
