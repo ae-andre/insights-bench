@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { ADD_COMMENT } from '../utils/mutations'; 
+import { ADD_COMMENT, DELETE_CONVERSATION } from '../utils/mutations'; 
 import { useQuery } from '@apollo/client';
 import { GET_CONVERSATION_BY_ID } from '../utils/queries';
 import './Conversation.css';
@@ -185,6 +185,8 @@ const Conversation = ({ onClose }) => {
 
   const [addComment, { commentError }] = useMutation(ADD_COMMENT);
 
+  const [deleteConversation] = useMutation(DELETE_CONVERSATION);
+
   const handleChange = (event) => {
     const { value } = event.target;
 
@@ -210,7 +212,7 @@ const Conversation = ({ onClose }) => {
     console.log("Im reaching here")
     try {
       console.log("Im reaching here")
-      const { newComment } = await addComment({
+      const { newComment } = await deleteConv({
         variables: {
           conversationId: conversationId,
           comment: commentText,
@@ -225,6 +227,20 @@ const Conversation = ({ onClose }) => {
     }
   };
   
+  const handleEndConvo = async (event) => {
+    event.preventDefault();
+    console.log("Im reaching here - end convo")
+    try {
+      await deleteConversation({
+        variables: {
+          conversationId: conversationId,
+          username: Auth.getProfile().data.username
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="conversation-container">
@@ -259,6 +275,14 @@ const Conversation = ({ onClose }) => {
           onClick={handleCommentSubmit}
         >
           Add Comment
+        </button>
+        <button 
+          type="button" 
+          className="btn btn-primary end-convo-btn"
+          onClick={handleEndConvo}
+        >
+          End Conversation
+
         </button>
       </div>
     </div>

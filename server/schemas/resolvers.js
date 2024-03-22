@@ -88,11 +88,17 @@ const resolvers = {
       }
 
       if (selectedBuddy) {
-        return await User.findOneAndUpdate(
+        await User.findOneAndUpdate(
           {_id: selectedBuddy._id},
-          { $set: {availability: false, conversation: convo._id}},
+          { $set: {availability: false, conversation: convo._id, buddy: user._id}},
           { new: true }
           );
+
+        return await User.findOneAndUpdate(
+          {_id: user._id},
+          { $set: {buddy: selectedBuddy._id}},
+          { new: true }
+        );
       } else {
         return null;
       }
@@ -143,6 +149,27 @@ const resolvers = {
         console.error('Error adding comment:', error);
         throw new Error('Error adding comment');
       }
+    },
+    deleteConversation: async (parent, {conversationId}, context) => {
+      if (context.user) {
+        const conversation = await Conversation.findOneAndDelete({
+          _id: conversationId,
+          username: context.user.username
+        });
+
+        const user = await User.findOneAndUpdate(
+          { _id: context.user_id },
+          { $pull: { conversation: conversationId }}
+          );
+
+        // await User.findByIdAndUpdate(
+        //   { _id: user.buddy._id },
+        //   { $pull: { conversation: conversation._id }}
+        // )
+
+        return conversation;
+      }
+      throw AuthenticationError;
     },
     addSharer: async (parent, { username, password, role }) => {
       const user = await User.create({ username, password, role });

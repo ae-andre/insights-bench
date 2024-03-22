@@ -127,4 +127,23 @@
   color: var(--light) !important; 
   border: 1px solid var(--dark) !important; 
 }
-  
+
+.end-convo-btn {
+  background-color: white !important; /* Important to override Bootstrap */
+  color: red !important; 
+  border: 1px solid var(--dark) !important; 
+  margin-bottom: 20px;
+
+}
+
+.end-convo-btn:hover {
+  background-color: var(--med-dark) !important; 
+  color: var(--med-light) !important; 
+  border: 1px solid var(--med-light) !important; 
+} 
+
+.end-convo-btn:active {
+background-color: var(--medium) !important; 
+color: var(--light) !important; 
+border: 1px solid var(--dark) !important; 
+}

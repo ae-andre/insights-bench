@@ -73,3 +73,13 @@ mutation addListener($username: String!, $password: String!, $role: String!, $ex
   }
 }
 `;
+
+export const DELETE_CONVERSATION = gql`
+mutation deleteConversation($conversationId: ID!) {
+  deleteConversation(conversationId: $conversationId) {
+    username
+    conversationTitle
+    is_closed
+  }
+}
+`

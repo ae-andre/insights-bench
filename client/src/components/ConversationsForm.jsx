@@ -6,9 +6,9 @@ import Auth from '../utils/auth';
 
 const ConversationsForm = (props) => {
 
-  function refreshPage(){ 
-    window.location.reload(); 
-  }
+  // function refreshPage(){ 
+  //   window.location.reload(); 
+  // }
 
   const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
   
@@ -41,6 +41,10 @@ const ConversationsForm = (props) => {
       const { buddy } = await findBuddy({
         variables: {expertise: convoForm.expertise}
       });
+
+      if (buddy === null) {
+        // DELETE CONVO
+      }
 
       console.log(data)
       console.log(buddy)
@@ -133,7 +137,7 @@ const ConversationsForm = (props) => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                onClick={ refreshPage }
+                // onClick={ refreshPage }
               >
                 Find a Bench!
               </button>
