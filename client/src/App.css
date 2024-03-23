@@ -8,14 +8,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    --light: #c9e4ca;
-    --med-light: #87BBA2;  
+    --light: #ffffff; 
+    --med-light: #DAEAF9; 
     --medium: #55828b;
-    --med-dark: #3b6064;
+    --med-dark: #7c91a9;
     --dark: #364958;
-
-    background-color: var(--med-light);
+    background-color: var(--light);
     color: var(--dark);
     
     --font-crimson-pro: 'Crimson Pro', serif;

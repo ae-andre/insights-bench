@@ -68,10 +68,11 @@ h3 {
 
 #start-public-conversation-btn {
     align-self: center;
-    border-color: var(--light);
+    border-color: var(--med-light);
     width: 90%;
     padding: 10px;
-    color: var(--light);
+    color: var(--med-dark);
+    background-color: var(--light);
 }
 
 #start-public-conversation-btn:hover {

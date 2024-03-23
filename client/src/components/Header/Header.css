@@ -1,5 +1,5 @@
 header {
-  background-color: var(--med-dark);
+  background-color: var(--med-light);
 }
 
 
@@ -51,7 +51,7 @@ header {
   
   /* Style for each individual link in the navigation */
   nav a {
-    color: var(--med-light); 
+    color: var(--med-ld); 
     text-decoration: none; 
     margin-right: 50px; 
     font-size: 1.5rem;
@@ -60,6 +60,7 @@ header {
   
   /* Style for the active navigation link */
   nav a.active {
-    color: var(--light); 
-    border-bottom: 3px solid var(--med-light); 
+    color: var(--dark); 
+    text-decoration: none; 
+    border-bottom: 3px solid var(--dark);
   }

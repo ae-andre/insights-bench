@@ -1,9 +1,9 @@
 /* Style for the footer container */
 footer {
-    background-color: var(--med-dark); 
+    background-color: var(--med-light); 
     height: 90px;
     width: 100vw;
-    max-width: 1280px;
+    /* max-width: 1280px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +12,7 @@ footer {
   
   /* Style for the p text within the footer */
   footer p {
-      color: var(--light);
+      color: var(--dark);
       margin: auto;
       text-align: center;
       font-family: var(--font-alegreya-sans);
@@ -21,7 +21,7 @@ footer {
   
   /* Style for the links within the footer */
   footer a {
-    color: var(--med-light); 
+    color: var(--med-dark); 
     font-size: 1rem; 
     margin: 0 15px;
     line-height: 1.2; 
