@@ -28,6 +28,7 @@ mutation addComment($conversationId: ID!, $comment: String!) {
 export const ADD_CONVERSATION = gql`
 mutation addConversation($conversationTitle: String!, $conversationText: String!, $expertise: String!, $isPrivate: Boolean!) {
   addConversation(conversationTitle: $conversationTitle, conversationText: $conversationText, expertise: $expertise, isPrivate: $isPrivate) {
+    _id
     conversationTitle
     conversationText
     expertise
@@ -45,6 +46,9 @@ mutation findBuddy($expertise: String!) {
     conversation {
       _id
       conversationTitle
+    }
+    buddy {
+      username
     }
   }
 }
@@ -74,9 +78,21 @@ mutation addListener($username: String!, $password: String!, $role: String!, $ex
 }
 `;
 
+
+export const DELETE_CONVERSATION = gql`
+mutation deleteConversation($conversationId: ID!) {
+  deleteConversation(conversationId: $conversationId) {
+    username
+    conversationTitle
+    is_closed
+  }
+}
+`
+
 export const ADD_PUBLIC_CONVERSATION = gql`
 mutation addPublicConversation($conversationTitle: String!, $conversationText: String!, $expertise: String!) {
   addPublicConversation(conversationTitle: $conversationTitle, conversationText: $conversationText, expertise: $expertise) {
+    _id
     conversationTitle
     conversationText
     expertise

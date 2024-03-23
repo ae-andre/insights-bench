@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
-import { ADD_COMMENT } from '../utils/mutations'; 
+import { ADD_COMMENT, DELETE_CONVERSATION } from '../utils/mutations'; 
 import { useQuery } from '@apollo/client';
 import { GET_CONVERSATION_BY_ID } from '../utils/queries';
 import { GET_USER_BY_ID } from '../utils/queries';
+import { Link } from 'react-router-dom';
 import './Conversation.css';
 
 const UserConversation = ({ onClose }) => {
@@ -12,6 +13,7 @@ const UserConversation = ({ onClose }) => {
   const userProfile = Auth.getProfile(); 
   const userId = userProfile.data._id; 
   console.log(userId)
+  // console.log(userProfile.data.conversation._id)
   
   // Fetch the user's conversation ID
   const {
@@ -33,6 +35,8 @@ const UserConversation = ({ onClose }) => {
   });
 
   const [addComment, { error: commentError }] = useMutation(ADD_COMMENT);
+
+  const [deleteConversation] = useMutation(DELETE_CONVERSATION);
 
   useEffect(() => {
     if (conversationId) {
@@ -61,6 +65,22 @@ const UserConversation = ({ onClose }) => {
       refetch();
     } catch (error) {
       console.error("Error adding comment:", error);
+    }
+  };
+
+  const handleEndConvo = async (event) => {
+    event.preventDefault();
+    console.log("Im reaching here - end convo")
+    try {
+      await deleteConversation({
+        variables: {
+          conversationId: conversationId,
+          username: Auth.getProfile().data.username
+        },
+      });
+      window.location.reload(); 
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -107,6 +127,20 @@ const UserConversation = ({ onClose }) => {
         >
           Add Comment
         </button>
+        {fetchedConversation.isPrivate ? (
+          <Link to="my-bench">
+            <button 
+            type="button" 
+            className="btn btn-primary end-convo-btn"
+            onClick={handleEndConvo}
+          >
+            End Conversation
+  
+          </button>
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

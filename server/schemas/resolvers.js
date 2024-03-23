@@ -74,11 +74,10 @@ const resolvers = {
   },
 
   Mutation: {
-    findBuddy: async (parent, { expertise }, context) => {
-      const user = await User.findById(context.user._id).populate(
-        "buddy conversation"
-      );
-      console.log(user);
+    findBuddy: async (parent, {expertise}, context) => {
+
+      const user = await User.findById(context.user._id).populate('buddy conversation');
+      console.log(user)
       const convo = await Conversation.findById(user.conversation._id);
 
       const buddyList = await User.find({
@@ -102,32 +101,24 @@ const resolvers = {
       if (selectedBuddy) {
         await User.findOneAndUpdate(
           { _id: selectedBuddy._id },
-          {
-            $set: {
-              availability: false,
-              conversation: convo._id,
-              buddy: user._id,
-            },
-          },
+          { $set: {availability: false, conversation: convo._id, buddy: user._id}},
           { new: true }
-        );
-
+          );
+        
         await Conversation.findByIdAndUpdate(
-          { _id: convo._id },
-          { $set: { listener: selectedBuddy._id } },
+          { _id: convo._id},
+          { $set: {listener: selectedBuddy._id} },
           { new: true }
-        );
+        )
 
         await User.findOneAndUpdate(
-          { _id: user._id },
-          { $set: { buddy: selectedBuddy._id } },
+          {_id: user._id},
+          { $set: {buddy: selectedBuddy._id}},
           { new: true }
         ).populate(`buddy`);
 
-        console.log(selectedBuddy);
-        return await User.findById(context.user._id).populate(
-          "buddy conversation"
-        );
+        console.log(selectedBuddy)
+        return await User.findById(context.user._id).populate('buddy conversation');
       } else {
         return null;
       }
@@ -204,6 +195,35 @@ const resolvers = {
         console.error("Error adding comment:", error);
         throw new Error("Error adding comment");
       }
+    },
+    deleteConversation: async (parent, {conversationId}, context) => {
+      if (context.user) {
+        // Delete the conversation
+        const conversation = await Conversation.findOneAndDelete({
+          _id: conversationId,
+          username: context.user.username
+        });
+        
+        // Remove conversation from sharer and remove buddy
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { 
+            $unset: { buddy: "", conversation: "" },
+          }
+          );
+
+        // Remove conversation from listener and remove buddy
+        await User.findByIdAndUpdate(
+          { _id: conversation.listener._id },
+          { 
+            $unset: { buddy: "", conversation: ""},
+            $set: { availability: true}
+          }
+        )
+
+        return conversation;
+      }
+      throw AuthenticationError;
     },
     addSharer: async (parent, { username, password, role }) => {
       const user = await User.create({ username, password, role });

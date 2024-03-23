@@ -38,6 +38,8 @@ const Conversation = ({ onClose }) => {
     return <p>Loading...</p>;
   }
   
+  console.log("fetched Convo:", fetchedConversation)
+  
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
     if (!commentText) {
@@ -63,7 +65,6 @@ const Conversation = ({ onClose }) => {
     }
   };
   
-
   return (
     <div className="conversation-container">
       <div className="conversation-title">{fetchedConversation.conversationTitle}</div>
