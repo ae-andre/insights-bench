@@ -39,19 +39,21 @@ const Login = (props) => {
       password: '',
     })
   };
-
     return (
       // Targets entire card : remove/add flex-col for updated log in page
-        <main className="flex min-h-full flex-col flex-1 justify-center px-6 py-10 lg:px-8">
+        <main className="flex min-h-full flex-1 justify-center px-6 py-10 lg:px-8">
           {/* <div className="bg-white w-1/2 py-14 mb-8"> */}
             {/* Targets the Welcome back */}
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <h2 className="mt-6 mb-0 text-center text-3xl leading-9 tracking-tight text-gray-900">
                 Welcome Back!
               </h2>
+              <div className="col image-column-left">
+                <img className="pavilion-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711236602/ed00a3363254967682613287d9777213_nsf7sy.jpg" alt="simple line drawing of a pavilion with perimeter bench seating" />
+              </div>
             </div>
     
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-14 sm:mx-auto sm:w-full sm:max-w-sm">
               { data ? (
                   <p>
                   Success! You may now head{' '}
@@ -71,7 +73,7 @@ const Login = (props) => {
                       value={formState.username}
                       required
                       onChange={handleChange}
-                      className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="input-color block w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -90,11 +92,11 @@ const Login = (props) => {
                       value={formState.password}
                       onChange={handleChange}
                       required
-                      className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="input-color block w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
-    
+                <br></br>
                 <div>
                   <button
                     type="submit"
