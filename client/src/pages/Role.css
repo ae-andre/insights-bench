@@ -24,14 +24,14 @@
     position: absolute;
     bottom: 10px; 
     background-color: var(--medium);
-    border: 1px solid var(--light) !important;
+    border: transparent !important;
     font-family: var(--font-alegreya-sans);
     font-size: 1.1rem;
        
 }
 
 #sharer-submit-button {
-    left: 17%;
+    left: 16%;
     color: var(--light);
     background-color: var(--medium);
     border: var(--med-dark) 1px, solid;

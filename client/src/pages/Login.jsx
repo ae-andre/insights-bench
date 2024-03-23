@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import ModalAfterLogin from '../components/ModalAfterLogin';
 import './Login.css';
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ username: '', password: ''});
+  const [showModal, setShowModal] = useState(false);
   const [login, { error, data }] = useMutation(LOGIN_USER);
+  const navigate = useNavigate();
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -27,8 +30,10 @@ const Login = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
+      console.log("Mutation data:", data);
 
       Auth.login(data.login.token);
+      // Show modal upon successful login
     } catch (e) {
       console.error(e)
     }
@@ -40,23 +45,27 @@ const Login = (props) => {
     })
   };
 
-    return (
-        <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Welcome!
-            </h2>
-          </div>
+  const handleNavigation = (redirectUrl) => {
+    navigate(redirectUrl);
+  };
+
+  return (
+    <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      
+      
   
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            { data ? (
-                <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
-              </p>
-            ) : (
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        {data && data.login.token ? (
+          <ModalAfterLogin onClose={() => setShowModal(false)} />
+        ) : (
+          <>
             <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
-              <div>
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+              <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Welcome!
+              </h2>
+            </div>
+            <div>
                 <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                   Username
                 </label>
@@ -101,20 +110,21 @@ const Login = (props) => {
                 </button>
               </div>
             </form>
-        )}
-
-        {error && (
-            <div className="my-3 p-3 bg-danger text-white">
-              {error.message}
-            </div>
-        )}
+            {console.log("Data:", data)}
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
             <p className="not-a-member mt-10 text-center text-sm text-gray-500">
               Not a member?&nbsp;&nbsp;&nbsp;
-                <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
+              <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
             </p>
-          </div>
-        </main>
-    )
-  }
+          </>
+        )}
+      </div>
+    </main>
+)};
+  
 
 export default Login;

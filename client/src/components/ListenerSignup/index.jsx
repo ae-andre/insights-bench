@@ -2,19 +2,20 @@ import { useState, React } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LISTENER } from '../../utils/mutations';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./ListenerSignup.css";
-
+import ModalAfterLogin from '../ModalAfterLogin';
 import Auth from '../../utils/auth';
 
 const signUpListener = () => {
   const [formState, setFormState] = useState({
     username: '',
     password: '',
-    // financial: false,
-    // personal: false,
-    // career: false,
+    expertise: '', //database is expecting a string, not an array, so we only allow one box to be selected
   });
   const [addListener, { error, data }] = useMutation(ADD_LISTENER);
+  const [showModal, setShowModal] = useState(false); // state to control the modal visibility, initially set to false (modal is not showing)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,37 +30,58 @@ const signUpListener = () => {
     event.preventDefault();
     console.log(formState);
 
+    // Validate if at least one checkbox is checked
+    if (!formState.expertise) {
+      toast.info('Please select the area you would like to help others with.');
+      return;
+    }
+
     try {
-      const checkedValue = document.querySelector('.expertiseCheckbox:checked').value;
-      console.log(checkedValue)
       const { data } = await addListener({
         variables: { 
           ...formState, 
-          expertise: checkedValue ,
           role: "listener"}
       });
 
       Auth.login(data.addListener.token);
+
+      // After successful signup, set showModal to true to display the modal
+      setShowModal(true);
     } catch (e) {
       console.error(e);
     }
   };
+
+  console.log('showModal:', showModal);
+
     return (
       <>
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-1 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            {/* <img
-              className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            /> */}
-            <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Become a Listener Today
-            </h2>
-          </div>
-  
-          <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{
+            '--toastify-icon-color-info': '#55828b', 
+            '--toastify-color-progress-info': '#55828b', 
+          }} 
+          />
+          <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-1 lg:px-8">
+            {showModal ? (
+              <ModalAfterLogin onClose={() => setShowModal(false)} action="signup" />
+            ) : (
+              <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                  Become a Listener Today
+                </h2>
+      
+                <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
+                  <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
               <div>
                 <label htmlFor="username" className="block text-base font-medium leading-6 text-gray-900">
                   Username
@@ -103,64 +125,50 @@ const signUpListener = () => {
             </div>
 
             <fieldset >
-                <legend className="sr-only">Notifications</legend>
+                <legend className="sr-only">Expertise</legend>
                 <div className="space-y-5">
                     <div className="relative flex items-start">
-                        <div className="flex h-6 items-center">
-                            <input
-                                id="comments"
-                                aria-describedby="comments-description"
-                                name="financial"
-                                type="checkbox"
-                                value="financial"
-                                onChange={handleChange}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 expertiseCheckbox"
-                            />
-                        </div>
-                        <div className="ml-3 text-sm leading-6">
-                            <label htmlFor="comments" className="font-medium text-gray-900">
-                                Financial Problems
-                            </label>{' '}
-                        </div>
+                      <input
+                        id="financial"
+                        name="expertise"
+                        type="radio" //changed from checkboxes to radio buttons because radios permit only one choice, checkboxes permit multiples and we want only one expertise because database is expecting a string, not an array
+                        value="financial"
+                        onChange={handleChange}
+                        className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
+                      />
+                      <label htmlFor="financial" className="ml-3 text-sm leading-6">
+                        Financial Problems
+                      </label>
                     </div>
                     <div className="relative flex items-start">
-                        <div className="flex h-6 items-center">
-                            <input
-                                id="comments"
-                                aria-describedby="comments-description"
-                                name="personal"
-                                type="checkbox"
-                                value="personal"
-                                onChange={handleChange}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 expertiseCheckbox"
-                            />
-                        </div>
-                        <div className="ml-3 text-sm leading-6">
-                            <label htmlFor="comments" className="font-medium text-gray-900">
-                                Personal/Relationship Problems
-                            </label>{' '}
-                        </div>
+                      <input
+                          id="personal"
+                          name="expertise"
+                          type="radio"
+                          value="personal"
+                          onChange={handleChange}
+                          className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
+                      />
+                      <label htmlFor="personal" className="ml-3 text-sm leading=6">
+                        Personal Problems
+                      </label>
                     </div>
                     <div className="relative flex items-start">
-                        <div className="flex h-6 items-center">
-                            <input
-                                id="comments"
-                                aria-describedby="comments-description"
-                                name="career"
-                                type="checkbox"
-                                value="career"
-                                onChange={handleChange}
-                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 expertiseCheckbox"
-                            />
-                        </div>
-                        <div className="ml-3 text-sm leading-6">
-                            <label htmlFor="comments" className="font-medium text-gray-900">
-                                Work/School Problems
-                            </label>{' '}
-                        </div>
+                      <input
+                          id="career"
+                          name="expertise"
+                          type="radio"
+                          value="career"
+                          onChange={handleChange}
+                          className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
+                      />
+                      <label htmlFor="career" className="ml-3 text-sm leading=6">
+                        Career-related Problems
+                      </label>
                     </div>
                 </div>
             </fieldset>
+
             <div>
                 <h1 className="font-bold text-sm py-2">Disclaimer:</h1>
                 <p className="text-xs">As a listener on this platform, it's important to understand that while we're here to offer support and lend an empathetic ear,
@@ -188,8 +196,10 @@ const signUpListener = () => {
             </p>
           </div>
         </div>
+      )}
+      </div>
       </>
-    )
-  }
+    );
+  };
 
 export default signUpListener;

@@ -1,0 +1,40 @@
+.modal-card {
+    width: 500px;
+    
+}
+
+.button-and-p-container {
+    position: relative;
+
+    
+
+}
+
+#button-and-p-column-pavilion {
+    margin-top: 10px;
+}
+
+#button-and-p-column-my-bench {
+    margin-top: 10px;
+}
+
+#button-and-p-column-playground {
+    margin-top: 10px;
+}
+
+.button {
+    width: 110px;
+    background-color: var(--medium);
+    color: var(--light);
+    border: transparent;
+}
+
+.button:hover {
+    background-color: var(--med-dark);
+    color: var(--light);
+}
+
+.button:active {
+    background-color: var(--light) !important;
+    color: var(--med-dark);
+}

@@ -1,3 +1,7 @@
+h2 {
+    word-spacing: 4px;
+}
+
 .share-today-button {
     background-color: var(--med-dark);
 }
