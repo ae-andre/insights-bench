@@ -92,6 +92,7 @@ mutation deleteConversation($conversationId: ID!) {
 export const ADD_PUBLIC_CONVERSATION = gql`
 mutation addPublicConversation($conversationTitle: String!, $conversationText: String!, $expertise: String!) {
   addPublicConversation(conversationTitle: $conversationTitle, conversationText: $conversationText, expertise: $expertise) {
+    _id
     conversationTitle
     conversationText
     expertise

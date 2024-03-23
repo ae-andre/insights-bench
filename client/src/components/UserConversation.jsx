@@ -12,6 +12,7 @@ const UserConversation = ({ onClose }) => {
   const userProfile = Auth.getProfile(); 
   const userId = userProfile.data._id; 
   console.log(userId)
+  // console.log(userProfile.data.conversation._id)
   
   // Fetch the user's conversation ID
   const {

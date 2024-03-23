@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_CONVERSATION, FIND_BUDDY } from '../utils/mutations';
 import Auth from '../utils/auth';
-import Conversation from './Conversation';
+import UserConversation from './UserConversation';
 
 const ConversationsForm = (props) => {
 
@@ -48,7 +48,7 @@ const ConversationsForm = (props) => {
 
 
       if (bud.data.findBuddy.buddy.username !== null) {
-        localStorage.setItem('selectedConversationId', data.addConversation._id);
+        // localStorage.setItem('selectedConversationId', data.addConversation._id);
         setHaveBuddy(true);
         setConversationStarted(true)
       } else {
@@ -153,7 +153,7 @@ const ConversationsForm = (props) => {
         </div>
       </div>
       ) : (
-        <Conversation />
+        <UserConversation />
       )}
     </>
   );
