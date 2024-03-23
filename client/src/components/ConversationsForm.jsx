@@ -38,8 +38,8 @@ const ConversationsForm = (props) => {
           }
       });
 
-      console.log(data)
-      console.log(data.addConversation._id)
+      // console.log(data)
+      // console.log(data.addConversation._id)
 
       const bud = await findBuddy({
         variables: {expertise: convoForm.expertise},
@@ -49,17 +49,16 @@ const ConversationsForm = (props) => {
 
       console.log(bud.data.findBuddy)
       if (bud.data.findBuddy === null) {
-        console.log(data.addConversation._id)
-        console.log(haveBuddy)
-        console.log(conversationStarted)
-        // await deleteConversation({
-        //   variables: {
-        //     conversationId: data.addConversation._id,
-        //     username: Auth.getProfile().data.username
-        // }})
+        // console.log(data.addConversation._id)
+        // console.log(haveBuddy)
+        // console.log(conversationStarted)
+        await deleteConversation({
+          variables: {
+            conversationId: data.addConversation._id,
+            username: Auth.getProfile().data.username
+        }});
         setHaveBuddy(false);
         setConversationStarted(false);
-        
         setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
       } else {
         setHaveBuddy(true);

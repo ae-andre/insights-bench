@@ -213,14 +213,15 @@ const resolvers = {
           );
 
         // Remove conversation from listener and remove buddy
-        await User.findByIdAndUpdate(
-          { _id: conversation.listener._id },
-          { 
-            $unset: { buddy: "", conversation: ""},
-            $set: { availability: true}
-          }
-        )
-
+        if (user.buddy) {
+          await User.findByIdAndUpdate(
+            { _id: conversation.listener._id },
+            { 
+              $unset: { buddy: "", conversation: ""},
+              $set: { availability: true}
+            }
+          )
+        } 
         return conversation;
       }
       throw AuthenticationError;
