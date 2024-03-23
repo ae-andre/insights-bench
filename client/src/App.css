@@ -4,13 +4,13 @@
 @tailwind utilities;
 
 #root {
-    max-width: 1280px;
+    /* max-width: 1280px; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 
     --light: #c9e4ca;
-    --med-light: #87bba2;
+    --med-light: #87BBA2;  
     --medium: #55828b;
     --med-dark: #3b6064;
     --dark: #364958;
@@ -43,9 +43,9 @@ body {
     background-color: var(--med-light);
     color: var(--medium);
     margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    display: flex;
+    /* min-width: 320px;
+    min-height: 100vh; */
+    /* display: flex; */
     place-items: center;
 }
 
@@ -58,7 +58,7 @@ body {
 }
     
 .main-content {
-  margin: auto;
+  /* margin: auto; */
   padding: 2%;
 }
 

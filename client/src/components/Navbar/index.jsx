@@ -69,11 +69,17 @@ function Nav() {
                       >
                         My Bench
                       </Link>
-                      <Link>
-                      <button onClick={handleLogout} style={{borderRadius: '8px', border: '1px solid transparent', padding: '0.6em 1.2em', fontWeight: '500', backgroundColor: 'transparent', cursor: 'pointer', transition: 'border-color 0.25s' }} id="logout-button" className="inline-flex items-center ">
-                        Logout
-                      </button>
-                      </Link>
+                      <Link
+                      to="/"
+                      id="logout-button"
+                      onClick={handleLogout}
+                      className={classNames(
+                        'nav-links inline-flex items-center hover:text-green-700',
+                        activePage === '/login' ? 'active' : ''
+                      )}
+                    >
+                      Logout
+                    </Link>
                     </>
                   ) : (
                     <Link
@@ -91,7 +97,7 @@ function Nav() {
                     to="/resources"
                     id="resources-button"
                     className={classNames(
-                      'nav-links inline-flex items-center',
+                      'nav-links inline-flex items-center reenie-beanie-regular',
                       activePage === '/resources' ? 'active' : ''
                     )}
                   >
