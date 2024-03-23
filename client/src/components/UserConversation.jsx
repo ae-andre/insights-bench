@@ -5,6 +5,7 @@ import { ADD_COMMENT, DELETE_CONVERSATION } from '../utils/mutations';
 import { useQuery } from '@apollo/client';
 import { GET_CONVERSATION_BY_ID } from '../utils/queries';
 import { GET_USER_BY_ID } from '../utils/queries';
+import { Link } from 'react-router-dom';
 import './Conversation.css';
 
 const UserConversation = ({ onClose }) => {
@@ -77,6 +78,7 @@ const UserConversation = ({ onClose }) => {
           username: Auth.getProfile().data.username
         },
       });
+      window.location.reload(); 
     } catch (err) {
       console.error(err);
     }
@@ -126,6 +128,7 @@ const UserConversation = ({ onClose }) => {
           Add Comment
         </button>
         {fetchedConversation.isPrivate ? (
+          <Link to="my-bench">
             <button 
             type="button" 
             className="btn btn-primary end-convo-btn"
@@ -134,6 +137,7 @@ const UserConversation = ({ onClose }) => {
             End Conversation
   
           </button>
+          </Link>
         ) : (
           <></>
         )}
