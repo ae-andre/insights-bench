@@ -165,7 +165,7 @@ const resolvers = {
             { _id: context.user._id },
             { $set: { conversation: convo._id } }
           );
-
+          console.log(convo)
           return convo;
         }
         throw AuthenticationError;
