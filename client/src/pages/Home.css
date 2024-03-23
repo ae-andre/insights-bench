@@ -5,6 +5,7 @@ h2 {
 
 h2.main-page-title {
     margin-bottom: 15px;
+    margin-top: -10px;
 }
 
 h2.byline-quote {
@@ -29,7 +30,8 @@ h3 {
     background-color: var(--med-dark);
     padding: 5px 20px 20px 20px;
     border-radius: 1%;
-    margin-top: 25px; 
+    margin-top: 25px;
+    margin-bottom: 20px; 
 }
 
 .public-conversations-header-section {

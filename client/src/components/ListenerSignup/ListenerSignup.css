@@ -1,0 +1,23 @@
+.change-world-button {
+    background-color: var(--med-dark);
+}
+
+.change-world-button:hover {
+    background-color: var(--medium);
+
+}
+
+.change-world-button:active {
+    background-color: var(--light);
+
+}
+
+.sharer-instead {
+    font-size: 1.1rem;
+    color: var(--med-dark);
+}
+
+.sharer-instead:hover {
+    font-size: 1.1rem;
+    color: var(--light);
+}

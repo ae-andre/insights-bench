@@ -1,0 +1,23 @@
+.share-today-button {
+    background-color: var(--med-dark);
+}
+
+.share-today-button:hover {
+    background-color: var(--medium);
+
+}
+
+.share-today-button:active {
+    background-color: var(--light);
+
+}
+
+.listener-instead {
+    font-size: 1.1rem;
+    color: var(--med-dark);
+}
+
+.listener-instead:hover {
+    font-size: 1.1rem;
+    color: var(--light);
+}
