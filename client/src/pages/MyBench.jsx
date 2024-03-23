@@ -29,8 +29,7 @@ export default function MyBench() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="h-screen">
-            <h3 className="text-xlg font-semibold leading-6 text-gray-900">Your Bench</h3>
+    <div className="h-screen w-screen">
       <div>
         {isLoggedIn && hasConversation ? <Cards /> : <ConversationsForm />}
       </div>
