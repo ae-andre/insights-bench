@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Auth from '../utils/auth';
+import AuthService from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_COMMENT } from '../utils/mutations'; 
 import { useQuery } from '@apollo/client';
@@ -42,28 +43,35 @@ const Conversation = ({ onClose }) => {
   
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
-    if (!commentText) {
+    const isLoggedIn = AuthService.loggedIn();
+    console.log(isLoggedIn, "line 45")
+    if (!isLoggedIn) {
+      console.log(isLoggedIn, "line 47")
+        alert(`Redirecting you to login!`)
+        window.location.replace("/login")
+    } else if (!commentText) {
       alert(`Oops! It seems like your message is empty. Please take a moment to share your thoughts.
       `);
       return;
-    } 
-    console.log("Im reaching here")
-    try {
-      console.log("Im reaching here")
-      const { newComment } = await addComment({
-        variables: {
-          conversationId: conversationId,
-          comment: commentText,
-          username: Auth.getProfile().data.username
-        },
-      });
-
-      setCommentText(''); // Clear the comment text after submitting
-      refetch(); // Refetch conversation data to update comments
-    } catch (commentError) {
-      console.error('Error adding comment:', commentError);
+    } else {
+      console.log("I need to do the console log");
+      try {
+        const { newComment } = await addComment({
+          variables: {
+            conversationId: conversationId,
+            comment: commentText,
+            username: Auth.getProfile().data.username
+          },
+        });
+        console.log("Line 60")
+        setCommentText('');
+        refetch();
+      
+      } catch (commentError) {
+        console.error('Error adding comment:', commentError);
+      }
+    };
     }
-  };
   
   return (
     <div className="conversation-container">
