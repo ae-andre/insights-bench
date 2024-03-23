@@ -21,6 +21,7 @@ function Nav() {
   // Handle logout
   const handleLogout = () => {
     AuthService.logout();
+
   };
 
   // Determine the active page based on the current location
@@ -70,6 +71,7 @@ function Nav() {
                     <button onClick={handleLogout} style={{borderRadius: '8px', border: '1px solid transparent', padding: '0.6em 1.2em', fontWeight: '500', backgroundColor: 'transparent', cursor: 'pointer', transition: 'border-color 0.25s' }} id="logout-button" className="inline-flex items-center ">
                       Logout
                     </button>
+                    </Link>
                   ) : (
                     <Link
                       to="/login"
