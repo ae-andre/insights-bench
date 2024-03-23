@@ -58,20 +58,23 @@ function Nav() {
                   </Link>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
-                  <Link to="/my-bench"
-                    id="my-bench-button"
-                    className={classNames(
-                      'nav-links inline-flex items-center hover:text-green-700',
-                      activePage === '/my-bench' ? 'active' : ''
-                    )}
-                  >
-                    My Bench
-                  </Link>
                   {isLoggedIn ? (
-                    <button onClick={handleLogout} style={{borderRadius: '8px', border: '1px solid transparent', padding: '0.6em 1.2em', fontWeight: '500', backgroundColor: 'transparent', cursor: 'pointer', transition: 'border-color 0.25s' }} id="logout-button" className="inline-flex items-center ">
-                      Logout
-                    </button>
-                    </Link>
+                    <>
+                      <Link to="/my-bench"
+                      id="my-bench-button"
+                      className={classNames(
+                        'nav-links inline-flex items-center hover:text-green-700',
+                        activePage === '/my-bench' ? 'active' : ''
+                      )}
+                      >
+                        My Bench
+                      </Link>
+                      <Link>
+                      <button onClick={handleLogout} style={{borderRadius: '8px', border: '1px solid transparent', padding: '0.6em 1.2em', fontWeight: '500', backgroundColor: 'transparent', cursor: 'pointer', transition: 'border-color 0.25s' }} id="logout-button" className="inline-flex items-center ">
+                        Logout
+                      </button>
+                      </Link>
+                    </>
                   ) : (
                     <Link
                       to="/login"

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
-import { ADD_CONVERSATION, FIND_BUDDY } from '../utils/mutations';
+import { ADD_CONVERSATION, FIND_BUDDY, DELETE_CONVERSATION } from '../utils/mutations';
 import Auth from '../utils/auth';
 import UserConversation from './UserConversation';
 
@@ -13,6 +13,7 @@ const ConversationsForm = (props) => {
   
   const [addConversation, { error }] = useMutation(ADD_CONVERSATION)
   const [findBuddy] = useMutation(FIND_BUDDY)
+  const [deleteConversation] = useMutation(DELETE_CONVERSATION)
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -37,25 +38,32 @@ const ConversationsForm = (props) => {
           }
       });
 
-      console.log(data)
+      // console.log(data)
+      // console.log(data.addConversation._id)
 
       const bud = await findBuddy({
         variables: {expertise: convoForm.expertise},
       });
 
       console.log(bud)
-      // console.log(bud.data.findBuddy.buddy.username)
 
-
-      if (bud.data.findBuddy.buddy.username !== null) {
-        // localStorage.setItem('selectedConversationId', data.addConversation._id);
+      console.log(bud.data.findBuddy)
+      if (bud.data.findBuddy === null) {
+        // console.log(data.addConversation._id)
+        // console.log(haveBuddy)
+        // console.log(conversationStarted)
+        await deleteConversation({
+          variables: {
+            conversationId: data.addConversation._id,
+            username: Auth.getProfile().data.username
+        }});
+        setHaveBuddy(false);
+        setConversationStarted(false);
+        setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
+      } else {
         setHaveBuddy(true);
         setConversationStarted(true)
-      } else {
-        setHaveBuddy(false);
       }
-
-      setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
     } catch (err) {
       console.error(err)
     }
@@ -63,7 +71,7 @@ const ConversationsForm = (props) => {
 
   return (
     <>
-      {!conversationStarted ? (
+      {!conversationStarted && !haveBuddy ? (
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

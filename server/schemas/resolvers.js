@@ -165,7 +165,7 @@ const resolvers = {
             { _id: context.user._id },
             { $set: { conversation: convo._id } }
           );
-
+          console.log(convo)
           return convo;
         }
         throw AuthenticationError;
@@ -213,14 +213,15 @@ const resolvers = {
           );
 
         // Remove conversation from listener and remove buddy
-        await User.findByIdAndUpdate(
-          { _id: conversation.listener._id },
-          { 
-            $unset: { buddy: "", conversation: ""},
-            $set: { availability: true}
-          }
-        )
-
+        if (user.buddy) {
+          await User.findByIdAndUpdate(
+            { _id: conversation.listener._id },
+            { 
+              $unset: { buddy: "", conversation: ""},
+              $set: { availability: true}
+            }
+          )
+        } 
         return conversation;
       }
       throw AuthenticationError;

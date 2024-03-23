@@ -127,7 +127,7 @@ const UserConversation = ({ onClose }) => {
         >
           Add Comment
         </button>
-        {fetchedConversation.isPrivate ? (
+        {fetchedConversation.isPrivate && userData.user.role === "sharer" ? (
           <Link to="my-bench">
             <button 
             type="button" 
