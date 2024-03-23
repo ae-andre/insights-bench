@@ -1,37 +1,38 @@
+import React, { useEffect, useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { GET_USER_BY_ID } from '../utils/queries';
+import Auth from '../utils/auth';
 import ConversationsForm from "../components/ConversationsForm";
-import UserConversation from "../components/UserConversation";
-// import { PlusIcon } from "@heroicons/react/20/solid";
-// import ConversationsForm from "../components/ConversationsForm";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-const items = [
-  { id: 1 },
-  // More items...
-];
+import Cards from "../components/Cards";
 
 export default function MyBench() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hasConversation, setHasConversation] = useState(false);
+
+  const userProfile = Auth.getProfile();
+  const userId = userProfile?.data?._id; 
+
+  const { loading, error, data } = useQuery(GET_USER_BY_ID, {
+    variables: { userId },
+    skip: !Auth.loggedIn(), // Skip query if not logged in
+    onCompleted: data => {
+      // Set hasConversation based on whether the conversation object exists and has an _id
+      setHasConversation(!!data.user.conversation?._id);
+    }
+  });
+
+  useEffect(() => {
+    setIsLoggedIn(Auth.loggedIn());
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <div className="h-screen">
-      <ul
-        role="list"
-        className="flex-col w-auto m-auto mt-10 place-content-center space-y-3"
-      >
-        <h2 className="my-10 text-28 font-semibold leading-6 text-gray-900">
-          Your Benches
-        </h2>
-        {items.map((item) => (
-          <li
-            key={item.id}
-            className="overflow-hidden rounded-md bg-white px-6 py-4 shadow"
-          >
-            {/* <UserConversation></UserConversation> */}
-            <ConversationsForm></ConversationsForm>
-          </li>
-        ))}
-      </ul>
+    <div className="h-screen w-screen">
+      <div>
+        {isLoggedIn && hasConversation ? <Cards /> : <ConversationsForm />}
+      </div>
     </div>
   );
 }
