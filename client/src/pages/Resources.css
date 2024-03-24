@@ -69,7 +69,7 @@ h5.carousel-one-h5 {
     height: 100px;
     border-radius: 5px;
     position: absolute;
-    bottom: 101px;
+    bottom: 114px;
     left: 5%;
     right: 5%;
     text-align: center;
@@ -169,4 +169,8 @@ a.slide-links:active {
     padding: 0px 0px 0px 50px;
     width: 50%;
     font-size: larger;
+}
+
+.img {
+    object-fit: cover;
 }
