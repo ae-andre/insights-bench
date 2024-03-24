@@ -39,88 +39,85 @@ const Login = (props) => {
       password: '',
     })
   };
-    return (
-      // Targets entire card : remove/add flex-col for updated log in page
-        <main className="flex min-h-full flex-1 justify-center px-6 py-10 lg:px-8">
-          {/* <div className="bg-white w-1/2 py-14 mb-8"> */}
-            {/* Targets the Welcome back */}
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <h2 className="mt-6 mb-0 text-center text-3xl leading-9 tracking-tight text-gray-900">
-                Welcome Back!
-              </h2>
-              <div className="col image-column-left">
-                <img className="pavilion-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711236602/ed00a3363254967682613287d9777213_nsf7sy.jpg" alt="simple line drawing of a pavilion with perimeter bench seating" />
+  
+  return (
+    <main className="flex min-h-full flex-1 justify-center px-6 py-10 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="mt-6 mb-0 text-center text-3xl leading-9 tracking-tight text-gray-900">
+          Welcome Back!
+        </h2>
+        <div className="col image-column-left">
+          <img className="pavilion-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711236602/ed00a3363254967682613287d9777213_nsf7sy.jpg" alt="simple line drawing of a pavilion with perimeter bench seating" />
+        </div>
+      </div>
+        <div className="mt-14 sm:mx-auto sm:w-full sm:max-w-sm">
+          { data ? (
+            <p>
+              Success! You may now head{' '}
+              <Link to="/">back to the homepage.</Link>
+            </p>
+          ) : (
+            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
+              <div>
+                <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                  Username
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="username"
+                    name="username"
+                    type="text"
+                    value={formState.username}
+                    required
+                    onChange={handleChange}
+                    className="input-color block w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
+                </div>
               </div>
-            </div>
-    
-            <div className="mt-14 sm:mx-auto sm:w-full sm:max-w-sm">
-              { data ? (
-                  <p>
-                  Success! You may now head{' '}
-                  <Link to="/">back to the homepage.</Link>
-                </p>
-              ) : (
-              <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
-                <div>
-                  <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                    Username
+
+              <div>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                    Password
                   </label>
-                  <div className="mt-2">
-                    <input
-                      id="username"
-                      name="username"
-                      type="text"
-                      value={formState.username}
-                      required
-                      onChange={handleChange}
-                      className="input-color block w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
                 </div>
-    
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                      Password
-                    </label>
-                  </div>
-                  <div className="mt-2">
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      value={formState.password}
-                      onChange={handleChange}
-                      required
-                      className="input-color block w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
+                <div className="mt-2">
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                    required
+                    className="input-color block w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  />
                 </div>
-                <br></br>
-                <div>
-                  <button
-                    type="submit"
-                    className="submit-button flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Sign in
-                  </button>
-                </div>
-              </form>
+              </div>
+              <br />
+              <div>
+                <button
+                  type="submit"
+                  className="submit-button flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Sign in
+                </button>
+              </div>
+            </form>
           )}
 
           {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-          )}
-              <p className="not-a-member mt-10 text-center text-sm text-gray-500">
-                Not a member?&nbsp;&nbsp;&nbsp;
-                  <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
-              </p>
+            <div className="my-3 p-3 bg-danger text-white">
+              {error.message}
             </div>
-          {/* </div> */}
-        </main>
-    )
-  }
+          )}
+
+          <p className="not-a-member mt-10 text-center text-sm text-gray-500">
+            Not a member?&nbsp;&nbsp;&nbsp;
+            <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
+          </p>
+        </div>
+    </main>
+  );
+};
 
 export default Login;

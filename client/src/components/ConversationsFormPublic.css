@@ -1,0 +1,20 @@
+.button {
+    background-color: var(--medium);
+    width: 100%;
+    border: solid 1px var(--light) !important;
+    color: var(--light);
+    border: transparent;
+    font-family: var(--font-alegreya-sans);
+    font-size: 1.1rem;
+    word-spacing: 2px;
+}
+
+.button:hover {
+    background-color: var(--med-dark);
+    color: var(--light);
+}
+
+.button:active {
+    background-color: var(--light) !important;
+    color: var(--med-dark);
+}
