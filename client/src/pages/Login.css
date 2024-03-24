@@ -31,3 +31,12 @@
 .input-color {
     border-color: var(--med-dark);
 }
+
+.sharer-image {
+    height: 50px;
+    margin-top: -20px;
+}
+
+.get-started {
+    margin-right: 5px;
+}

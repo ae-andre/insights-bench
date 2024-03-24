@@ -50,28 +50,27 @@ const Login = (props) => {
   };
 
   return (
+    <>
     <main className="flex min-h-full flex-1 justify-center px-6 py-12 lg:px-8">
-      
-      
-  
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      {/* <div className="mt-14 sm:mx-auto sm:w-full sm:max-w-sm"> */}
         {data && data.login.token ? (
           <ModalAfterLogin onClose={() => setShowModal(false)} />
         ) : (
-          <>
-            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm get-started">
               <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 Welcome Back!
               </h2>
               <div className="col image-column-left">
-                <img className="pavilion-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711236602/ed00a3363254967682613287d9777213_nsf7sy.jpg" alt="simple line drawing of a pavilion with perimeter bench seating" />
+                <img className="login-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711236602/ed00a3363254967682613287d9777213_nsf7sy.jpg" alt="simple line drawing of a pavilion with perimeter bench seating" />
               </div>
             </div>
+          )}
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm my-12">
+          <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
             <div>
-                <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                  Username
-                </label>
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Username
+              </label>
                 <div className="mt-2">
                   <input
                     id="username"
@@ -103,7 +102,7 @@ const Login = (props) => {
                   />
                 </div>
               </div>
-  
+              <br></br>
               <div>
                 <button
                   type="submit"
@@ -123,11 +122,10 @@ const Login = (props) => {
               Not a member?&nbsp;&nbsp;&nbsp;
               <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
             </p>
+          </div>
+        </main>
           </>
-        )}
-      </div>
-    </main>
-)};
+)}
   
 
 export default Login;
