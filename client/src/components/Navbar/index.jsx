@@ -27,6 +27,10 @@ function Nav() {
   // Determine the active page based on the current location
   const activePage = location.pathname;
 
+  function renderPage() {
+    window.location.redirect('/my-bench');
+  }
+
   return (
     <Disclosure as="nav" className="nav-container bg-white shadow">
       {({ open }) => (
@@ -94,7 +98,8 @@ function Nav() {
                         className={classNames(
                           "nav-links inline-flex items-center edu-nsw",
                           activePage === "/my-bench" ? "active" : ""
-                        )}
+                        )} 
+                        onClick={renderPage}
                       >
                         My Bench
                       </Link>
