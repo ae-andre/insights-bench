@@ -71,7 +71,7 @@ const signUpListener = () => {
             '--toastify-color-progress-info': '#55828b', 
           }} 
           />
-          <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-1 lg:px-8">
+          <div className="flex min-h-full flex-1 justify-center px-6 py-1 lg:px-8">
             {showModal ? (
               <ModalAfterLogin onClose={() => setShowModal(false)} action="signup" />
             ) : (
@@ -79,6 +79,9 @@ const signUpListener = () => {
                 <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                   Become a Listener Today
                 </h2>
+                <div className="col image-column-left">
+                  <img className="listener-signup-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711248516/sidewalk_skexg2.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
+                </div>
       
                 <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
                   <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
@@ -93,7 +96,7 @@ const signUpListener = () => {
                     type="text"
                     onChange={handleChange}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-1 input-color py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -111,7 +114,7 @@ const signUpListener = () => {
                     type="password"
                     onChange={handleChange}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-1 input-color py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -134,7 +137,7 @@ const signUpListener = () => {
                         type="radio" //changed from checkboxes to radio buttons because radios permit only one choice, checkboxes permit multiples and we want only one expertise because database is expecting a string, not an array
                         value="financial"
                         onChange={handleChange}
-                        className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
+                        className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600 options"
                       />
                       <label htmlFor="financial" className="ml-3 text-sm leading-6">
                         Financial Problems
@@ -147,9 +150,9 @@ const signUpListener = () => {
                           type="radio"
                           value="personal"
                           onChange={handleChange}
-                          className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
+                          className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600 options"
                       />
-                      <label htmlFor="personal" className="ml-3 text-sm leading=6">
+                      <label htmlFor="personal" className="ml-3 text-sm leading-6">
                         Personal Problems
                       </label>
                     </div>
@@ -160,9 +163,9 @@ const signUpListener = () => {
                           type="radio"
                           value="career"
                           onChange={handleChange}
-                          className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
+                          className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600 options"
                       />
-                      <label htmlFor="career" className="ml-3 text-sm leading=6">
+                      <label htmlFor="career" className="ml-3 text-sm leading-6">
                         Career-related Problems
                       </label>
                     </div>
@@ -188,7 +191,7 @@ const signUpListener = () => {
               </div>
             </form>
   
-            <p className="mt-10 text-center text-sm text-gray-500">
+            <p className="mt-10 text-center text-sm text-gray-500 become-sharer">
               Want to be a sharer? {' '}
               <Link to="/sharer-signup" className="sharer-instead font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Become a sharer instead
