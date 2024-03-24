@@ -3,7 +3,7 @@
 }
 
 .change-world-button:hover {
-    background-color: var(--medium);
+    background-color: var(--dark);
 
 }
 
@@ -14,10 +14,39 @@
 
 .sharer-instead {
     font-size: 1.1rem;
-    color: var(--med-dark);
+    color: var(--dark);
 }
 
 .sharer-instead:hover {
     font-size: 1.1rem;
-    color: var(--light);
+    color: var(--med-dark);
+}
+
+.listener-signup-image {
+     height: 465px;
+     margin-top: 10px;
+}
+
+.input-color {
+    border-color: var(--med-dark);
+}
+
+.become-sharer {
+    color: var(--med-dark)
+}
+
+.options {
+    margin: 0.3rem 0rem
+}
+
+.option-container {
+    margin-top: 10px !important;
+}
+
+.choose-container {
+    margin-top: 10px !important;
+}
+
+.space-between {
+    margin-top: 15px !important;
 }

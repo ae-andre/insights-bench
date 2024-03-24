@@ -4,18 +4,16 @@
 @tailwind utilities;
 
 #root {
-    max-width: 1280px;
+    /* max-width: 1280px; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    --light: #c9e4ca;
-    --med-light: #87bba2;
+    --light: #ffffff; 
+    --med-light: #DAEAF9; 
     --medium: #55828b;
-    --med-dark: #3b6064;
+    --med-dark: #7c91a9;
     --dark: #364958;
-
-    background-color: var(--med-light);
+    background-color: var(--light);
     color: var(--dark);
     
     --font-crimson-pro: 'Crimson Pro', serif;
@@ -33,6 +31,8 @@
     --font-junge: 'Junge', serif;
     --font-liu-jian-mao-cao: 'Liu Jian Mao Cao', cursive;
     --font-educational-nc: 'Educational NC', sans-serif;
+    --font-standard: "Jost", sans-serif;
+    --font-headings: "Edu NSW ACT Foundation", cursive;
 
     line-height: 1.5;
     font-weight: 400;
@@ -43,9 +43,9 @@ body {
     background-color: var(--med-light);
     color: var(--medium);
     margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
-    display: flex;
+    /* min-width: 320px;
+    min-height: 100vh; */
+    /* display: flex; */
     place-items: center;
 }
 
@@ -57,19 +57,19 @@ body {
     width: 100vw;
 }
     
-.main-content {
-  margin: auto;
-  padding: 2%;
-}
+/* .main-content { */
+  /* margin: auto; */
+  /* padding: 2%; */
+/* } */
 
-h1, h2 {
-    font-family: var(--font-alegreya-sans);
+h1, h2, h3 {
+    font-family: var(--font-headings);
     font-size: 3.2em;
     line-height: 1.1;
 }
-    
-h3, p {
-    font-family: var(--font-handlee);
+
+p {
+    font-family: var(--font-standard);
 }
     
 a {
@@ -114,3 +114,36 @@ button {
       background-color: #55828b;
     }
   }
+  
+  p {
+    font-family: var(--font-standard);
+  }
+  
+.app-banner {
+  width: 100%;
+  height: 160px;
+}
+
+.card-empty {
+  padding-top: 35px !important;
+}
+
+.card-color {
+  background-color: var(--med-light);
+}
+
+.icon-color, .private-submit {
+  background-color: var(--med-dark);
+}
+
+.preview-text {
+  padding: 10px 0px 10px 0px !important;
+}
+
+.input-option {
+  border-color: var(--med-dark) !important;
+}
+
+.private-submit:hover {
+  background-color: var(--dark);
+}

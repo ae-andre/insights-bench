@@ -1,17 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import App from './App.jsx'
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import App from './App.jsx';
 import './App.css';
-import Home from './pages/Home'
-import Login from './pages/Login.jsx'
-import MyBench from './pages/MyBench.jsx'
-import Role from './pages/Role.jsx' 
-import SharerSignup from './components/SharerSignup/index.jsx' 
-import ListenerSignup from './components/ListenerSignup/index.jsx'
-import Resources from './pages/Resources.jsx' 
+import Home from './pages/Home';
+import Login from './pages/Login.jsx';
+import MyBench from './pages/MyBench.jsx';
+import Role from './pages/Role.jsx';
+import SharerSignup from './components/SharerSignup/index.jsx';
+import ListenerSignup from './components/ListenerSignup/index.jsx';
+import Resources from './pages/Resources.jsx';
+import About from './pages/About';
+import Error from './pages/Error';
 //import Conversation from './components/Conversation.jsx
-import Error from './pages/Error'
 
 
 const router = createBrowserRouter([
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/role', // Route for the Role component
         element: <Role />,
+      },
+      {
+        path: '/about', //Route to the About page
+        element: <About />,
       },
       {
         path: '/sharer-signup', // Route for the SharerSignup component
