@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background-color: var(--light);
+    background-color: var(--med-dark);
     border-radius: .5%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
   }
   
   .conversation-title {  
@@ -13,11 +12,12 @@
     font-family: var(--font-alegreya-sans);
     word-spacing: 7px;
     text-align: left; 
+    color: var(--light);
   }
 
   .conversation-text-and-attribution {
     background-color: var(--med-light);
-    width: 80%;
+    width: 90%;
     margin: 0, auto;
     display: flex;
     align-items: center;
@@ -25,8 +25,9 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    border-radius: 5%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8); 
+    color: var(--dark);
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px; 
   }
   
   .conversation-text {
@@ -49,7 +50,8 @@
     align-self: center;
     padding: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
-    border-radius: 1%;  
+    border-radius: 10px;  
+    background-color: var(--med-light);
   }
   
   .comment-list {
@@ -59,12 +61,13 @@
   }
   
   .comment {
-    max-height: 100px; 
-    overflow-y: auto;
+    /* max-height: 100px;  */
+    /* overflow-y: auto; */
     margin-bottom: 20px;
     padding: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3), 0px -2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    background-color: var(--light);
   }
   
   .comment p {
@@ -117,7 +120,7 @@
 }
 
 .comment-submit-btn:hover {
-    background-color: var(--med-dark) !important; 
+    background-color: var(--dark) !important; 
     color: var(--med-light) !important; 
     border: 1px solid var(--med-light) !important; 
 } 
