@@ -1,10 +1,11 @@
-import { useState, React } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_LISTENER } from '../../utils/mutations';
+import { GET_ALL_USERNAMES } from '../../utils/queries';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./ListenerSignup.css";
+import './ListenerSignup.css';
 import ModalAfterLogin from '../ModalAfterLogin';
 import Auth from '../../utils/auth';
 
@@ -16,6 +17,7 @@ const signUpListener = () => {
   });
   const [addListener, { error, data }] = useMutation(ADD_LISTENER);
   const [showModal, setShowModal] = useState(false); // state to control the modal visibility, initially set to false (modal is not showing)
+  const { loading, error: queryError, data: queryData } = useQuery(GET_ALL_USERNAMES);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,6 +36,32 @@ const signUpListener = () => {
     if (!formState.expertise) {
       toast.info('Please select the area you would like to help others with.');
       return;
+    }
+
+    //Check password length
+    if (formState.password.length < 8) {
+      toast.info('Please enter a longer password. 8 characters minimum.');
+      return;
+    }
+
+    console.log('Form state:', formState);
+
+    if (queryError) {
+      console.log('Query error:', queryError);
+      return;
+    }
+
+    if (queryData) {
+      console.log('Query data:', queryData);
+      // Check if username already exists
+      const existingUser = queryData.users.find(user => {
+        console.log('Checking username:', user.username);
+        return user.username ===formState.username;
+      });
+      if (existingUser) {
+        toast.info('Your great username already belongs to another user. Please choose another.');
+        return;
+      }
     }
 
     try {
@@ -58,7 +86,7 @@ const signUpListener = () => {
       <>
         <ToastContainer
           position="top-center"
-          autoClose={1500}
+          autoClose={2000}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
@@ -149,7 +177,7 @@ const signUpListener = () => {
                           onChange={handleChange}
                           className="h-4 w-4 rounded border-gray-300 focus:ring-indigo-600"
                       />
-                      <label htmlFor="personal" className="ml-3 text-sm leading=6">
+                      <label htmlFor="personal" className="ml-3 text-sm leading-6">
                         Personal Problems
                       </label>
                     </div>
