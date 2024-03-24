@@ -21,7 +21,7 @@ function Nav() {
   // Handle logout
   const handleLogout = () => {
     AuthService.logout();
-
+    window.relocate("/")
   };
 
   // Determine the active page based on the current location
@@ -63,7 +63,7 @@ function Nav() {
                       <Link to="/my-bench"
                       id="my-bench-button"
                       className={classNames(
-                        'nav-links inline-flex items-center hover:text-green-700',
+                        'nav-links inline-flex items-center',
                         activePage === '/my-bench' ? 'active' : ''
                       )}
                       >
@@ -74,7 +74,7 @@ function Nav() {
                       id="logout-button"
                       onClick={handleLogout}
                       className={classNames(
-                        'nav-links inline-flex items-center hover:text-green-700',
+                        'nav-links inline-flex items-center',
                         activePage === '/login' ? 'active' : ''
                       )}
                     >

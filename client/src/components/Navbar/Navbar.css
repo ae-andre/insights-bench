@@ -11,8 +11,7 @@ img .h-8 w-auto {
     font-size: 1.3rem;
     font-family: var(--font-alegreya-sans);
     display: flex;
-    margin-left: -60px;
-
+    margin-left: -20px;
 }
 
 #logout-button:hover {
@@ -38,6 +37,11 @@ img .h-8 w-auto {
 #resources-button:hover {
     color: var(--med-dark);
     font-weight: 700;
+}
+
+#my-bench-button:hover {
+    color: var(--med-dark);
+    font-weight: 800;
 }
 
 #my-bench-button:active {
