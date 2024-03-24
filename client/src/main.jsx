@@ -12,6 +12,10 @@ import ListenerSignup from './components/ListenerSignup/index.jsx'
 import Resources from './pages/Resources.jsx' 
 //import Conversation from './components/Conversation.jsx
 import Error from './pages/Error'
+import { register } from "register-service-worker";
+
+// Register service worker
+register(`/service-worker.js`)
 
 
 const router = createBrowserRouter([
