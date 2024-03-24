@@ -48,23 +48,20 @@ const signUpSharer = (props) => {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 justify-center px-6 py-4 lg:px-8">
         {showModal ? (
           <ModalAfterLogin onClose={() => setShowModal(false)} action="signup" />
         ) : (
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            {/* <img
-              className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            /> */}
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm sharer-container">
             <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Become a Sharer Today
             </h2>
+            <div className="col image-column-left">
+                <img className="sharer-signup-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711247156/tree_cxulrk.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
+            </div>
           </div>
         )}
-  
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
             <div>
               <label htmlFor="username" className="block text-base font-medium leading-6 text-gray-900">
@@ -77,7 +74,7 @@ const signUpSharer = (props) => {
                   type="text"
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block input-color w-full rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -95,7 +92,7 @@ const signUpSharer = (props) => {
                   type="password"
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full input-color rounded-md border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -118,7 +115,7 @@ const signUpSharer = (props) => {
             </div>
           </form>
   
-          <p className="mt-10 text-center text-sm text-gray-500">
+          <p className="mt-10 text-center text-sm text-gray-500 become-listener">
             Want to be a listener? {' '}
             <Link to="/listener-signup" className="listener-instead font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Become a listener instead
