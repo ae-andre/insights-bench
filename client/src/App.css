@@ -132,10 +132,18 @@ button {
   background-color: var(--med-light);
 }
 
-.icon-color {
+.icon-color, .private-submit {
   background-color: var(--med-dark);
 }
 
 .preview-text {
   padding: 10px 0px 10px 0px !important;
+}
+
+.input-option {
+  border-color: var(--med-dark) !important;
+}
+
+.private-submit:hover {
+  background-color: var(--dark);
 }
