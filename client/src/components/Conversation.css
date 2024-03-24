@@ -115,10 +115,11 @@
 }*/
 
   .comment-submit-btn {
-    background-color: var(--med-light) !important; /* Important to override Bootstrap */
-    color: var(--dark) !important; 
-    border: 1px solid var(--dark) !important; 
+    background-color: var(--med-dark) !important; /* Important to override Bootstrap */
+    color: var(--light) !important; 
+    border: 1px solid var(--med-dark) !important; 
     margin-bottom: 20px;
+    margin-right: 10px;
 
 }
 
@@ -135,17 +136,19 @@
 }
 
 .end-convo-btn {
-  background-color: white !important; /* Important to override Bootstrap */
-  color: red !important; 
-  border: 1px solid var(--dark) !important; 
-  margin-bottom: 20px;
-
+  background-color: var(--med-dark) !important; /* Important to override Bootstrap */
+  color: var(--light) !important; 
+  border: 1px solid var(--med-dark) !important; 
+  margin-bottom: 21px;
+  margin-left: 10px;
+  font-family: var(--font-standard);
+  padding: 6px 12px;
 }
 
 .end-convo-btn:hover {
-  background-color: var(--med-dark) !important; 
-  color: var(--med-light) !important; 
-  border: 1px solid var(--med-light) !important; 
+  background-color:red!important; 
+  color: var(--light) !important; 
+  border: 1px solid red !important; 
 } 
 
 .end-convo-btn:active {
