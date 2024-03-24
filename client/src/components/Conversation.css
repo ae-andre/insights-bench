@@ -9,7 +9,7 @@
   .conversation-title {  
     margin: 20px;
     font-size: 1.8rem;
-    font-family: var(--font-alegreya-sans);
+    font-family: var(--font-headings);
     word-spacing: 7px;
     text-align: left; 
     color: var(--dark);
@@ -33,12 +33,15 @@
   .conversation-text {
     width: 95%;
     padding: 15px; 
+    font-size: larger;
+    font-family: var(--font-standard);
   }
 
   .conversation-attribution {
-    font-family: var(--font-alegreya-sans);
+    font-family: var(--font-standard);
     margin-bottom: 10px;
     text-align: center;  
+    font-size: 16px;
   }
   
   .comment-container {
@@ -153,4 +156,5 @@ border: 1px solid var(--dark) !important;
 
 .bolded {
   font-weight: bolder;
+  font-size: smaller;
 }

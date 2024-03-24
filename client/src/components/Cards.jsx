@@ -107,7 +107,7 @@ export default function Cards() {
       );
     } else if (isEmptySharerBench) {
       return (
-        <div onClick={ () => setIsViewingConversation(true)} className="cursor-pointer relative overflow-hidden rounded-lg bg-gray-100 px-4 pb-12 shadow sm:px-6 sm:pt-6 hover:bg-yellow-50">
+        <div onClick={ () => setIsViewingConversation(true)} className="cursor-pointer relative overflow-hidden rounded-lg card-color px-4 pb-12 shadow sm:px-6 sm:pt-6 hover:bg-yellow-50">
           <dt>
             <div className="absolute rounded-md icon-color bg-opacity-80 p-3">
               <PlusIcon className="h-6 w-6 text-white" aria-hidden="true" />
