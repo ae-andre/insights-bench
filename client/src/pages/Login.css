@@ -4,7 +4,7 @@
 }
 
 .submit-button:hover {
-    background-color: var(--medium);
+    background-color: var(--dark);
 }
 
 .submit-button:active {
@@ -12,11 +12,11 @@
 }
 
 .link-to-signup {
-    color: var(--med-dark);
+    color: var(--dark);
 }
 
 .link-to-signup:hover {
-    color: var(--light);
+    color: var(--med-dark);
 }
 
 .link-to-signup:active {
@@ -26,4 +26,17 @@
 .not-a-member {
     font-size: 1.1rem;
     color: var(--med-dark);
+}
+
+.input-color {
+    border-color: var(--med-dark);
+}
+
+.sharer-image {
+    height: 50px;
+    margin-top: -20px;
+}
+
+.get-started {
+    margin-right: 5px;
 }
