@@ -102,13 +102,14 @@ const Home = () => {
             )}
         </div>
         <div className="row public-conversations-section">
+          <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
           <div className="public-conversations-header-section">
             <div className="row">
-              <div className="col image-column-left">
+              {/* <div className="col image-column-left">
                 <img className="pavilion-image" src="https://res.cloudinary.com/dqtpaispt/image/upload/v1710690242/eliptical_pavilion_gym6bm.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
-              </div>
+              </div> */}
               <div className="col title-and-blurb-column-middle">
-                <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
+                {/* <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3> */}
                 <p id="welcome-to-pavilion-blurb">There are always ongoing conversations here in the pavilion. Click to view. Login to participate. Logged in users can start a new public conversation here or a private conversation on their own bench at login. </p>
               </div>
               <div className="col button-column-right">

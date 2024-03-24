@@ -37,7 +37,7 @@ h3 {
 
 .public-conversations-header-section {
     display: flex;
-    padding: 25px;    
+    padding: 10px 25px 25px 25px;    
 }
 
 .public-conversations-header-section .row {
@@ -51,11 +51,16 @@ h3 {
 }
 
 #welcome-to-pavilion-title {
-    font-size: 1.5rem;
+    font-size: 2.7rem;
+    margin-top: 20px;
+    margin-bottom: 0px !important;
+    text-align: center;
+    font-family: var(--font-headings);
 }
 
 #welcome-to-pavilion-blurb {
   color: var(--light);
+  text-align: left;
 
 }
 
@@ -69,7 +74,6 @@ h3 {
 
 #start-public-conversation-btn {
     align-self: center;
-    border-color: var(--med-light);
     width: 90%;
     padding: 10px;
     color: var(--med-dark);
@@ -79,12 +83,11 @@ h3 {
 #start-public-conversation-btn:hover {
     color: var(--med-light);
     background-color: var(--dark);
+    border-color: var(--dark);
 }
 
 #start-public-conversation-btn:active {
     color: var(--light);
-    background-color: var(--medium);
-    border-color: var(--dark);
 }
 
 .reenie-beanie-regular {
