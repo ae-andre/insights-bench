@@ -107,3 +107,14 @@ h3 {
     font-weight: 400;
     font-style: normal;
   }
+
+.goto-pavilion{
+    background-color: var(--med-dark);
+    color: var(--light);
+
+}
+
+.homepage-img{
+    display: block;
+    margin-left: auto;
+}

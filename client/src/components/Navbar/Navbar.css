@@ -76,3 +76,11 @@ img .h-8 w-auto {
   font-weight: 500;
   font-style: normal;
 }
+
+#about-button{
+    margin-right: 30px !important;
+}
+
+#resources-button{
+    margin-right: 0px !important;
+}
