@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import { GET_USER_BY_ID } from "../utils/queries";
 import Auth from "../utils/auth";
 import { ChatBubbleOvalLeftEllipsisIcon, PlusIcon } from "@heroicons/react/24/outline";
 import UserConversation from "./UserConversation";
+import ConversationsForm from "./ConversationsForm";
 
 export default function Cards() {
-  const navigate = useNavigate(); // Initialize navigate for redirection
+  const navigate = useNavigate(); 
   const userProfile = Auth.getProfile();
   const userId = userProfile?.data?._id;
 
-  const [isViewingConversation, setIsViewingConversation] = useState(false); // State to toggle view
-
+  const [isViewingConversation, setIsViewingConversation] = useState(false);
+  const [isViewingStartConvoForm, setIsViewingStartConvoForm] = useState(false); 
+  
 
   const { data, loading, error } = useQuery(GET_USER_BY_ID, {
     variables: { userId },
@@ -30,6 +32,10 @@ export default function Cards() {
     return <UserConversation onClose={() => setIsViewingConversation(false)} />;
   }
 
+  if (isViewingStartConvoForm) {
+    return <ConversationsForm onClose={() => setIsViewingStartConvoForm(false)} />;
+  }
+
   const conversations = conversationData
   ? [
       {
@@ -44,16 +50,12 @@ export default function Cards() {
 
   // Conditions for rendering different cards
   const isEmptyListenerBench = user?.role === 'listener' && !user?.conversation;
+  const isEmptySharerBench = user?.role === 'sharer' && !user?.conversation;
   const hasConversation = !!user?.conversation;
-  const isSharerWithConversation = user?.role === 'sharer' && !!user?.conversation;
+  
 
   // Function to navigate to home page
   const goToHomePage = () => navigate("/");
-  const openConversation = () => { 
-    return (
-      <UserConversation></UserConversation>
-    );
-  };
 
   // Render function based on conditions
   const renderCard = () => {
@@ -102,9 +104,9 @@ export default function Cards() {
         ))}
         </div>
       );
-    } else if (isSharerWithConversation) {
+    } else if (isEmptySharerBench) {
       return (
-        <div onClick={handleNewConversation} className="cursor-pointer relative overflow-hidden rounded-lg bg-gray-100 px-4 pb-12 shadow sm:px-6 sm:pt-6 hover:bg-orange-200">
+        <div onClick={ () => setIsViewingConversation(true)} className="cursor-pointer relative overflow-hidden rounded-lg bg-gray-100 px-4 pb-12 shadow sm:px-6 sm:pt-6 hover:bg-orange-200">
           <dt>
             <div className="absolute rounded-md bg-green-700 bg-opacity-80 p-3">
               <PlusIcon className="h-6 w-6 text-white" aria-hidden="true" />
@@ -117,7 +119,6 @@ export default function Cards() {
         </div>
       );
     }
-    // Default case if none of the conditions are met
     return null;
   };
 
