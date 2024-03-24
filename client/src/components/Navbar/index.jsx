@@ -63,7 +63,7 @@ function Nav() {
                       <Link to="/my-bench"
                       id="my-bench-button"
                       className={classNames(
-                        'nav-links inline-flex items-center',
+                        'nav-links inline-flex items-center edu-nsw',
                         activePage === '/my-bench' ? 'active' : ''
                       )}
                       >
@@ -74,7 +74,7 @@ function Nav() {
                       id="logout-button"
                       onClick={handleLogout}
                       className={classNames(
-                        'nav-links inline-flex items-center',
+                        'nav-links inline-flex items-center edu-nsw',
                         activePage === '/login' ? 'active' : ''
                       )}
                     >
@@ -86,7 +86,7 @@ function Nav() {
                       to="/login"
                       id="login-button"
                       className={classNames(
-                        'nav-links inline-flex items-center',
+                        'nav-links inline-flex items-center edu-nsw',
                         activePage === '/login' ? 'active' : ''
                       )}
                     >
@@ -97,7 +97,7 @@ function Nav() {
                     to="/resources"
                     id="resources-button"
                     className={classNames(
-                      'nav-links inline-flex items-center reenie-beanie-regular',
+                      'nav-links inline-flex items-center edu-nsw',
                       activePage === '/resources' ? 'active' : ''
                     )}
                   >
@@ -120,7 +120,7 @@ function Nav() {
                 My Bench
               </Disclosure.Button>
               {isLoggedIn ? (
-                <button onClick={handleLogout} className="nav-links block bg-transparent mr-10 sm:pl-5 sm:pr-6">
+                <button onClick={handleLogout} className="nav-links block bg-transparent mr-10 sm:pl-5 sm:pr-6 edu-nsw">
                   Logout 
                 </button>
               ) : (

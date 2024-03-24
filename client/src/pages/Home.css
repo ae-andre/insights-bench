@@ -4,12 +4,13 @@ h2 {
 }
 
 h2.main-page-title {
-    margin-bottom: 15px;
+    margin-bottom: 40px;
     margin-top: 20px;
+    text-align: center;
 }
 
 h2.byline-quote {
-    font-size: 1.5rem;
+    font-size: 2.0rem;
     text-align: center;
     font-style: italic;
 }
@@ -86,10 +87,23 @@ h3 {
     border-color: var(--dark);
 }
 
+.reenie-beanie-regular {
+    font-family: "Reenie Beanie", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
 
-
-
-
-
-
-
+.pacifico-regular {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 55px;
+  }
+  
+.jost-uniquifier {
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }

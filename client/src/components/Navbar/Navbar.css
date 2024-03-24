@@ -9,7 +9,7 @@ img .h-8 w-auto {
 #logout-button {
     color: var(--dark);
     font-size: 1.3rem;
-    font-family: var(--font-alegreya-sans);
+    font-family: var(--font-headings);
     display: flex;
     margin-left: -20px;
 }
@@ -67,4 +67,12 @@ img .h-8 w-auto {
 
 .financial-personal-career-row {
     margin-bottom: 30px;
+}
+
+
+.edu-nsw {
+  font-family: "Edu NSW ACT Foundation", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }

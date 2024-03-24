@@ -31,6 +31,8 @@
     --font-junge: 'Junge', serif;
     --font-liu-jian-mao-cao: 'Liu Jian Mao Cao', cursive;
     --font-educational-nc: 'Educational NC', sans-serif;
+    --font-standard: "Jost", sans-serif;
+    --font-headings: "Edu NSW ACT Foundation", cursive;
 
     line-height: 1.5;
     font-weight: 400;
@@ -61,7 +63,7 @@ body {
 /* } */
 
 h1, h2 {
-    font-family: var(--font-alegreya-sans);
+    font-family: var(--font-headings);
     font-size: 3.2em;
     line-height: 1.1;
 }
@@ -112,3 +114,9 @@ button {
       background-color: #55828b;
     }
   }
+  
+  p {
+    font-family: var(--font-standard);
+  }
+
+  

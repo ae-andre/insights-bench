@@ -109,7 +109,7 @@ const Conversation = ({ onClose }) => {
       <div className="conversation-text-and-attribution">
         <div className="conversation-text">{fetchedConversation.conversationText}</div>
         <p className="conversation-attribution">
-          Conversation opened by <span>{fetchedConversation.username}</span> <br /> <span>{fetchedConversation.createdAt}</span>
+          Conversation opened by <span className="bolded">{fetchedConversation.username}</span> <br /> <span>{fetchedConversation.createdAt}</span>
         </p>
       </div>
       <div className="comment-container">

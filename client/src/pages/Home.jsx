@@ -84,9 +84,9 @@ const Home = () => {
                 <>
                     <div className="col">
                         <div className="welcome-blurb-public-conversation-forum">
-                            <h2 className="main-page-title">Welcome to Soul Bench</h2>
-                            <h2 className="byline-quote">~Remember: even when life feels unstable, there's always a bench nearby to support you!</h2>
-                            <p>
+                            <h2 className="main-page-title pacifico-regular">Welcome to Soul Bench</h2>
+                            <h2 className="byline-quote reenie-beanie-regular">~Remember: even when life feels unstable, there's always a bench nearby to support you!</h2>
+                            <p className="jost-uniquifier">
                             Ever find yourself on a bench, pouring out your problems to a complete stranger? Ever marvelled at how patiently a stranger 
                             listens and what apt counsel they can give? Do you regularly find yourself being that listener? In a world of increasing social 
                             isolation, and unprecedented demand for costly mental health resources, Soul Bench offers a free virtual forum for talking through 
