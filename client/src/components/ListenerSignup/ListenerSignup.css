@@ -23,7 +23,8 @@
 }
 
 .listener-signup-image {
-     height: 312px;    
+     height: 465px;
+     margin-top: 10px;
 }
 
 .input-color {
@@ -36,4 +37,16 @@
 
 .options {
     margin: 0.3rem 0rem
+}
+
+.option-container {
+    margin-top: 10px !important;
+}
+
+.choose-container {
+    margin-top: 10px !important;
+}
+
+.space-between {
+    margin-top: 15px !important;
 }

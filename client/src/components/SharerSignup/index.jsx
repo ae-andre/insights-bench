@@ -64,7 +64,7 @@ const signUpSharer = (props) => {
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
             <div>
-              <label htmlFor="username" className="block text-base font-medium leading-6 text-gray-900">
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                 Username
               </label>
               <div className="mt-2">
@@ -79,9 +79,9 @@ const signUpSharer = (props) => {
               </div>
             </div>
   
-            <div>
+            <div className="space-between"> 
               <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-base font-medium leading-6 text-gray-900">
+                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
               </div>
@@ -115,7 +115,7 @@ const signUpSharer = (props) => {
             </div>
           </form>
   
-          <p className="mt-10 text-center text-sm text-gray-500 become-listener">
+          <p className="text-center text-sm text-gray-500 become-listener">
             Want to be a listener? {' '}
             <Link to="/listener-signup" className="listener-instead font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               Become a listener instead

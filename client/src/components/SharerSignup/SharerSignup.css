@@ -27,8 +27,8 @@ h2 {
 }
 
 .sharer-signup-image {
-    height: 320px;
-    margin-top: 50px;
+    height: 360px;
+    margin-top: -18px;
 }
 
 .sharer-container {
@@ -41,4 +41,8 @@ h2 {
 
 .become-listener {
     color: var(--med-dark)
+}
+
+.space-between {
+    margin-top: 15px !important;
 }

@@ -79,14 +79,16 @@ const signUpListener = () => {
                 <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                   Become a Listener Today
                 </h2>
-                <div className="col image-column-left">
+                <div>
                   <img className="listener-signup-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711248516/sidewalk_skexg2.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
                 </div>
+            </div>
+          )}
       
                 <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
                   <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
               <div>
-                <label htmlFor="username" className="block text-base font-medium leading-6 text-gray-900">
+                <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                   Username
                 </label>
                 <div className="mt-2">
@@ -101,9 +103,9 @@ const signUpListener = () => {
                 </div>
               </div>
   
-              <div>
+              <div className="space-between">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-base font-medium leading-6 text-gray-900">
+                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     Password
                   </label>
                 </div>
@@ -121,16 +123,16 @@ const signUpListener = () => {
   
             <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-base font-medium leading-6 text-gray-900">
+                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     I want to help others with: 
                   </label>
                 </div>
             </div>
 
-            <fieldset >
+            <fieldset className="choose-container">
                 <legend className="sr-only">Expertise</legend>
                 <div className="space-y-5">
-                    <div className="relative flex items-start">
+                    <div className="relative flex items-start option-container">
                       <input
                         id="financial"
                         name="expertise"
@@ -143,7 +145,7 @@ const signUpListener = () => {
                         Financial Problems
                       </label>
                     </div>
-                    <div className="relative flex items-start">
+                    <div className="relative flex items-start option-container">
                       <input
                           id="personal"
                           name="expertise"
@@ -156,7 +158,7 @@ const signUpListener = () => {
                         Personal Problems
                       </label>
                     </div>
-                    <div className="relative flex items-start">
+                    <div className="relative flex items-start option-container">
                       <input
                           id="career"
                           name="expertise"
@@ -173,10 +175,9 @@ const signUpListener = () => {
             </fieldset>
 
             <div>
-                <h1 className="font-bold text-sm py-2">Disclaimer:</h1>
+                <h1 className="font-bold text-sm">Disclaimer:</h1>
                 <p className="text-xs">As a listener on this platform, it's important to understand that while we're here to offer support and lend an empathetic ear,
-                    we are not trained therapists or counselors. Our intention is to provide a safe space for others to express themselves and 
-                    share your thoughts and feelings. However, we may not have the expertise to offer professional advice or solutions 
+                    we are not trained therapists or counselors. Our intention is to provide a safe space for others to express themselves. However, we may not have the expertise to offer professional advice or solutions 
                     to complex issues.
                 </p>
             </div>
@@ -191,7 +192,7 @@ const signUpListener = () => {
               </div>
             </form>
   
-            <p className="mt-10 text-center text-sm text-gray-500 become-sharer">
+            <p className="text-center text-sm text-gray-500 become-sharer">
               Want to be a sharer? {' '}
               <Link to="/sharer-signup" className="sharer-instead font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                 Become a sharer instead
@@ -199,10 +200,7 @@ const signUpListener = () => {
             </p>
           </div>
         </div>
+        </>
       )}
-      </div>
-      </>
-    );
-  };
 
 export default signUpListener;
