@@ -7,7 +7,7 @@ h2 {
 }
 
 .share-today-button:hover {
-    background-color: var(--medium);
+    background-color: var(--dark);
 
 }
 
@@ -18,10 +18,31 @@ h2 {
 
 .listener-instead {
     font-size: 1.1rem;
-    color: var(--med-dark);
+    color: var(--dark);
 }
 
 .listener-instead:hover {
     font-size: 1.1rem;
-    color: var(--light);
+    color: var(--med-dark);
+}
+
+.sharer-signup-image {
+    height: 360px;
+    margin-top: -18px;
+}
+
+.sharer-container {
+    margin-right: 90px;
+}
+
+.input-color {
+    border-color: var(--med-dark);
+}
+
+.become-listener {
+    color: var(--med-dark)
+}
+
+.space-between {
+    margin-top: 15px !important;
 }

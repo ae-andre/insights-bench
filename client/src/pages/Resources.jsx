@@ -3,17 +3,22 @@ import './Resources.css';
 
 function Resources() {
   return (
+    <div>
+      <div className="resource-banner">
+          <h2 className="title">Resources</h2>
+          <p className="sub-text">Here are some curated resources that the Soul Bench creators consider worthwhile. Think of this page as the park playground. Watch the videos, follow the links, take the tests... </p>
+      </div>
     <div className="container text-center">
       {/* FIRST ROW.  IMAGE, RESOURCES HEADING, AND BLURB WELCOMING USERS TO THE PLAYGROUND*/}
-      <div className="row gx-5">
-        <div className="col-md-9">
+      {/* <div className="row gx-5"> */}
+        {/* <div className="col-md-9">
           <img src="https://res.cloudinary.com/dqtpaispt/image/upload/v1710923268/park4_i05cdy.png" alt="A park in the foreground against a city skyline in the background with the words soul bench written across the top. The park has a pavilion and two benches." id="park-img" className="img-fluid" />
-        </div>
-        <div className="col-md-3 d-flex flex-column justify-content-center">
-          <h2 className="d-flex justify-content-center align-items-center">Resources</h2>
-          <p className="w-100 d-flex align-items-center">Here are some curated resources that the Soul Bench creators consider worthwhile. Think of this page as the park playground. Watch the videos, follow the links, take the tests... </p>
-        </div>
-      </div>
+        </div> */}
+        {/* <div className="col-md-3 d-flex flex-column justify-content-center"> */}
+          {/* <h2 className="d-flex justify-content-center align-items-center">Resources</h2> */}
+          {/* <p className="w-100 d-flex align-items-center">Here are some curated resources that the Soul Bench creators consider worthwhile. Think of this page as the park playground. Watch the videos, follow the links, take the tests... </p> */}
+        {/* </div>
+      </div> */}
 
       <div className="container text-center">
         {/* SECOND ROW OF TWO COLUMNS, EACH WITH A CAROUSEL FOR BENCH MOVEMENT AND GENERAL GOLD*/}
@@ -446,6 +451,7 @@ function Resources() {
 
       </div>
     </div>
+   </div>
   );
 }
 

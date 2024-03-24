@@ -7,66 +7,84 @@ img .h-8 w-auto {
 }
 
 #logout-button {
-    color: var(--med-light);
+    color: var(--dark);
     font-size: 1.3rem;
-    font-family: var(--font-alegreya-sans);
+    font-family: var(--font-headings);
     display: flex;
-    margin-left: -60px;
-
+    margin-left: -20px;
 }
 
 #logout-button:hover {
-    color: green;
+    color: var(--med-dark);
     font-weight: 700;
 }
-
-
-
 
 #login-button {
     margin-left: -5px;
 }
 
-
 .nav-links {
     font-size: 1.3rem;
-    color: var(--med-light);
+    color: var(--dark);
     padding: 20px;
 }
 
 #login-button:hover {
-    color: green;
+    color: var(--med-dark);
     font-weight: 700;
 }
 
-
-
 #resources-button:hover {
-    color: green;
+    color: var(--med-dark);
     font-weight: 700;
+}
+
+#my-bench-button:hover {
+    color: var(--med-dark);
+    font-weight: 800;
 }
 
 #my-bench-button:active {
-    color: gray;
+    color: var(--dark);
     font-weight: 800;
 }
 
 #login-button:active {
-    color: gray;
+    color: var(--dark);
     font-weight: 800;
 }
 
 #logout-button:active {
-    color: gray;
+    color: var(--dark);
     font-weight: 800;
 }
 
 #resources-button:active {
-    color: gray;
+    color: var(--dark);
     font-weight: 800;
     
 }
 
 .financial-personal-career-row {
     margin-bottom: 30px;
+}
+
+
+.edu-nsw {
+  font-family: "Edu NSW ACT Foundation", cursive;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#about-button{
+    margin-right: 30px !important;
+}
+
+#resources-button{
+    margin-right: 0px !important;
+}
+
+#my-bench-button{
+    margin-right: 0px !important;
 }
