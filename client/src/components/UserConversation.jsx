@@ -7,6 +7,7 @@ import { GET_CONVERSATION_BY_ID } from '../utils/queries';
 import { GET_USER_BY_ID } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import './Conversation.css';
+import ConversationsForm from './ConversationsForm';
 
 const UserConversation = ({ onClose }) => {
   const [commentText, setCommentText] = useState("");
@@ -89,7 +90,7 @@ const UserConversation = ({ onClose }) => {
 
   const fetchedConversation = data?.conversation;
   if (!fetchedConversation) {
-    return <p className="font-light">We're finding a listener for you to share a bench with. Your thoughts are worth sharing. In the meanwhile, you can head over to the pavilion to check out some of the public conversations.</p>;
+    return <ConversationsForm />;
     
   }
 
