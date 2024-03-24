@@ -5,6 +5,7 @@ import { PlusIcon } from '@heroicons/react/20/solid'
 import { Link, useLocation } from 'react-router-dom';
 import AuthService from '../../utils/auth';
 import './Navbar.css'
+import LogoutButton from '../LogoutButton';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -69,17 +70,11 @@ function Nav() {
                       >
                         My Bench
                       </Link>
-                      <Link
-                      to="/"
-                      id="logout-button"
-                      onClick={handleLogout}
-                      className={classNames(
-                        'nav-links inline-flex items-center edu-nsw',
-                        activePage === '/login' ? 'active' : ''
-                      )}
-                    >
-                      Logout
-                    </Link>
+
+                      <Link>
+                      <LogoutButton />
+                      </Link>
+
                     </>
                   ) : (
                     <Link
