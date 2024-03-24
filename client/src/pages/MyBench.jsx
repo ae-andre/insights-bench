@@ -31,7 +31,7 @@ export default function MyBench() {
   return (
     <div className="h-screen w-screen">
       <div>
-        {isLoggedIn && hasConversation ? <Cards /> : <ConversationsForm />}
+        <Cards /> 
       </div>
     </div>
   );
