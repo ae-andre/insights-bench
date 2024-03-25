@@ -23,7 +23,7 @@ p {
 h3 {
     color: var(--light);
     padding-top: 10px;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-bottom: 15px;
 }
 
@@ -81,7 +81,7 @@ h3 {
 }
 
 #start-public-conversation-btn:hover {
-    color: var(--med-light);
+    color: var(--light);
     background-color: var(--dark);
     border-color: var(--dark);
 }
@@ -114,7 +114,14 @@ h3 {
 .goto-pavilion{
     background-color: var(--med-dark);
     color: var(--light);
+    font-size: larger;
+    font-family: var(--font-standard);
+}
 
+.goto-pavilion:hover{
+    background-color: var(--dark);
+    color: var(--light);
+    font-family: var(--font-standard);
 }
 
 .homepage-img{

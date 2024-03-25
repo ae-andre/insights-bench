@@ -3,7 +3,7 @@
     align-items: center;
 }
 
-.title {
+.role-title {
     color: black;
     margin-bottom: 20px;
 }
@@ -11,7 +11,6 @@
 .sharer-card-body {
     color: var(--dark);
     margin-bottom: 20px;
-
 }
 
 .listener-card-body {
@@ -73,4 +72,8 @@
     height: 50px;
     margin: auto;
     margin-top: 20px;
+}
+
+.description-text {
+    font-size: 1rem !important;
 }

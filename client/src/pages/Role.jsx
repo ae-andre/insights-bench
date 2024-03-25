@@ -43,14 +43,14 @@ const RoleSelection = () => {
                 ) : (
                     <div className="bg-white shadow sm:rounded-lg">
                         <div className="overall-card px-4 py-4 sm:p-6 text-center">
-                            <h3 className="title text-2xl font-semibold leading-6 text-gray-900 mb-0">Choose a seat on the bench!</h3>
+                            <h3 className="role-title text-3xl font-semibold leading-6 text-gray-900 mb-0">Choose a seat on the bench!</h3>
                             <br />
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="sharer-card-body p-4 text-sm mt-2 max-w-xs border-r">
                                     <div>
                                         <img className="sharer-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711238290/sharer_g9dvcp.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
                                     </div>
-                                    <p className="sharer-description mb-7">
+                                    <p className="sharer-description mb-7 description-text">
                                         Express thoughts, experiences, and emotions in a safe and supportive environment. 
                                         By sharing, individuals have the opportunity to be heard, validated, and understood by others in the community. Sharing can be a 
                                         powerful tool for self-expression and personal growth, but it's crucial to prioritize mental health and seek professional help when needed.
@@ -70,7 +70,7 @@ const RoleSelection = () => {
                                     <div>
                                         <img className="listener-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711238289/listener_ou6luo.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
                                     </div>
-                                    <p className="listener-description mt-1/2">
+                                    <p className="listener-description mt-1/2 description-text">
                                         Provide empathetic and nonjudgmental support to those who choose to share their thoughts and experiences
                                         . Listeners offer their time and attention to actively engage with the sharer, demonstrating care and understanding. By actively 
                                         listening and offering support, listeners fosters a sense of community and connection within the platform.
