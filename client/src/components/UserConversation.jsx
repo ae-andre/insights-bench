@@ -107,7 +107,7 @@ const UserConversation = ({ onClose }) => {
       <div className="conversation-text-and-attribution">
         <div className="conversation-text">{fetchedConversation.conversationText}</div>
         <p className="conversation-attribution">
-          Conversation opened by <span><b>{fetchedConversation.username}</b></span> <br /> <span>{fetchedConversation.createdAt}</span>
+          Conversation with <span><b>{userData.user.buddy.username}</b></span> <br /> <span>{fetchedConversation.createdAt}</span>
         </p>
       </div>
       <div className="comment-container">
