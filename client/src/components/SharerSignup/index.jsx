@@ -53,7 +53,7 @@ const signUpSharer = (props) => {
           <ModalAfterLogin onClose={() => setShowModal(false)} action="signup" />
         ) : (
           <div className="sm:mx-auto sm:w-full sm:max-w-sm sharer-container">
-            <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
               Become a Sharer Today
             </h2>
             <div className="col image-column-left">

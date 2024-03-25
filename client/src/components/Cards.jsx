@@ -44,7 +44,7 @@ export default function Cards() {
         id: conversationData._id,
         name: conversationData.conversationTitle,
         preview: conversationData.conversationText,
-        buddy: user.buddy.username, // ------EDIT ONCE buddy is available-------
+        buddy: user.buddy.username, 
         icon: ChatBubbleOvalLeftEllipsisIcon,
       },
     ]

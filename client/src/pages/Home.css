@@ -78,6 +78,7 @@ h3 {
     padding: 10px;
     color: var(--med-dark);
     background-color: var(--light);
+    font-family: var(--font-standard);
 }
 
 #start-public-conversation-btn:hover {

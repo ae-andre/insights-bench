@@ -76,7 +76,7 @@ const signUpListener = () => {
               <ModalAfterLogin onClose={() => setShowModal(false)} action="signup" />
             ) : (
               <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
                   Become a Listener Today
                 </h2>
                 <div>
@@ -175,7 +175,7 @@ const signUpListener = () => {
             </fieldset>
 
             <div>
-                <h1 className="font-bold text-sm">Disclaimer:</h1>
+                <h1 className="font-bolder text-sm">Disclaimer:</h1>
                 <p className="text-xs">As a listener on this platform, it's important to understand that while we're here to offer support and lend an empathetic ear,
                     we are not trained therapists or counselors. Our intention is to provide a safe space for others to express themselves. However, we may not have the expertise to offer professional advice or solutions 
                     to complex issues.
