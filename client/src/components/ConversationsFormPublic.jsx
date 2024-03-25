@@ -86,7 +86,7 @@ const ConversationsFormPublic = (props) => {
       ) : (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 pb-10 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="text-center mb-0 text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Start a Conversation in the Pavilion
             </h2>
           </div>
@@ -157,8 +157,9 @@ const ConversationsFormPublic = (props) => {
                   placeholder="  Your story goes here.."
                   value={convoForm.conversationText}
                   onChange={handleChange}
-                  className="block w-full rounded-md border-1 input-option py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block mb-0 w-full rounded-md border-1 input-option py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                <span className="pt-2 inset-y-0 right-0 pr-2 flex items-center text-sm text-gray-400">{convoForm.conversationText.length}/500</span>
               </div>
             </div>
 
