@@ -84,7 +84,7 @@ export default function Cards() {
                 {item.name.length > 22 ? "..." : ""}
               </h2>
             </dt>
-            <dd className="mb-8 p-1 flex-col items-baseline sm:pb-3">
+            <dd className="mb-2 p-1 flex-col items-baseline sm:pb-3">
               <p className="flex justify-center text-med font-medium bg-white rounded-md text-gray-800 preview-text">
                 {/* -------------limit the characters to 33 max------------- */}
                 {item.preview.slice(0, 37)}
