@@ -94,7 +94,7 @@ const Home = () => {
                             life's perplexities with anonymous others.
                             </p>
                             <div className="flex min-h-full flex-1 justify-around py-12 lg:px-8">
-                              <div className="mt-8 w-full">
+                              <div className="mt-0 w-full">
                                 <a href ="#welcome-to-pavilion">
                                   <button className="goto-pavilion">Wander around the pavilion</button>
                                 </a>
