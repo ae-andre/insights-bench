@@ -25,6 +25,19 @@ mutation addComment($conversationId: ID!, $comment: String!) {
 }
 `;
 
+export const UPDATE_COMMENT = gql`
+mutation UPDATE_COMMENT($commentId: ID!, $newComment: String!) {
+  updateComment(commentId: $commentId, newComment: $newComment) {
+    comments {
+      commentId
+      comment
+      username
+      createdAt
+    }
+  }
+}
+`;
+
 export const ADD_CONVERSATION = gql`
 mutation addConversation($conversationTitle: String!, $conversationText: String!, $expertise: String!, $isPrivate: Boolean!) {
   addConversation(conversationTitle: $conversationTitle, conversationText: $conversationText, expertise: $expertise, isPrivate: $isPrivate) {

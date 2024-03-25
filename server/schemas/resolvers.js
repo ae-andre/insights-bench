@@ -259,6 +259,49 @@ const resolvers = {
         throw new Error("Error adding comment");
       }
     },
+    updateComment: async (parent, { commentId, newComment }, context) => {
+      try {
+        console.log('User context for edit comment:', context.user);
+        if (context.user) {
+
+          // Find the conversation containing the comment
+          const conversation = await Conversation.findOne({ "comments._id": commentId });
+          // Check if the conversation exists
+      if (!conversation) {
+        throw new Error('Conversation containing the comment not found.');
+      }
+
+      // Find the specific comment within the conversation
+      const comment = conversation.comments.find(comment => comment._id.equals(commentId));
+
+      // Check if the comment exists
+      if (!comment) {
+        throw new Error('Comment not found in the conversation.');
+      }
+
+      // Check if the user updating the comment is the same user who left it
+      console.log('Original comment author ID:', comment.userId);
+      console.log('Comment editor user ID:', context.user.id);
+      if (comment.userId !== context.user.id) {
+        throw new Error('You are not authorized to update this comment.');
+      }
+
+      // Update the comment text
+      comment.comment = newComment;
+      await conversation.save();
+
+      console.log('Updating comment with ID:', commentId);
+      console.log('New comment text:', newComment);
+
+      // Return the updated comment
+      return comment;
+    }
+    throw new AuthenticationError('You must be logged in to update a comment.');
+  } catch (error) {
+    console.error('Error updating comment:', error);
+    throw new Error('Error updating comment.');
+  }
+}
   },
 };
 

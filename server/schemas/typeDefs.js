@@ -56,6 +56,7 @@ const typeDefs = gql`
     deleteConversation(conversationId: ID!): Conversation
     addPublicConversation(conversationTitle: String!, conversationText: String!, expertise: String!): Conversation
     addComment(conversationId: ID!, comment: String!): Conversation
+    updateComment(commentId: ID!, newComment: String!): Conversation
     addSharer(username: String!, role: String!, password: String!): Auth
     addListener(username: String!, password: String!, role: String!, expertise: String): Auth
   }
