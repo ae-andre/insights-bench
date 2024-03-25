@@ -49,6 +49,7 @@ const Home = () => {
     console.log('Clicked conversation ID:', conversationId);
     localStorage.setItem('selectedConversationId', conversationId);
     setSelectedConversationId(conversationId);
+    setIsStartingPublicConversation(false)
     console.log('Selected conversation ID after update:', selectedConversationId);
   };
 
