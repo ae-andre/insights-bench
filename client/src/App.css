@@ -164,3 +164,17 @@ button {
   height: 100%;
   z-index: -1;
 }
+
+.error-page {
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.error-image {
+  height: 100px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
