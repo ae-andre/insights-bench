@@ -94,7 +94,7 @@ const Home = () => {
                             life's perplexities with anonymous others.
                             </p>
                             <div className="">
-                                <a href ="#welcome-to-pavilion-title"><button className="goto-pavilion">Click here to checkout the pavilion</button></a>
+                                <a href ="#welcome-to-pavilion"><button className="goto-pavilion">Wander around the pavilion</button></a>
                                 <img className="homepage-img" src='https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711305274/homepage_sno7jy.png' alt="Line drawing of a street light, bench, and tree" />
                             </div>
                         </div>
@@ -103,7 +103,7 @@ const Home = () => {
             )}
         </div>
         <div className="row public-conversations-section">
-          <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
+          <h3 id="welcome-to-pavilion">Grab a bench in the pavilion</h3>
           <div className="public-conversations-header-section">
             <div className="row">
               {/* <div className="col image-column-left">

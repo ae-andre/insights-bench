@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_CONVERSATION, FIND_BUDDY, DELETE_CONVERSATION } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -7,11 +7,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserConversation from './UserConversation';
 
-const ConversationsForm = (props) => {
+const ConversationsForm = (propms, action) => {
+
+  const navigate = useNavigate(); // Initialize the navigate function using the useNavigate hook
+    
+  //Define handleNavigate function to navigate to the specified URL
+  const handleNavigation = (url) => {
+    
+      navigate(url); // Use the navigate function to navigate to the specified URL
+      window.location.reload();
+  };
 
   const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
   const [haveBuddy, setHaveBuddy] = useState(false)
   const [conversationStarted, setConversationStarted] = useState(false); 
+  const [failedMatch, setFailedMatch] = useState(false)
   
   const [addConversation, { error }] = useMutation(ADD_CONVERSATION)
   const [findBuddy] = useMutation(FIND_BUDDY)
@@ -73,6 +83,7 @@ const ConversationsForm = (props) => {
         }});
         setHaveBuddy(false);
         setConversationStarted(false);
+        setFailedMatch(true);
         setConvoForm({ expertise: '', conversationTitle: '', conversationText: '' });
       } else {
         setHaveBuddy(true);
@@ -100,7 +111,33 @@ const ConversationsForm = (props) => {
           '--toastify-color-progress-info': '#55828b', 
         }} 
       />
-      {!conversationStarted && !haveBuddy ? (
+      {failedMatch ? (
+        <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="modal-card bg-white rounded-lg p-8">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold mb-0">Sorry!</h2>
+              <p>We apologize for the inconvenience, but it seems our listeners are currently experiencing a high volume of requests, 
+                making it difficult to find an available match at the moment. However, why not take this opportunity to explore the 
+                Pavilion? It's a great place to while waiting. We appreciate your patience and understanding,
+                 and we'll do our best to connect you as soon as possible.</p>
+            </div>
+            <div className="button-and-p-container flex justify-center mt-6 space-y-4 flex-col md:flex-row md:space-x-8">
+              <div id="button-and-p-column-pavilion" className="button-and-p-column flex flex-col items-center">
+                <button id="pavilion-button" className="button btn btn-secondary" onClick={() => handleNavigation('/')}>Pavilion</button>
+                <p className="text-sm text-gray-500">(public conversation)</p>
+              </div>
+              <div id="button-and-p-column-my-bench" className="button-and-p-column flex flex-col items-center">
+                <button id="my-bench-button" className="button btn btn-primary" onClick={() => handleNavigation('/my-bench')}>MyBench</button>
+                <p className="text-sm text-gray-500">(private conversation)</p>
+              </div>
+              <div id="button-and-p-column-playground" className="button-and-p-column flex flex-col items-center">
+                <button id="playground-button" className="button btn btn-primary" onClick={() => handleNavigation('/resources')}>Playground</button>
+                <p className="text-sm text-gray-500">(resources page)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : !conversationStarted && !haveBuddy ? (
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 pb-10 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
