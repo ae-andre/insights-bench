@@ -74,7 +74,7 @@ const ConversationsForm = (props) => {
       {!conversationStarted && !haveBuddy ? (
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 pb-10 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className=" text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
           Let's put things to bench
           </h2>
         </div>

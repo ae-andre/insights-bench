@@ -42,6 +42,8 @@ const ConversationsFormPublic = (props) => {
       return;
     }
 
+    // If not area of help is choosen --> toast
+
     try {
       const { data } = await addPublicConversation({
         variables: {
@@ -86,7 +88,7 @@ const ConversationsFormPublic = (props) => {
       ) : (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 pb-10 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 className="text-center mb-0 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="text-center mb-0 text-3xl font-bold leading-9 tracking-tight text-gray-900">
               Start a Conversation in the Pavilion
             </h2>
           </div>
