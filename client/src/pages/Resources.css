@@ -99,6 +99,7 @@ a.assessment-links {
     display: inline-block;
     font-size: 1.1rem;
     width: 100%;   
+    font-family: var(--font-standard);
 }
 
 a.assessment-links:hover {

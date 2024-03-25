@@ -100,7 +100,7 @@ const UserConversation = ({ onClose }) => {
       <div className="conversation-text-and-attribution">
         <div className="conversation-text">{fetchedConversation.conversationText}</div>
         <p className="conversation-attribution">
-          Conversation opened by <span>{fetchedConversation.username}</span> <br /> <span>{fetchedConversation.createdAt}</span>
+          Conversation opened by <span><b>{fetchedConversation.username}</b></span> <br /> <span>{fetchedConversation.createdAt}</span>
         </p>
       </div>
       <div className="comment-container">
@@ -108,7 +108,7 @@ const UserConversation = ({ onClose }) => {
           {fetchedConversation.comments.map((comment, index) => (
             <div key={index} className="comment">
               <p className="comment-text">{comment.comment}</p>
-              <p className="comment-attribution"><span>{comment.username}</span> <span>{comment.createdAt}</span></p>
+              <p className="comment-attribution"><span className="bolded">{comment.username}</span> <span className="bolded">{comment.createdAt}</span></p>
             </div>
           ))}
         </div>
