@@ -28,6 +28,7 @@ export default function Cards() {
   if (error) return <p>Error: {error.message}</p>;
 
   const user = data?.user;
+  console.log(user)
 
   if (isViewingConversation) {
     return <UserConversation onClose={() => setIsViewingConversation(false)} />;
@@ -43,7 +44,7 @@ export default function Cards() {
         id: conversationData._id,
         name: conversationData.conversationTitle,
         preview: conversationData.conversationText,
-        buddy: "your buddy", // ------EDIT ONCE buddy is available-------
+        buddy: user.buddy.username, // ------EDIT ONCE buddy is available-------
         icon: ChatBubbleOvalLeftEllipsisIcon,
       },
     ]
