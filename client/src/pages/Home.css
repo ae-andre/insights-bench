@@ -126,6 +126,7 @@ h3 {
 }
 
 .homepage-img{
-    display: block;
-    margin-left: auto;
+    /* display: block; */
+    /* margin-top: 0px; */
+    max-width: none !important;
 }
