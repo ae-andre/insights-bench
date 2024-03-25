@@ -7,8 +7,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa';
-import { join } from 'node:path';
-import { buildSync } from 'esbuild';
 
 
 // https://vitejs.dev/config/
@@ -21,8 +19,9 @@ export default defineConfig({
         name: 'Soul Bench',
         short_name: 'Soul Bench',
         description: 'Social network site where users can discuss personal, financial or career-related problems in a public forum or one-on-one in a private conversation. Features sharer or listener roles and a robust collection of resources related to psychological wellbeing and self-awareness',
-        background_color: '#87bba2',
-        theme_color: '#55828b',
+        background_color: '#ffffff',
+        display: 'standalone',
+        theme_color: '#DAEAF9',
         start_url: './',
         icons: [
           {
@@ -33,19 +32,19 @@ export default defineConfig({
         ]
       }
     }),
-    {
-      name: 'bundle-service-worker',
-      enforce: 'post', // Ensures this runs after the regular build process
-      apply: 'build',
-      transformIndexHtml() {
-        buildSync({
-          minify: true,
-          bundle: true,
-          entryPoints: [join(process.cwd(), 'service-worker.js')],
-          outfile: join(process.cwd(), 'dist', 'service-worker.js'),
-        });
-      },
-    },
+    // {
+    //   name: 'bundle-service-worker',
+    //   enforce: 'post', // Ensures this runs after the regular build process
+    //   apply: 'build',
+    //   transformIndexHtml() {
+    //     buildSync({
+    //       minify: true,
+    //       bundle: true,
+    //       entryPoints: [join(process.cwd(), 'service-worker.js')],
+    //       outfile: join(process.cwd(), 'dist', 'service-worker.js'),
+    //     });
+    //   },
+    // },
   ],
   server: {
     port: 3001,

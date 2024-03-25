@@ -131,11 +131,13 @@ h3 {
 }
 
 #install-button {
-    background-color: var(--med-dark);
+    background-color: var(--med-dark) !important;
     color: var(--light);
     margin: 20px;
     width: 270px;
-    visibility: visible;
+    font-size: larger;
+    font-family: var(--font-standard);
+    visibility: hidden;
 }
 
 .goto-pavilion:hover {

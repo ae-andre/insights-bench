@@ -23,52 +23,71 @@ const Home = () => {
     // Expect that conversations will be an array of fetched conversation objects
     const { loading, error, data } = useQuery(GET_ALL_PUBLIC_CONVERSATIONS);
 
+    // Installation logic
+    const [showInstallButton, setShowInstallButton] = useState(false);
+
     useEffect(() => {
-      console.log("Data in Home component:", data); // Log data to check if it's available
-        if (data && data.conversations) {
-          // Sorting logic: Group conversations by expertiseCategory
-          const categorizedConversations = new Map();
-    
-          data.conversations.forEach((conversation) => {
-            const category = conversation.expertise;
-            if (!categorizedConversations.has(category)) {
-                categorizedConversations.set(category, []);
+        const handleBeforeInstallPrompt = (event) => {
+            event.preventDefault();
+            setShowInstallButton(true);
+            window.deferredPrompt = event;
+        };
+
+        window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+        return () => {
+            window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        };
+    }, []);
+
+    const handleInstallClick = async () => {
+        const promptEvent = window.deferredPrompt;
+        if (promptEvent) {
+            promptEvent.prompt();
+            const userChoice = await promptEvent.userChoice;
+            if (userChoice.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
             }
-            categorizedConversations.get(category).push(conversation);
-          });
+            window.deferredPrompt = null;
+            setShowInstallButton(false);
+        }
+    };
 
-          // Log the categorized conversations to see if they are correctly grouped
-          console.log("Categorized Conversations:", categorizedConversations);
-    
-          // Set conversationsByCategory state
-          setConversationsByCategory(categorizedConversations);
-      }
-  }, [data]);
-  
-  const handleConversationClick = (conversationId) => {
-    console.log('Clicked conversation ID:', conversationId);
-    localStorage.setItem('selectedConversationId', conversationId);
-    setSelectedConversationId(conversationId);
-    console.log('Selected conversation ID after update:', selectedConversationId);
-  };
+    const handleConversationClick = (conversationId) => {
+        localStorage.setItem('selectedConversationId', conversationId);
+        setSelectedConversationId(conversationId);
+    };
 
-  const navigate = useNavigate();
-  
-  //Function to handle starting a new public conversation, when click is triggers on the +New Public Conversation btn
-  const handleStartPublicConversation = () => {
-    if (AuthService.loggedIn()) {
-      // User is authenticated, set the state to indicate starting a public conversation which will trigger conditional rendering of the ConversationForm component in the Homepage's jsx return
-      setIsStartingPublicConversation(true);
-      navigate('/start-conversation');
-    } else {
-      // Show toast notification before redirecting to the login page after 2.5 seconds
-      toast.info("You must be logged in to start a conversation. Redirecting you to login...", {
-        autoClose: 2500,
-        onClose: () => navigate('/login'),
-        position: 'top-center'   
-      });
-    }
-  };
+    const navigate = useNavigate();
+
+    const handleStartPublicConversation = () => {
+        if (AuthService.loggedIn()) {
+            setIsStartingPublicConversation(true);
+            navigate('/start-conversation');
+        } else {
+            toast.info("You must be logged in to start a conversation. Redirecting you to login...", {
+                autoClose: 2500,
+                onClose: () => navigate('/login'),
+                position: 'top-center'
+            });
+        }
+    };
+
+    useEffect(() => {
+        if (data && data.conversations) {
+            const categorizedConversations = new Map();
+
+            data.conversations.forEach((conversation) => {
+                const category = conversation.expertise;
+                if (!categorizedConversations.has(category)) {
+                    categorizedConversations.set(category, []);
+                }
+                categorizedConversations.get(category).push(conversation);
+            });
+
+            setConversationsByCategory(categorizedConversations);
+        }
+    }, [data]);
 
   return (
     <div className="main-content container">
@@ -94,7 +113,8 @@ const Home = () => {
                             </p>
                             < div className="">
                                 <a href ="#welcome-to-pavilion-title"><button className="goto-pavilion">Click here to check out the pavilion</button></a>
-                                <a className="button-install" id="install-button">Install Soul Bench on your device</a>
+                                <button id="install-button" className="install-button">Install Soul Bench on your device</button>
+                                
                                 <img className="homepage-img" src='https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711305274/homepage_sno7jy.png' alt="Line drawing of a street light, bench, and tree" />
                             </div>
                         </div>
