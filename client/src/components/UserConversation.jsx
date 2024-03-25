@@ -20,7 +20,8 @@ const UserConversation = ({ onClose }) => {
   const {
     loading: userLoading,
     error: userError,
-    data: userData,
+    data: userData, 
+    refetch: refetchUser,
   } = useQuery(GET_USER_BY_ID, {
     variables: { userId },
     skip: !userId,
@@ -30,7 +31,12 @@ const UserConversation = ({ onClose }) => {
   console.log(userData)
 
 
-  const { loading, error, data, refetch } = useQuery(GET_CONVERSATION_BY_ID, {
+  const { 
+    loading, 
+    error, 
+    data, 
+    refetch: refetchConversation,
+   } = useQuery(GET_CONVERSATION_BY_ID, {
     skip: !conversationId,
     variables: { conversationId },
   });
@@ -40,10 +46,11 @@ const UserConversation = ({ onClose }) => {
   const [deleteConversation] = useMutation(DELETE_CONVERSATION);
 
   useEffect(() => {
-    if (conversationId) {
-      refetch();
+    if (!conversationId) {
+      refetchUser();
+      refetchConversation;
     }
-  }, [conversationId, refetch]);
+  }, [conversationId, refetchUser, refetchConversation]);
 
   const handleChange = (event) => {
     setCommentText(event.target.value);
