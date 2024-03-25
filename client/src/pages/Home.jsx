@@ -113,7 +113,7 @@ const Home = () => {
                 <p id="welcome-to-pavilion-blurb">There are always ongoing conversations here in the pavilion. Click to view. Login to participate. Logged in users can start a new public conversation here or a private conversation on their own bench at login. </p>
               </div>
               <div className="col button-column-right">
-                <button id="start-public-conversation-btn" onClick={handleStartPublicConversation}>+ New Public Conversation</button>  
+              <a href ="#header-top"><button id="start-public-conversation-btn" onClick={handleStartPublicConversation}>+ New Public Conversation</button></a>
               </div>
             </div>
           </div>
