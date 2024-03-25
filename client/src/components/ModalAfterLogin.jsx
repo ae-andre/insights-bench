@@ -14,7 +14,7 @@ const ModalAfterLogin = ({ onClose, action }) => {
     <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex justify-center items-center">
       <div className="modal-card bg-white rounded-lg p-8">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Success!</h2>
+          <h2 className="text-2xl font-bold mb-0">Success!</h2>
           {action === 'login' ? (
               <p>Your login was successful. <br />Where would you like to go now?</p>
           ) : (

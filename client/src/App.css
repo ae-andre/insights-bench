@@ -41,7 +41,7 @@
 body {
     font-family: var(--font-alegreya-sans);
     background-color: var(--med-light);
-    color: var(--medium);
+    color: var(--light);
     margin: 0;
     /* min-width: 320px;
     min-height: 100vh; */
@@ -121,8 +121,18 @@ button {
   
 .app-banner {
   width: 100%;
-  height: 160px;
+  height: 170px;
 }
+
+.about-para {
+  margin-top:15px
+}
+
+.about-sec {
+  width: auto;
+  height: auto;
+}
+
 
 .card-empty {
   padding-top: 35px !important;
@@ -137,7 +147,8 @@ button {
 }
 
 .preview-text {
-  padding: 10px 0px 10px 0px !important;
+  padding: 10px 10px 10px 10px !important;
+  text-align: center;
 }
 
 .input-option {
@@ -146,4 +157,24 @@ button {
 
 .private-submit:hover {
   background-color: var(--dark);
+}
+
+.about-picture {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.error-page {
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.error-image {
+  height: 100px;
+  margin-bottom: 5px;
+  margin-right: 10px;
 }
