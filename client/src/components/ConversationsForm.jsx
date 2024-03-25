@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client';
 import { ADD_CONVERSATION, FIND_BUDDY, DELETE_CONVERSATION } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UserConversation from './UserConversation';
 
 const ConversationsForm = (props) => {
@@ -26,6 +28,18 @@ const ConversationsForm = (props) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    // Character limit for conversation title
+    if (convoForm.conversationTitle.length > 50) {
+      toast.info('Conversation title must be 50 characters or less.');
+      return;
+    }
+
+    // Character limit for conversation text
+    if (convoForm.conversationText.length > 500) {
+      toast.info('Details must be 500 characters or less.');
+      return;
+    }
 
     try {
       const { data } = await addConversation({
@@ -71,6 +85,21 @@ const ConversationsForm = (props) => {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{
+          '--toastify-icon-color-info': '#55828b', 
+          '--toastify-color-progress-info': '#55828b', 
+        }} 
+      />
       {!conversationStarted && !haveBuddy ? (
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 pb-10 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -91,6 +120,7 @@ const ConversationsForm = (props) => {
                 <select
                   id="expertise"
                   name="expertise"
+                  required
                   className="input-option bg-gray-50 border border-gray-300 text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={convoForm.expertise}
                   onChange={handleChange}
@@ -142,6 +172,7 @@ const ConversationsForm = (props) => {
                   rows={4}
                   name="conversationText"
                   id="conversationText"
+                  required
                   placeholder="  Your story goes here.."
                   value={convoForm.conversationText}
                   onChange={handleChange}

@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import './ConversationsFormPublic.css'
 import Conversation from './Conversation';
 
-
 const ConversationsFormPublic = (props) => {
 
   const [convoForm, setConvoForm] = useState({ expertise: '', conversationTitle: '', conversationText: ''})
@@ -105,6 +104,7 @@ const ConversationsFormPublic = (props) => {
                 <select
                   id="expertise"
                   name="expertise"
+                  required
                   className="bg-gray-50 border-1 input-option text-gray-800 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={convoForm.expertise}
                   onChange={handleChange}
@@ -156,6 +156,7 @@ const ConversationsFormPublic = (props) => {
                   rows={4}
                   name="conversationText"
                   id="conversationText"
+                  required
                   placeholder="  Your story goes here.."
                   value={convoForm.conversationText}
                   onChange={handleChange}
