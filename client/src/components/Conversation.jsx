@@ -115,7 +115,7 @@ const Conversation = ({ onClose }) => {
       <div className="comment-container">
         <div className="comment-list">
           {fetchedConversation.comments.map((comment, index) => (
-            <div key={index} className="comment">
+            <div key={index} className="other-comment">
               <p className="comment-text">{comment.comment}</p>
               <p className="comment-attribution"><span className="bolded">{comment.username}</span> <span className="bolded">{comment.createdAt}</span></p>
             </div>
