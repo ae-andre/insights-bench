@@ -13,7 +13,6 @@ import Resources from './pages/Resources.jsx';
 import About from './pages/About';
 import Error from './pages/Error';
 //import Conversation from './components/Conversation.jsx
-import Error from './pages/Error'
 import { register } from "register-service-worker";
 
 // Register service worker

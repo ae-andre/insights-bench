@@ -114,10 +114,39 @@ h3 {
 .goto-pavilion{
     background-color: var(--med-dark);
     color: var(--light);
+    width: 270px;
 
 }
 
 .homepage-img{
     display: block;
     margin-left: auto;
+}
+
+#install-button {
+    background-color: var(--med-dark);
+    color: var(--light);
+    margin: 20px;
+    width: 270px;
+    visibility: visible;
+}
+
+.goto-pavilion:hover {
+    background-color: var(--med-light);
+    color: var(--med-dark);
+}
+
+#install-button:hover {
+    background-color: var(--med-light);
+    color: var(--med-dark);   
+}
+
+.goto-pavilion:active {
+    background-color: var(--med-dark);
+    color: var(--light);
+}
+
+#install-button:active {
+    background-color: var(--med-dark);
+    color: var(--light);
 }

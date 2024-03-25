@@ -92,8 +92,9 @@ const Home = () => {
                             isolation, and unprecedented demand for costly mental health resources, Soul Bench offers a free virtual forum for talking through 
                             life's perplexities with anonymous others.
                             </p>
-                            <div className="">
-                                <a href ="#welcome-to-pavilion-title"><button className="goto-pavilion">Click here to checkout the pavilion</button></a>
+                            < div className="">
+                                <a href ="#welcome-to-pavilion-title"><button className="goto-pavilion">Click here to check out the pavilion</button></a>
+                                <a className="button-install" id="install-button">Install Soul Bench on your device</a>
                                 <img className="homepage-img" src='https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711305274/homepage_sno7jy.png' alt="Line drawing of a street light, bench, and tree" />
                             </div>
                         </div>
