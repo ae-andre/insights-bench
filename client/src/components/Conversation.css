@@ -65,9 +65,17 @@
     margin: 10px, 10px, 0px,;
   }
   
-  .comment {
+  .my-comment {
     /* max-height: 100px;  */
     /* overflow-y: auto; */
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: rgb(254 252 232);
+  }
+
+  .other-comment {
     margin-bottom: 20px;
     padding: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -75,7 +83,7 @@
     background-color: var(--light);
   }
   
-  .comment p {
+  .my-comment p, .other-comment p {
     padding: 5px;
     margin: 5px;
   }
