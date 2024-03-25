@@ -75,7 +75,7 @@ const Login = (props) => {
           <ModalAfterLogin onClose={() => setShowModal(false)} />
         ) : (
           <div className="sm:mx-auto sm:w-full sm:max-w-sm get-started">
-              <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">
                 Welcome Back!
               </h2>
               <div className="col image-column-left">

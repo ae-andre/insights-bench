@@ -50,7 +50,7 @@ h3 {
     height: 90%; 
 }
 
-#welcome-to-pavilion-title {
+#welcome-to-pavilion {
     font-size: 2.7rem;
     margin-top: 20px;
     margin-bottom: 0px !important;
@@ -78,6 +78,7 @@ h3 {
     padding: 10px;
     color: var(--med-dark);
     background-color: var(--light);
+    font-family: var(--font-standard);
 }
 
 #start-public-conversation-btn:hover {

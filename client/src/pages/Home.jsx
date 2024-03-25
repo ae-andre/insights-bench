@@ -49,6 +49,7 @@ const Home = () => {
     console.log('Clicked conversation ID:', conversationId);
     localStorage.setItem('selectedConversationId', conversationId);
     setSelectedConversationId(conversationId);
+    setIsStartingPublicConversation(false)
     console.log('Selected conversation ID after update:', selectedConversationId);
   };
 
@@ -93,7 +94,7 @@ const Home = () => {
                             life's perplexities with anonymous others.
                             </p>
                             <div className="">
-                                <a href ="#welcome-to-pavilion-title"><button className="goto-pavilion">Click here to checkout the pavilion</button></a>
+                                <a href ="#welcome-to-pavilion"><button className="goto-pavilion">Wander around the pavilion</button></a>
                                 <img className="homepage-img" src='https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711305274/homepage_sno7jy.png' alt="Line drawing of a street light, bench, and tree" />
                             </div>
                         </div>
@@ -102,7 +103,7 @@ const Home = () => {
             )}
         </div>
         <div className="row public-conversations-section">
-          <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
+          <h3 id="welcome-to-pavilion">Grab a bench in the pavilion</h3>
           <div className="public-conversations-header-section">
             <div className="row">
               {/* <div className="col image-column-left">
@@ -113,7 +114,7 @@ const Home = () => {
                 <p id="welcome-to-pavilion-blurb">There are always ongoing conversations here in the pavilion. Click to view. Login to participate. Logged in users can start a new public conversation here or a private conversation on their own bench at login. </p>
               </div>
               <div className="col button-column-right">
-                <button id="start-public-conversation-btn" onClick={handleStartPublicConversation}>+ New Public Conversation</button>  
+              <a href ="#conversation"><button id="start-public-conversation-btn" onClick={handleStartPublicConversation}>+ New Public Conversation</button></a>
               </div>
             </div>
           </div>
