@@ -3,6 +3,8 @@ import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from "react-router-dom"; 
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ModalAfterLogin from '../components/ModalAfterLogin';
 import './Login.css';
 
@@ -36,6 +38,7 @@ const Login = (props) => {
       // Show modal upon successful login
     } catch (e) {
       console.error(e)
+      toast.info('Sorry, we couldn\'t log you in. Please check for errors and try again.');
     }
 
     // clear form values 
@@ -50,7 +53,22 @@ const Login = (props) => {
   };
 
   return (
-    <>
+     <>
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{
+            '--toastify-icon-color-info': '#55828b', 
+            '--toastify-color-progress-info': '#55828b', 
+          }} 
+          />
     <main className="flex min-h-full flex-1 justify-center px-6 py-12 lg:px-8">
       {/* <div className="mt-14 sm:mx-auto sm:w-full sm:max-w-sm"> */}
         {data && data.login.token ? (
@@ -113,11 +131,6 @@ const Login = (props) => {
               </div>
             </form>
             {console.log("Data:", data)}
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
             <p className="not-a-member mt-10 text-center text-sm text-gray-500">
               Not a member?&nbsp;&nbsp;&nbsp;
               <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
