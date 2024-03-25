@@ -1,7 +1,10 @@
-import { useState, React } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { ADD_SHARER } from '../../utils/mutations';
+import { GET_ALL_USERNAMES } from '../../utils/queries';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./SharerSignup.css"
 import ModalAfterLogin from '../ModalAfterLogin';
 import Auth from '../../utils/auth';
@@ -14,6 +17,7 @@ const signUpSharer = (props) => {
   });
   const [addSharer, { error, data }] = useMutation(ADD_SHARER);
   const [showModal, setShowModal] = useState(false); // state to control the modal visibility, initially set to false (modal is not showing)
+  const { loading, error: queryError, data: queryData } = useQuery(GET_ALL_USERNAMES);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,6 +31,32 @@ const signUpSharer = (props) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(formState);
+
+    //Check password length
+    if (formState.password.length < 8) {
+      toast.info('Please enter a longer password. 8 characters minimum.');
+      return;
+    }
+
+    console.log('Form state:', formState);
+
+    if (queryError) {
+      console.log('Query error:', queryError);
+      return;
+    }
+
+    if (queryData) {
+      console.log('Query data:', queryData);
+      // Check if username already exists
+      const existingUser = queryData.users.find(user => {
+        console.log('Checking username:', user.username);
+        return user.username ===formState.username;
+      });
+      if (existingUser) {
+        toast.info('Your great username already belongs to another user. Please choose another.');
+        return;
+      }
+    }
 
     try {
       const { data } = await addSharer({
@@ -48,6 +78,21 @@ const signUpSharer = (props) => {
 
   return (
     <>
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{
+            '--toastify-icon-color-info': '#55828b', 
+            '--toastify-color-progress-info': '#55828b', 
+          }} 
+          />
       <div className="flex min-h-full flex-1 justify-center px-6 py-4 lg:px-8">
         {showModal ? (
           <ModalAfterLogin onClose={() => setShowModal(false)} action="signup" />
