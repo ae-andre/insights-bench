@@ -7,11 +7,12 @@
   }
   
   .conversation-title {  
-    margin: 20px;
-    font-size: 1.8rem;
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 2rem;
     font-family: var(--font-headings);
     word-spacing: 7px;
-    text-align: left; 
+    text-align: center; 
     color: var(--dark);
   }
 
@@ -27,7 +28,7 @@
     align-self: center;
     color: var(--dark);
     border-radius: 10px;
-    box-shadow: 0px 2px 4px; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   }
   
   .conversation-text {
@@ -52,7 +53,8 @@
     flex-direction: column;
     align-self: center;
     padding: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    /* border: 1px solid var(--med-dark); */
     border-radius: 10px;  
     background-color: var(--med-light);
   }
@@ -68,7 +70,7 @@
     /* overflow-y: auto; */
     margin-bottom: 20px;
     padding: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     background-color: var(--light);
   }
@@ -103,9 +105,8 @@
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 2%;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-    border: none !important;
-    border: 1px solid transparent !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--med-dark) !important;
   }
 
   /* Can't seem to override this bootstrap styling whatever I do
@@ -125,7 +126,7 @@
 
 .comment-submit-btn:hover {
     background-color: var(--dark) !important; 
-    color: var(--med-light) !important; 
+    color: var(--light) !important; 
     border: 1px solid var(--med-light) !important; 
 } 
 
