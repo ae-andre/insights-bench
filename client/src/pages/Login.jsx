@@ -3,6 +3,8 @@ import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from "react-router-dom"; 
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ModalAfterLogin from '../components/ModalAfterLogin';
 import './Login.css';
 
@@ -36,6 +38,7 @@ const Login = (props) => {
       // Show modal upon successful login
     } catch (e) {
       console.error(e)
+      toast.info('Sorry, we couldn\'t log you in. Please check for errors and try again.');
     }
 
     // clear form values 
@@ -50,25 +53,42 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      
-      
-  
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+     <>
+      <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{
+            '--toastify-icon-color-info': '#55828b', 
+            '--toastify-color-progress-info': '#55828b', 
+          }} 
+          />
+    <main className="flex min-h-full flex-1 justify-center px-6 py-12 lg:px-8">
+      {/* <div className="mt-14 sm:mx-auto sm:w-full sm:max-w-sm"> */}
         {data && data.login.token ? (
           <ModalAfterLogin onClose={() => setShowModal(false)} />
         ) : (
-          <>
-            <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm get-started">
               <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Welcome!
+                Welcome Back!
               </h2>
+              <div className="col image-column-left">
+                <img className="login-image" src="https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711236602/ed00a3363254967682613287d9777213_nsf7sy.jpg" alt="simple line drawing of a pavilion with perimeter bench seating" />
+              </div>
             </div>
+          )}
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm my-12">
+          <form className="space-y-6" action="#" method="POST" onSubmit={handleFormSubmit}>
             <div>
-                <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
-                  Username
-                </label>
+              <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                Username
+              </label>
                 <div className="mt-2">
                   <input
                     id="username"
@@ -77,7 +97,7 @@ const Login = (props) => {
                     value={formState.username}
                     required
                     onChange={handleChange}
-                    className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md input-color border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
@@ -96,11 +116,11 @@ const Login = (props) => {
                     value={formState.password}
                     onChange={handleChange}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md input-color border-1 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </div>
-  
+              <br></br>
               <div>
                 <button
                   type="submit"
@@ -111,20 +131,14 @@ const Login = (props) => {
               </div>
             </form>
             {console.log("Data:", data)}
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
             <p className="not-a-member mt-10 text-center text-sm text-gray-500">
               Not a member?&nbsp;&nbsp;&nbsp;
               <Link to="/role" className="link-to-signup font-semibold leading-6" > Sign Up</Link>
             </p>
+          </div>
+        </main>
           </>
-        )}
-      </div>
-    </main>
-)};
+)}
   
 
 export default Login;

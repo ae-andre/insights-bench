@@ -29,7 +29,7 @@ export default function MyBench() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="h-screen w-screen">
+    <div>
       <div>
         <Cards /> 
       </div>

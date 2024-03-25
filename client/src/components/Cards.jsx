@@ -6,6 +6,7 @@ import Auth from "../utils/auth";
 import { ChatBubbleOvalLeftEllipsisIcon, PlusIcon } from "@heroicons/react/24/outline";
 import UserConversation from "./UserConversation";
 import ConversationsForm from "./ConversationsForm";
+import '../App.css';
 
 export default function Cards() {
   const navigate = useNavigate(); 
@@ -61,8 +62,8 @@ export default function Cards() {
   const renderCard = () => {
     if (isEmptyListenerBench) {
       return (
-        <div onClick={goToHomePage} className="cursor-pointer hover:bg-orange-200 relative overflow-hidden rounded-lg bg-gray-100 px-4 pb-12 shadow sm:px-6 sm:pt-6">
-          <p>Your bench is currently empty, please contribute your wisdom at the pavilion.</p>
+        <div onClick={goToHomePage} className="cursor-pointer hover:bg-yellow-50 relative overflow-hidden rounded-lg card-color px-4 pb-12 shadow sm:px-6 sm:pt-6">
+          <p className='card-empty'>Your bench is currently empty, please contribute your wisdom at the pavilion.</p>
         </div>
       );
     } else if (hasConversation) {
@@ -71,10 +72,10 @@ export default function Cards() {
         {conversations.map((item) => (
           <div
             key={item.id}
-            className="cursor-pointer hover:bg-orange-200 relative overflow-hidden rounded-lg bg-gray-100 px-4 pb-12 shadow sm:px-6 sm:pt-6"
+            className="cursor-pointer hover:bg-yellow-50 relative overflow-hidden rounded-lg card-color px-4 pb-12 shadow sm:px-6 sm:pt-6"
           >
             <dt>
-              <div className="absolute rounded-md bg-green-700 bg-opacity-80 p-3">
+              <div className="absolute rounded-md icon-color bg-opacity-80 p-3">
                 <item.icon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <h2 className="ml-16 p-3 text-2xl font-semibold text-gray-900">
@@ -84,7 +85,7 @@ export default function Cards() {
               </h2>
             </dt>
             <dd className="mb-8 p-1 flex-col items-baseline sm:pb-3">
-              <p className="flex justify-center text-med font-medium bg-orange-100 rounded-md text-gray-800">
+              <p className="flex justify-center text-med font-medium bg-white rounded-md text-gray-800 preview-text">
                 {/* -------------limit the characters to 33 max------------- */}
                 {item.preview.slice(0, 37)}
                 {item.preview.length > 37 ? "..." : ""}
@@ -92,7 +93,7 @@ export default function Cards() {
               <div className="absolute inset-x-0 bottom-0 px-4 py-4 sm:px-6">
                 <div className="text-sm">
                   <p className="mb-2 text-sm font-medium text-gray-500">
-                    Your sharing this bench with {item.buddy}
+                    You're sharing this bench with {item.buddy}
                   </p>
                   {/* <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                     View conversation<span className="sr-only"> {item.name} details</span>
@@ -106,9 +107,9 @@ export default function Cards() {
       );
     } else if (isEmptySharerBench) {
       return (
-        <div onClick={ () => setIsViewingConversation(true)} className="cursor-pointer relative overflow-hidden rounded-lg bg-gray-100 px-4 pb-12 shadow sm:px-6 sm:pt-6 hover:bg-orange-200">
+        <div onClick={ () => setIsViewingConversation(true)} className="cursor-pointer relative overflow-hidden rounded-lg card-color px-4 pb-12 shadow sm:px-6 sm:pt-6 hover:bg-yellow-50">
           <dt>
-            <div className="absolute rounded-md bg-green-700 bg-opacity-80 p-3">
+            <div className="absolute rounded-md icon-color bg-opacity-80 p-3">
               <PlusIcon className="h-6 w-6 text-white" aria-hidden="true" />
             </div>
             <h2 className="ml-16 p-3 text-2xl font-semibold text-gray-900">Start a New Conversation</h2>

@@ -84,24 +84,32 @@ const Home = () => {
                 <>
                     <div className="col">
                         <div className="welcome-blurb-public-conversation-forum">
-                            <h2 className="main-page-title">Welcome to Soul Bench</h2>
-                            <h2 className="byline-quote">~Remember: even when life feels unstable, there's always a bench nearby to support you!</h2>
-                            <p>
-                            Ever find yourself on a bench, pouring out your problems to a complete stranger? Ever marvelled at how patiently a stranger listens and what apt counsel they can give? Do you regularly find yourself being that listener? In a world of increasing social isolation, and unprecedented demand for costly mental health resources, Soul Bench offers a free virtual forum for talking through life's perplexities with anonymous others. Our listeners do not have formal degrees in psychiatry, psychotherapy or social work, but their insights, expertise and empathy might be all you need to surmount some personal, financial or career-related problem. Equally, those who engage this community as a listener know the reward of offering their own victories and acquired life-wisdom to a fellow-traveller.<br></br><br></br>Imagine our online environment like a park. As you meander its walkways, there's a pavilion lined with perimeter bench seating, enough to host a conversation circle on a variety of topics. You can always listen to (view) these conversations, but if you wish to make comments or start a conversation, you will need to log in. On first login you'll sign up as either a listener or a sharer.  You'll keep this role and your username as your screen name throughout your time at Soul Bench. Once logged in, you can claim your own bench, where listener and sharer meet one on one. You are limited to one private conversation at a time. Sharers initiate the private conversations and are usually the ones to close them. Listeners commit to check the forum at least twice a day.<br></br><br></br>For many, life is not a walk in the park! Our goal at Soul Bench is to democratize wisdom and to lessen an overwhelmed person's sense that they are completely alone. We believe it is within everyone's grasp to flourish within their circumstances. Sometimes it takes a little support.
+                            <h2 className="main-page-title pacifico-regular">Welcome to Soul Bench</h2>
+                            <h2 className="byline-quote reenie-beanie-regular">~Remember: even when life feels unstable, there's always a bench nearby to support you!</h2>
+                            <p className="jost-uniquifier">
+                            Ever find yourself on a bench, pouring out your problems to a complete stranger? Ever marvelled at how patiently a stranger 
+                            listens and what apt counsel they can give? Do you regularly find yourself being that listener? In a world of increasing social 
+                            isolation, and unprecedented demand for costly mental health resources, Soul Bench offers a free virtual forum for talking through 
+                            life's perplexities with anonymous others.
                             </p>
+                            <div className="">
+                                <a href ="#welcome-to-pavilion-title"><button className="goto-pavilion">Click here to checkout the pavilion</button></a>
+                                <img className="homepage-img" src='https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711305274/homepage_sno7jy.png' alt="Line drawing of a street light, bench, and tree" />
+                            </div>
                         </div>
                     </div>
                 </>
             )}
         </div>
         <div className="row public-conversations-section">
+          <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
           <div className="public-conversations-header-section">
             <div className="row">
-              <div className="col image-column-left">
+              {/* <div className="col image-column-left">
                 <img className="pavilion-image" src="https://res.cloudinary.com/dqtpaispt/image/upload/v1710690242/eliptical_pavilion_gym6bm.png" alt="simple line drawing of a pavilion with perimeter bench seating" />
-              </div>
+              </div> */}
               <div className="col title-and-blurb-column-middle">
-                <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3>
+                {/* <h3 id="welcome-to-pavilion-title">Grab a bench in the pavilion</h3> */}
                 <p id="welcome-to-pavilion-blurb">There are always ongoing conversations here in the pavilion. Click to view. Login to participate. Logged in users can start a new public conversation here or a private conversation on their own bench at login. </p>
               </div>
               <div className="col button-column-right">

@@ -92,5 +92,11 @@ export const GET_USER_BY_ID = gql`
   }
 `;
 
-
+export const GET_ALL_USERNAMES = gql`
+  query GetAllUsernames {
+    users {
+      username
+    }
+  }
+`;
 
