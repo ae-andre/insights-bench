@@ -29,6 +29,9 @@ export const UPDATE_COMMENT = gql`
 mutation Mutation($conversationId: ID!, $commentId: ID!, $newComment: String!) {
   updateComment(conversationId: $conversationId, commentId: $commentId, newComment: $newComment) {
     _id
+    comments {
+      isUpdated
+    }
   }
 }
 `;
