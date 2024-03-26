@@ -98,10 +98,14 @@ const Conversation = ({ onClose }) => {
   const handleUpdateCommentSubmit = async () => {
     try {
       console.log('Edited comment ID:', editedComment._id);
+      console.log('Edited comment:', editedComment);
+      console.log('CommentText:', commentText);
       // Call mutation to update the comment
+      console.log('ConversationId:', conversationId);
       await updateCommentMutation({
         variables: {
-          commentId: editedComment._id,
+          conversationId: conversationId, 
+          commentId: editedComment.commentId,
           newComment: commentText, 
         }
       });
