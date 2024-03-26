@@ -116,7 +116,7 @@ const Home = () => {
                             </p>
                             < div className="">
                                 <a href ="#welcome-to-pavilion"><button className="goto-pavilion">Explore the pavilion</button></a>
-                                <button id="install-button" className="install-button">Install Soul Bench on your device</button>
+                                <button id="install-button" className="install-button">Install Soul Bench</button>
                                 <img className="homepage-img" src='https://res.cloudinary.com/dsdsdv6zj/image/upload/v1711305274/homepage_sno7jy.png' alt="Line drawing of a street light, bench, and tree" />
                             </div>
                         </div>
