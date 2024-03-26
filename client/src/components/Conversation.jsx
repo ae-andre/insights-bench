@@ -166,7 +166,7 @@ const Conversation = ({ onClose }) => {
       <div className="comment-container">
         <div className="comment-list">
           {fetchedConversation.comments.map((comment, index) => {
-            if (sameUser(comment.username)) {
+            if (isLoggedIn && sameUser(comment.username)) {
               return (
                   <div key={index} className="other-comment">
                     {comment.isUpdated ? (
@@ -186,7 +186,13 @@ const Conversation = ({ onClose }) => {
             } else {
               return (
                 <div key={index} className="other-comment">
-                  <p className="comment-text">{comment.comment}</p>
+                    {comment.isUpdated ? (
+                      <>
+                        <p className="comment-text">{comment.comment}</p><span className="edited-message">(Edited on {comment.createdAt})</span>
+                      </>
+                    ) : (
+                      <p className="comment-text">{comment.comment}</p>
+                    )}
                   <p className="comment-attribution">
                     <span className="bolded">{comment.username}</span> 
                     <span className="bolded">{comment.createdAt}</span>
