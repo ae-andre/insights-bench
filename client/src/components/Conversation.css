@@ -170,3 +170,8 @@ border: 1px solid var(--dark) !important;
   font-weight: bolder;
   font-size: smaller;
 }
+
+.comment-edit-button {
+  background-color: var(--med-light);
+  padding: 7px 10px;
+}

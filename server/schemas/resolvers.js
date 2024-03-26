@@ -259,6 +259,49 @@ const resolvers = {
         throw new Error("Error adding comment");
       }
     },
+    updateComment: async (parent, { conversationId, commentId, newComment }, context) => {
+      try {
+        console.log('User context for edit comment:', context.user);
+        if (context.user) {
+
+          // Find the conversation containing the comment
+          const comment = await Conversation.findOne({_id:conversationId, "comments.commentId":commentId},{"comments.$":1});
+          // Find the comment by its ID
+          console.log('Finding comment byID:', commentId);
+          console.log('Found comment:', comment);
+    
+          if (!comment) {
+            throw new Error('Comment not found.');
+          }
+    
+          // Check if the user updating the comment is the same user who left it
+          console.log('Original comment author ID:', comment.userId);
+          console.log('Comment editor user ID:', context.user.id);
+          if (comment.userId !== context.user.id) {
+            throw new Error('You are not authorized to update this comment.');
+          }
+    
+          // Update the comment text
+          // comment.comment = newComment;
+          // await comment.save();
+
+          // console.log('Updating comment with ID:', commentId);
+          // console.log('New comment text:', newComment);
+    
+          const conversation = Conversation.findOneAndUpdate(
+            { _id: conversationId, "comments.commentId": commentId },
+            { $set: { "comments.$.comment": newComment } },
+            { new: true }
+          );
+          console.log("Conversation:", conversation);
+          return conversation;
+        }
+        throw new AuthenticationError('You must be logged in to update a comment.');
+      } catch (error) {
+        console.error('Error updating comment:', error);
+        throw new Error('Error updating comment.');
+      }
+    }
   },
 };
 
