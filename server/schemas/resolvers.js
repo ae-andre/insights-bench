@@ -290,7 +290,11 @@ const resolvers = {
     
           const conversation = Conversation.findOneAndUpdate(
             { _id: conversationId, "comments.commentId": commentId },
-            { $set: { "comments.$.comment": newComment } },
+            { $set: { 
+              "comments.$.comment": newComment, 
+              "comments.$.isUpdated": true,
+              "comments.$.createdAt": Date.now(),
+            } },
             { new: true }
           );
           console.log("Conversation:", conversation);
