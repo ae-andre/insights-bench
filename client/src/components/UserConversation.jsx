@@ -70,7 +70,7 @@ const UserConversation = ({ onClose }) => {
       });
 
       setCommentText("");
-      refetch();
+      refetchConversation();
     } catch (error) {
       console.error("Error adding comment:", error);
     }
