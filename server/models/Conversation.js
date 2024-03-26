@@ -19,6 +19,10 @@ const commentSchema = new Schema({
     default: Date.now,
     get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm a')
   },
+  isUpdated: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const conversationSchema = new Schema({

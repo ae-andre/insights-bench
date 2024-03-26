@@ -115,12 +115,13 @@ h3 {
 .goto-pavilion{
     background-color: var(--med-dark);
     color: var(--light);
+    width: 270px;
     font-size: larger;
     font-family: var(--font-standard);
 }
 
 .goto-pavilion:hover{
-    background-color: var(--dark);
+    background-color: var(--dark) !important;
     color: var(--light);
     font-family: var(--font-standard);
 }
@@ -128,4 +129,24 @@ h3 {
 .homepage-img{
     display: block;
     margin-left: auto;
+}
+
+#install-button {
+    background-color: var(--med-dark);
+    color: var(--light);
+    width: 270px;
+    font-size: larger;
+    font-family: var(--font-standard);
+    margin-left: 10px;
+    visibility: hidden;
+}
+
+#install-button:hover {
+    background-color: var(--dark);
+    color: var(--light);   
+}
+
+#install-button:active {
+    background-color: var(--med-dark);
+    color: var(--light);
 }

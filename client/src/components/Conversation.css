@@ -170,3 +170,23 @@ border: 1px solid var(--dark) !important;
   font-weight: bolder;
   font-size: smaller;
 }
+
+.comment-edit-button {
+  background-color: var(--med-light);
+  padding: 7px 10px;
+}
+
+.comment-edit-button:hover {
+  background-color: var(--dark);
+  padding: 7px 10px;
+  color: var(--light);
+}
+
+
+.edited-message {
+  display: inline;
+  font-size: 11.5px;
+  color: rgb(149, 146, 146);
+  margin-left: 8px;
+  font-style: italic;
+}

@@ -13,6 +13,10 @@ import Resources from './pages/Resources.jsx';
 import About from './pages/About';
 import Error from './pages/Error';
 //import Conversation from './components/Conversation.jsx
+import { register } from "register-service-worker";
+
+// Register service worker
+register(`/service-worker.js`)
 
 
 const router = createBrowserRouter([
