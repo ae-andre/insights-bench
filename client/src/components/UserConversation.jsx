@@ -20,7 +20,8 @@ const UserConversation = ({ onClose }) => {
   const {
     loading: userLoading,
     error: userError,
-    data: userData,
+    data: userData, 
+    refetch: refetchUser,
   } = useQuery(GET_USER_BY_ID, {
     variables: { userId },
     skip: !userId,
@@ -30,7 +31,12 @@ const UserConversation = ({ onClose }) => {
   console.log(userData)
 
 
-  const { loading, error, data, refetch } = useQuery(GET_CONVERSATION_BY_ID, {
+  const { 
+    loading, 
+    error, 
+    data, 
+    refetch: refetchConversation,
+   } = useQuery(GET_CONVERSATION_BY_ID, {
     skip: !conversationId,
     variables: { conversationId },
   });
@@ -40,10 +46,11 @@ const UserConversation = ({ onClose }) => {
   const [deleteConversation] = useMutation(DELETE_CONVERSATION);
 
   useEffect(() => {
-    if (conversationId) {
-      refetch();
+    if (!conversationId) {
+      refetchUser();
+      refetchConversation;
     }
-  }, [conversationId, refetch]);
+  }, [conversationId, refetchUser, refetchConversation]);
 
   const handleChange = (event) => {
     setCommentText(event.target.value);
@@ -100,16 +107,23 @@ const UserConversation = ({ onClose }) => {
       <div className="conversation-text-and-attribution">
         <div className="conversation-text">{fetchedConversation.conversationText}</div>
         <p className="conversation-attribution">
-          Conversation opened by <span><b>{fetchedConversation.username}</b></span> <br /> <span>{fetchedConversation.createdAt}</span>
+          Conversation with <span><b>{userData.user.buddy.username}</b></span> <br /> <span>{fetchedConversation.createdAt}</span>
         </p>
       </div>
       <div className="comment-container">
         <div className="comment-list">
           {fetchedConversation.comments.map((comment, index) => (
-            <div key={index} className="comment">
-              <p className="comment-text">{comment.comment}</p>
-              <p className="comment-attribution"><span className="bolded">{comment.username}</span> <span className="bolded">{comment.createdAt}</span></p>
-            </div>
+            comment.username === userData.user.username ? (
+              <div key={index} className="my-comment">
+                <p className="comment-text">{comment.comment}</p>
+                <p className="comment-attribution"><span className="bolded">{comment.username}</span> <span className="bolded">{comment.createdAt}</span></p>
+              </div>
+            ) : (
+              <div key={index} className="other-comment">
+                <p className="comment-text">{comment.comment}</p>
+                <p className="comment-attribution"><span className="bolded">{comment.username}</span> <span className="bolded">{comment.createdAt}</span></p>
+              </div>
+            )
           ))}
         </div>
       </div>

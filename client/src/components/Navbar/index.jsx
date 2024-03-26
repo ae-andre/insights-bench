@@ -54,6 +54,7 @@ function Nav() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link
                     to="/"
+                    reloadDocument
                     className="h-8 w-auto"
                     style={{ width: "102px", height: "98%", cursor: "pointer" }}
                   >

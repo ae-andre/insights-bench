@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import './ConversationsList.css';
 
 const ConversationsList = ({ conversations, expertise, onConversationClick }) => {
+  const handleClick = (conversationId) => {
+    onConversationClick(conversationId);
+    window.scrollTo({ top: 5, behavior: 'smooth' });
+  }
   console.log('Received expertise:', expertise);
   console.log('Conversations:', conversations);
   
@@ -15,8 +19,9 @@ const ConversationsList = ({ conversations, expertise, onConversationClick }) =>
             <li key={conversation._id} className="list-group-item d-flex justify-content-between align-items-start">
               <div className="ms-2 me-auto">
                 {/* Use Link component for navigation to a new conversation_id endpoint whenever a particular conversation.title is clicked */}
-                <Link to={`/conversation/${conversation._id}`}
-                onClick={() => onConversationClick(conversation._id)}
+                <Link 
+                  to={`/conversation/${conversation._id}`}
+                  onClick={() => handleClick(conversation._id)}
                 >
                   <div className="fw-bold">{conversation.conversationTitle}</div>
                 </Link>
