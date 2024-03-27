@@ -1,5 +1,5 @@
 # Soul Bench - Insights Bench App
-<img src="/client/src/assets/app-name.png" width="800" height="150" />
+<img src="./client/src/assets/app-name.png" width="800" height="150" />
 
 An online community of conversation, built with the MERN stack, that will allow those with personal, financial or career-related problems to talk them through with others, in either a private or a public channel. :speech_balloon: 
 
@@ -79,6 +79,10 @@ To update their password, users can simply click on the 'Profile' button, enter 
 The functionality of the resources page is pretty basic and is available to all users and site visitors at all times. It merely consists in a collection of clickable links leading to outside resources specially curated by the Soul Bench development team.
 
 ## Deployed Application
+
+Click here to explore Soul Bench! :point_right: [Soul Bench](https://soul-bench-3b55e6a68ef1.herokuapp.com/)
+
+![Screenshot of a deployed app](./client/src/assets/soul-bench.png)
 
 ## Credits
 

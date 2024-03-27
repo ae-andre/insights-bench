@@ -56,6 +56,8 @@ export const GET_CONVERSATION_BY_ID = gql`
         comment
         username
         createdAt
+        isUpdated
+        updatedTime
       }
     }
   }
