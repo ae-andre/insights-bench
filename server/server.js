@@ -32,9 +32,9 @@ const startApolloServer = async () => {
   app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
   // Basic route handler for the root path
-  app.get('/', (req, res) => {
-  res.send('Hello, this is your GraphQL server!');
-  });
+  // app.get('/', (req, res) => {
+  // res.send('Hello, this is your GraphQL server!');
+  // });
 
    // Important for MERN Setup: Any client-side requests that begin with '/graphql' will be handled by our Apollo Server
    app.use('/graphql', expressMiddleware(server, {
