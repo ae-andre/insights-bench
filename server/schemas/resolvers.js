@@ -293,7 +293,7 @@ const resolvers = {
             { $set: { 
               "comments.$.comment": newComment, 
               "comments.$.isUpdated": true,
-              "comments.$.createdAt": Date.now(),
+              "comments.$.updatedTime": Date.now(),
             } },
             { new: true }
           );

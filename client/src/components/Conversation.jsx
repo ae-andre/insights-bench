@@ -19,6 +19,7 @@ const Conversation = ({ onClose }) => {
   // Check if the user is logged in (because a user shouldn't be able to leave a comment if not logged in)
   const navigate = useNavigate(); // Initialize navigate function so I can use it to redirect non-logged in users trying to leave comments to the login page
   const [isLoggedIn, setIsLoggedIn] = useState(Auth.loggedIn());
+  console.log("One", isLoggedIn)
 
   const { loading, error, data, refetch } = useQuery(GET_CONVERSATION_BY_ID, {
     variables: { conversationId: conversationId },
@@ -75,7 +76,7 @@ const Conversation = ({ onClose }) => {
         variables: {
           conversationId: conversationId,
           comment: commentText,
-          username: Auth.getProfile().data.username
+          username: Auth.getProfile().data.username,
         },
       });
 
@@ -134,9 +135,10 @@ const Conversation = ({ onClose }) => {
   console.log("fetched Convo:", fetchedConversation)
 
   const sameUser = (commentUser) => {
-    console.log("REACHING TO MATCH")
-    console.log(Auth.getProfile().data.username === commentUser)
-    return Auth.getProfile().data.username === commentUser;
+    console.log("TWO", Auth.loggedIn())
+    if (Auth.loggedIn()){
+      return Auth.getProfile().data.username === commentUser;
+    }
   }
   
   return (
@@ -166,12 +168,12 @@ const Conversation = ({ onClose }) => {
       <div className="comment-container">
         <div className="comment-list">
           {fetchedConversation.comments.map((comment, index) => {
-            if (isLoggedIn && sameUser(comment.username)) {
+            if (Auth.loggedIn() && sameUser(comment.username)) {
               return (
                   <div key={index} className="other-comment">
                     {comment.isUpdated ? (
                       <>
-                        <p className="comment-text">{comment.comment}</p><span className="edited-message">(Edited on {comment.createdAt})</span>
+                        <p className="comment-text">{comment.comment}</p><span className="edited-message">(Edited on {comment.updatedTime})</span>
                       </>
                     ) : (
                       <p className="comment-text">{comment.comment}</p>
@@ -188,7 +190,7 @@ const Conversation = ({ onClose }) => {
                 <div key={index} className="other-comment">
                     {comment.isUpdated ? (
                       <>
-                        <p className="comment-text">{comment.comment}</p><span className="edited-message">(Edited on {comment.createdAt})</span>
+                        <p className="comment-text">{comment.comment}</p><span className="edited-message">(Edited on {comment.updatedTime})</span>
                       </>
                     ) : (
                       <p className="comment-text">{comment.comment}</p>

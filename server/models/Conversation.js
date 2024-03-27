@@ -22,6 +22,11 @@ const commentSchema = new Schema({
   isUpdated: {
     type: Boolean,
     default: false,
+  },
+  updatedTime: {
+    type: Date,
+    default: Date.now,
+    get: (createdAt) => moment(createdAt).format('MMM D, YYYY [at] h:mm a')
   }
 });
 

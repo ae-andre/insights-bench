@@ -31,6 +31,7 @@ mutation Mutation($conversationId: ID!, $commentId: ID!, $newComment: String!) {
     _id
     comments {
       isUpdated
+      updatedTime
     }
   }
 }

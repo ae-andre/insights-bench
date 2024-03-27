@@ -35,6 +35,7 @@ const typeDefs = gql`
     username: String
     createdAt: String
     isUpdated: Boolean
+    updatedTime: String
   }
 
   type Auth {
